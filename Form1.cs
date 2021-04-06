@@ -1,0 +1,293 @@
+﻿using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Data;
+using System.Drawing;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Windows.Forms;
+
+namespace FlowWorks
+{
+    public partial class Form1 : Form
+    {
+        private FlowWorks fwViewer;
+        private List<string> commandHistory;
+        private int commandHistoryIndex = 0;
+
+        public float BabyPressure { get; private set; }
+
+        public delegate void BoolParameterDelegate(bool b);
+        public delegate void StringParameterDelegate(string s);
+        public delegate void DeviceStatusParameterDelegate(DeviceStatus deviceStatus);
+
+        public Form1()
+        {
+            InitializeComponent();
+            // create the main application object
+            fwViewer = new FlowWorks(this);
+            // UI initialization
+            this.UpdateCheckmarkInComportMenu(this.fwViewer.ComportNum);
+            this.commandHistory = new List<string>();
+            this.ActiveControl = this.commandBox;
+
+        }
+
+        //The Comport menu (under Tools menu) may change, so update on every "Tools" click
+        private void RefreshComList(object sender, EventArgs e)
+        {
+            int i = 0;
+            var ComList = new List<string>();
+            char[] RemoveCom = { 'C', 'O', 'M' };
+            this.comportMenu.DropDownItems.Clear();
+
+            foreach (string s in System.IO.Ports.SerialPort.GetPortNames())
+            {
+                if (ComList.Contains(s)) continue;
+                else if (i == 0)
+                {
+                    this.comportMenu.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+                                this.cOM1ToolStripMenuItem
+                            });
+                    this.cOM1ToolStripMenuItem.Name = "cOM1ToolStripMenuItem";
+                    this.cOM1ToolStripMenuItem.Size = new System.Drawing.Size(125, 26);
+                    this.cOM1ToolStripMenuItem.Text = s;
+                    this.cOM1ToolStripMenuItem.Click += new System.EventHandler(this.cOM1ToolStripMenuItem_Click);
+                    this.cOM1ToolStripMenuItem.Tag = Int32.Parse(s.TrimStart(RemoveCom)); // Tag contains the port number
+                }
+                else if (i == 1)
+                {
+                    this.comportMenu.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+                                this.cOM2ToolStripMenuItem
+                            });
+                    this.cOM2ToolStripMenuItem.Name = "cOM2ToolStripMenuItem";
+                    this.cOM2ToolStripMenuItem.Size = new System.Drawing.Size(125, 26);
+                    this.cOM2ToolStripMenuItem.Text = s;
+                    this.cOM2ToolStripMenuItem.Click += new System.EventHandler(this.cOM2ToolStripMenuItem_Click);
+                    this.cOM2ToolStripMenuItem.Tag = Int32.Parse(s.TrimStart(RemoveCom)); // Tag contains the port number
+                }
+                else if (i == 2)
+                {
+                    this.comportMenu.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+                                this.cOM3ToolStripMenuItem
+                            });
+                    this.cOM3ToolStripMenuItem.Name = "cOM3ToolStripMenuItem";
+                    this.cOM3ToolStripMenuItem.Size = new System.Drawing.Size(125, 26);
+                    this.cOM3ToolStripMenuItem.Text = s;
+                    this.cOM3ToolStripMenuItem.Click += new System.EventHandler(this.cOM3ToolStripMenuItem_Click);
+                    this.cOM3ToolStripMenuItem.Tag = Int32.Parse(s.TrimStart(RemoveCom)); // Tag contains the port number
+                }
+                else if (i == 3)
+                {
+                    this.comportMenu.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+                                this.cOM4ToolStripMenuItem
+                            });
+                    this.cOM4ToolStripMenuItem.Name = "cOM4ToolStripMenuItem";
+                    this.cOM4ToolStripMenuItem.Size = new System.Drawing.Size(125, 26);
+                    this.cOM4ToolStripMenuItem.Text = s;
+                    this.cOM4ToolStripMenuItem.Click += new System.EventHandler(this.cOM4ToolStripMenuItem_Click);
+                    this.cOM4ToolStripMenuItem.Tag = Int32.Parse(s.TrimStart(RemoveCom)); // Tag contains the port number
+                }
+                else if (i == 4)
+                {
+                    this.comportMenu.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+                                this.cOM5ToolStripMenuItem
+                            });
+                    this.cOM5ToolStripMenuItem.Name = "cOM5ToolStripMenuItem";
+                    this.cOM5ToolStripMenuItem.Size = new System.Drawing.Size(125, 26);
+                    this.cOM5ToolStripMenuItem.Text = s;
+                    this.cOM5ToolStripMenuItem.Click += new System.EventHandler(this.cOM5ToolStripMenuItem_Click);
+                    this.cOM5ToolStripMenuItem.Tag = Int32.Parse(s.TrimStart(RemoveCom)); // Tag contains the port number
+                }
+                else if (i == 5)
+                {
+                    this.comportMenu.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+                                    this.cOM6ToolStripMenuItem
+                                });
+                    this.cOM6ToolStripMenuItem.Name = "cOM6ToolStripMenuItem";
+                    this.cOM6ToolStripMenuItem.Size = new System.Drawing.Size(125, 26);
+                    this.cOM6ToolStripMenuItem.Text = s;
+                    this.cOM6ToolStripMenuItem.Click += new System.EventHandler(this.cOM6ToolStripMenuItem_Click);
+                    this.cOM6ToolStripMenuItem.Tag = Int32.Parse(s.TrimStart(RemoveCom)); // Tag contains the port number
+                }
+                else if (i == 6)
+                {
+                    this.comportMenu.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+                                    this.cOM7ToolStripMenuItem
+                                });
+                    this.cOM7ToolStripMenuItem.Name = "cOM7ToolStripMenuItem";
+                    this.cOM7ToolStripMenuItem.Size = new System.Drawing.Size(125, 26);
+                    this.cOM7ToolStripMenuItem.Text = s;
+                    this.cOM7ToolStripMenuItem.Click += new System.EventHandler(this.cOM7ToolStripMenuItem_Click);
+                    this.cOM7ToolStripMenuItem.Tag = Int32.Parse(s.TrimStart(RemoveCom)); // Tag contains the port number
+                }
+                else if (i == 7)
+                {
+                    this.comportMenu.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+                                    this.cOM8ToolStripMenuItem
+                                });
+                    this.cOM8ToolStripMenuItem.Name = "cOM8ToolStripMenuItem";
+                    this.cOM8ToolStripMenuItem.Size = new System.Drawing.Size(125, 26);
+                    this.cOM8ToolStripMenuItem.Text = s;
+                    this.cOM8ToolStripMenuItem.Click += new System.EventHandler(this.cOM8ToolStripMenuItem_Click);
+                    this.cOM8ToolStripMenuItem.Tag = Int32.Parse(s.TrimStart(RemoveCom)); // Tag contains the port number
+                }
+
+                i++;
+                ComList.Add(s);  // ComList will contain a list of the Com ports in ASCII (not a number)
+            }
+        }
+        public void UpdateConnectedSignal(bool isConnected)
+        {
+            this.connectedTextBox.BackColor = isConnected ? Color.Lime : SystemColors.Control;
+        }
+        private void ChangeComport(int comportNum)
+        {
+            //this.dwApp.ComPort = "COM" + comportNum.ToString();
+            this.fwViewer.ComportNum = comportNum;
+            this.UpdateCheckmarkInComportMenu(comportNum);
+        }
+        public void UpdateDeviceStatus(DeviceStatus deviceStatus)
+        {
+            this.BabyPressure = deviceStatus.babyPressure;
+            this.firmwareVersionLabel.Text = "v" + deviceStatus.fwVersionMajor.ToString() +
+                                             "." + deviceStatus.fwVersionMinor.ToString() +
+                                             "." + deviceStatus.fwVersionRevision.ToString();
+            this.dateLabel.Text = deviceStatus.dateMonth.ToString() + "/" +
+                                  deviceStatus.dateDay.ToString() + "/" +
+                                  deviceStatus.dateYear.ToString("00");
+            this.timeLabel.Text = deviceStatus.timeHours.ToString() + ":" +
+                                  deviceStatus.timeMinutes.ToString("00") + ":" +
+                                  deviceStatus.timeSeconds.ToString("00");
+        }
+        // private helper functions
+        private void OverwriteLastCommandWith(string s)
+        {
+            List<string> myList = commandBox.Lines.ToList();
+            if (myList.Count > 0)
+            {
+                myList.RemoveAt(myList.Count - 1);
+                commandBox.Lines = myList.ToArray();
+            }
+            commandBox.AppendText("\r\n" + s);
+        }
+        private void UpdateCheckmarkInComportMenu(int comportNum)
+        {
+            ToolStripMenuItem setupMenu = (ToolStripMenuItem)menuStrip1.Items["setupMenu"];
+            ToolStripMenuItem comportMenu = (ToolStripMenuItem)setupMenu.DropDownItems["comportMenu"];
+            for (int i = 0; i < comportMenu.DropDownItems.Count; i++)
+            {
+                ToolStripMenuItem comPort = (ToolStripMenuItem)comportMenu.DropDownItems[i];
+                comPort.Checked = ((int)comPort.Tag == comportNum);
+            }
+        }
+        private void cOM1ToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            this.ChangeComport((int)this.cOM1ToolStripMenuItem.Tag);
+        }
+        private void cOM2ToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            this.ChangeComport((int)this.cOM2ToolStripMenuItem.Tag);
+        }
+        private void cOM3ToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            this.ChangeComport((int)this.cOM3ToolStripMenuItem.Tag);
+        }
+        private void cOM4ToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            this.ChangeComport((int)this.cOM4ToolStripMenuItem.Tag);
+        }
+        private void cOM5ToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            this.ChangeComport((int)this.cOM5ToolStripMenuItem.Tag);
+        }
+        private void cOM6ToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            this.ChangeComport((int)this.cOM6ToolStripMenuItem.Tag);
+        }
+        private void cOM7ToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            this.ChangeComport((int)this.cOM7ToolStripMenuItem.Tag);
+        }
+        private void cOM8ToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            this.ChangeComport((int)this.cOM8ToolStripMenuItem.Tag);
+        }
+        public void UpdateErrorMsg(string s)
+        {
+            // for debug...
+            //this.responseBox.AppendText(">>> COMMUNICATIONS ERROR: " + s + "\r\n");
+        }
+        public void UpdateResponse(string s)
+        {
+            // Ignore lines starting with comma
+            //if (!s.StartsWith(","))
+                this.responseBox.AppendText(s + "\r\n");
+        }
+
+        private void commandBox_Click(object sender, EventArgs e)
+        {
+            // keep cursor always at the end of the textbox
+            commandBox.Select(commandBox.Text.Length, 0);
+        }
+
+        private void commandBox_KeyDown(object sender, KeyEventArgs e)
+        {
+            int colNum;
+            switch (e.KeyCode)
+            {
+                case Keys.Return:
+                    if (commandBox.Lines.Length > 0)
+                    {
+                        string command = commandBox.Lines[commandBox.Lines.Length - 1];
+                        commandHistory.Add(command);
+                        commandHistoryIndex = commandHistory.Count;
+                        fwViewer.AddTerminalCommand(command);
+                        responseBox.AppendText("\r\n");
+                        if (command.Length > 0)
+                        {
+                            responseBox.AppendText("> " + command + "\r\n");
+                        }
+                    }
+                    break;
+                case Keys.Up:
+                    if (commandHistoryIndex > 0)
+                    {
+                        commandHistoryIndex--;
+                        this.OverwriteLastCommandWith(commandHistory[commandHistoryIndex]);
+                    }
+                    e.Handled = true;
+                    break;
+                case Keys.Down:
+                    if (commandHistoryIndex < commandHistory.Count)
+                    {
+                        commandHistoryIndex++;
+                    }
+                    if (commandHistoryIndex == commandHistory.Count)
+                    {
+                        this.OverwriteLastCommandWith("");
+                    }
+                    else
+                    {
+                        this.OverwriteLastCommandWith(commandHistory[commandHistoryIndex]);
+                    }
+                    e.Handled = true;
+                    break;
+                case Keys.Back:
+                    // don't allow backspacing beyond start of line
+                    colNum = commandBox.SelectionStart -
+                             commandBox.GetFirstCharIndexFromLine(commandBox.GetLineFromCharIndex(commandBox.SelectionStart));
+                    if (colNum == 0)
+                    {
+                        // e.Handled = true;  <-- didn't work
+                        commandBox.AppendText("\r\n");
+                    }
+                    break;
+                case Keys.Left:
+                    e.Handled = true;
+                    break;
+            }
+        }
+    }
+}

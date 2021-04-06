@@ -41,36 +41,14 @@ namespace FlowWorks {
         try {
           // send commands
           if (this.serialPort.IsOpen) {
-            while (commandQueue.Count > 0) {
-              string command = commandQueue.Dequeue().ToString();
-              // send the command only if writer is enabled; otherwise discard it
-              if (this.enabled && (command.Length > 0)) {
-                // First, check if there is a terminal command pending, send it BEFORE "&sendStatus"
-                if (command.Equals("&sendStatus"))
+            while (this.terminalCommandQueue.Count > 0)
+            {
+                string termCommand = this.terminalCommandQueue.Dequeue().ToString().ToLower();
+                if (termCommand.Length > 0)
                 {
-                  while (terminalCommandQueue.Count > 0)
-                  {
-                    string termCommand = terminalCommandQueue.Dequeue().ToString().ToLower();
-                    if (termCommand.Length > 0)
-                    {
-                      // Before sending "&sendStatus", send the pending command from the Command Window
-                      this.serialPort.Write(termCommand + '\r'); // add CR
-                      if (termCommand.Equals("lcal") || termCommand.Equals("lcalb"))
-                      {
-                        Console.WriteLine("LCAL start: " + DateTime.UtcNow.ToString("HH:mm:ss.fff"));
-                        // Wait for response from board
-                        Thread.Sleep(3000);
-                        Console.WriteLine("LCAL finished: " + DateTime.UtcNow.ToString("HH:mm:ss.fff"));
-                      }
-                      else
-                      {
-                        Thread.Sleep(400);
-                      }
-                    }
-                  }
+                    this.serialPort.Write(termCommand + '\r'); // add CR
+                    Thread.Sleep(400);
                 }
-                this.serialPort.Write(command + '\r');  // add CR 
-              }
             }
           }
         }
@@ -95,10 +73,6 @@ namespace FlowWorks {
       {
         if (this.enabled)
         {
-            if (!command.EndsWith("\n\r"))
-            {
-                command += "\n\r";
-            }
             this.terminalCommandQueue.Enqueue(command);
         }
       }

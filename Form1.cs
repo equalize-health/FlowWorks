@@ -222,7 +222,7 @@ namespace FlowWorks
         public void UpdateResponse(string s)
         {
             // Ignore lines starting with comma
-            //if (!s.StartsWith(","))
+            if (!s.StartsWith(","))
                 this.responseBox.AppendText(s + "\r\n");
         }
 

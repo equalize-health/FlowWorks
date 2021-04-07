@@ -54,15 +54,7 @@ namespace FlowWorks {
             return false;
         }
     }
-    public void SendTime()
-    {
-      DateTime timeStamp = DateTime.Now;
-      string sendTime = "timeset(" + timeStamp.Hour + "," + timeStamp.Minute + "," + timeStamp.Second + ")\r";
-      this.serialPort.Write(sendTime);
-      sendTime = "dateset(" + timeStamp.Month + "," + timeStamp.Day + "," + (timeStamp.Year-2000) +","+(int)timeStamp.DayOfWeek+ ")\r";
-      this.serialPort.Write(sendTime);
 
-    }
     public bool DebugPrintsEnabled = false;
     public bool ErrorPrintsEnabled = true;
 
@@ -111,7 +103,6 @@ namespace FlowWorks {
             {
               clearBuffOnce = false;
               this.DiscardBytes();
-              this.SendTime();
             }
             // read one byte
             int bytesRead = 0;

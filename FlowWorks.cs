@@ -75,6 +75,14 @@ namespace FlowWorks
             this.config.Load();
             this.comportNum = this.config.Get("comport", this.kDefaultComportNum);
         }
+        public void SendTime()
+        {
+            DateTime timeStamp = DateTime.Now;
+            string sendString = "setTime(" + timeStamp.Hour + ":" + timeStamp.Minute + ":" + timeStamp.Second + ")";
+            this.writer.AddTerminalCommand(sendString);
+            sendString = "setdate(" + timeStamp.Month + "/" + timeStamp.Day + "/" + (timeStamp.Year - 2000) + ")";
+            this.writer.AddTerminalCommand(sendString);
+        }
         public int ComportNum
         {
             get { return this.comportNum; }
@@ -111,9 +119,24 @@ namespace FlowWorks
             {
                 case ConnectionManager.Event.MadeConnection:
                     this.reader.ConnectionIsOpen = true;
+                    this.writer.Enabled = true;
+                    // Clear out any characters by send <CR>
+                    this.writer.AddTerminalCommand("\n");
+                    // Once port is open, set the time first
+                    SendTime();
                     break;
                 case ConnectionManager.Event.DeviceNotDetected:
                     //this.PostErrorToUI("Device not detected");
+                    break;
+            }
+        }
+        public void EventNotification(Writer.Event e)
+        {
+            switch (e)
+            {
+                case Writer.Event.WriteFailed:
+                    this.CloseConnection();
+                    this.PostErrorToUI("Comport write failure... connection closed");
                     break;
             }
         }
@@ -182,16 +205,6 @@ namespace FlowWorks
             bool isConnected = (status == ConnectionManager.Status.Connected);
             this.PostConnectedStatus(isConnected);
             this.reader.ConnectionIsOpen = isConnected;
-        }
-        public void EventNotification(Writer.Event e)
-        {
-            switch (e)
-            {
-                case Writer.Event.WriteFailed:
-                    this.CloseConnection();
-                    this.PostErrorToUI("Comport write failure... connection closed");
-                    break;
-            }
         }
         private void CloseConnection()
         {

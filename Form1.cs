@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Reflection;
 
 namespace FlowWorks
 {
@@ -20,6 +21,7 @@ namespace FlowWorks
 
         public bool FiO2UnderPIDControl { get; private set; }
         public bool BabyPressureUnderPIDControl { get; private set; }
+        public int CalibrationState;
 
         public delegate void BoolParameterDelegate(bool b);
         public delegate void StringParameterDelegate(string s);
@@ -35,7 +37,7 @@ namespace FlowWorks
             this.UpdateCheckmarkInComportMenu(this.fwViewer.ComportNum);
             this.commandHistory = new List<string>();
             this.ActiveControl = this.commandBox;
-
+            this.VersionString.Text = "Version: " + Assembly.GetExecutingAssembly().GetName().Version.ToString();
         }
 
         //The Comport menu (under Tools menu) may change, so update on every "Tools" click
@@ -154,10 +156,10 @@ namespace FlowWorks
         }
         public void UpdateDeviceData(DeviceData deviceData)
         {
-            this.BabyPressure.Text = deviceData.babyPressure.ToString("#.##");
-            this.FlowLeak.Text = deviceData.flowLeak.ToString("#.##");
-            this.PressExp.Text = deviceData.pressExp.ToString("0.##");
-            this.FlowExp.Text = deviceData.flowExp.ToString("#.##");
+            this.BabyPressure.Text = deviceData.babyPressure.ToString("N2");
+            this.FlowLeak.Text = deviceData.flowLeak.ToString("N2");
+            this.PressExp.Text = deviceData.pressExp.ToString("N2");
+            this.FlowExp.Text = deviceData.flowExp.ToString("N2");
             this.PressCkt.Text = deviceData.pressCkt.ToString("#.##");
             if (deviceData.tempProx < -40) this.TempProx.Text = "N/C";
             else this.TempProx.Text = deviceData.tempProx.ToString("#.##");
@@ -165,10 +167,10 @@ namespace FlowWorks
             else this.TempDist.Text = deviceData.tempDist.ToString("#.##");
             if (deviceData.tempHeater < -40) this.TempPlate.Text = "N/C";
             else this.TempPlate.Text = deviceData.tempHeater.ToString("#.##");
-            this.PressInsp.Text = deviceData.pressInsp.ToString("0.##");
-            this.BlowerSpeed.Text = deviceData.blowerSpeed.ToString("#.##");
-            this.FlowInsp.Text = deviceData.flowInsp.ToString("0.##");
-            this.FlowOx.Text = deviceData.flowOx.ToString("0.##");
+            this.PressInsp.Text = deviceData.pressInsp.ToString("N2");
+            this.BlowerSpeed.Text = deviceData.blowerSpeed.ToString("N0");
+            this.FlowInsp.Text = deviceData.flowInsp.ToString("N2");
+            this.FlowOx.Text = deviceData.flowOx.ToString("N2");
             this.TempAmb.Text = deviceData.tempPCB.ToString("#.##");
             this.Fio2Setpt.Value = (decimal)deviceData.fio2Setpt;
             this.PressBabySetpt.Value = (decimal)deviceData.pressSetpt;
@@ -198,8 +200,10 @@ namespace FlowWorks
             }
             this.SetBlower.Value = (decimal)deviceData.blowerSetting;
             this.SetPropValve.Value = (decimal)deviceData.propValveSetting;
+            this.cFactor.Text = deviceData.cFactor.ToString("N3");
+            this.CalibrationState = deviceData.calibrationState;
         }
-            public void UpdateDeviceStatus(DeviceStatus deviceStatus)
+        public void UpdateDeviceStatus(DeviceStatus deviceStatus)
         {            
             this.firmwareVersionLabel.Text = "v" + deviceStatus.versionMajor.ToString() +
                                              "." + deviceStatus.versionMinor.ToString() +
@@ -367,7 +371,7 @@ namespace FlowWorks
         {
             fwViewer.deviceData.blowerSetting = Convert.ToInt32(this.SetBlower.Value);
             // Only send the blower command if the user has deliberately changed the value
-            if (this.BabyPressureUnderPIDControl == true)
+            if ((this.BabyPressureUnderPIDControl == true) || (this.CalibrationState > 0))
             {
                 this.SetBlower.BackColor = Color.Gray;
             }
@@ -382,7 +386,7 @@ namespace FlowWorks
         {
             fwViewer.deviceData.propValveSetting = Convert.ToDouble(this.SetPropValve.Value);
             // Only send the propValve command if the user has deliberately changed the value
-            if (this.FiO2UnderPIDControl == true)
+            if ((this.FiO2UnderPIDControl == true) || (this.CalibrationState > 0))
             {
                 this.SetPropValve.BackColor = Color.Gray;
             }
@@ -392,6 +396,16 @@ namespace FlowWorks
                 this.SetPropValve.BackColor = Color.Empty;
             }
             oldPropValue = this.SetPropValve.Value;
+        }
+
+        private void Calibrate_Click(object sender, EventArgs e)
+        {
+            Form2 calibratePopup = new Form2();
+            if (calibratePopup.ShowDialog(this) == DialogResult.OK) 
+            {
+                fwViewer.AddTerminalCommand("calibrate");
+            }
+            calibratePopup.Dispose();
         }
     }
 }

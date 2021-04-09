@@ -84,6 +84,11 @@ namespace FlowWorks
             this.SetBlower = new System.Windows.Forms.NumericUpDown();
             this.textBox4 = new System.Windows.Forms.TextBox();
             this.SetPropValve = new System.Windows.Forms.NumericUpDown();
+            this.Calibrate = new System.Windows.Forms.Button();
+            this.label6 = new System.Windows.Forms.Label();
+            this.cFactor = new System.Windows.Forms.Label();
+            this.aboutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.VersionString = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.PressBabySetpt)).BeginInit();
@@ -97,11 +102,12 @@ namespace FlowWorks
             this.menuStrip1.GripMargin = new System.Windows.Forms.Padding(2, 2, 0, 2);
             this.menuStrip1.ImageScalingSize = new System.Drawing.Size(40, 40);
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.setupMenu});
+            this.setupMenu,
+            this.aboutToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
             this.menuStrip1.Padding = new System.Windows.Forms.Padding(5, 2, 0, 2);
-            this.menuStrip1.Size = new System.Drawing.Size(2044, 60);
+            this.menuStrip1.Size = new System.Drawing.Size(2044, 49);
             this.menuStrip1.TabIndex = 0;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -544,11 +550,58 @@ namespace FlowWorks
             this.SetPropValve.TabIndex = 81;
             this.SetPropValve.ValueChanged += new System.EventHandler(this.SetPropValve_ValueChanged);
             // 
+            // Calibrate
+            // 
+            this.Calibrate.BackColor = System.Drawing.SystemColors.GradientActiveCaption;
+            this.Calibrate.FlatAppearance.BorderSize = 2;
+            this.Calibrate.Location = new System.Drawing.Point(1633, 163);
+            this.Calibrate.Name = "Calibrate";
+            this.Calibrate.Size = new System.Drawing.Size(287, 106);
+            this.Calibrate.TabIndex = 82;
+            this.Calibrate.Text = "Calibrate";
+            this.Calibrate.UseVisualStyleBackColor = false;
+            this.Calibrate.Click += new System.EventHandler(this.Calibrate_Click);
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Location = new System.Drawing.Point(1637, 298);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(123, 32);
+            this.label6.TabIndex = 83;
+            this.label6.Text = "c_factor:";
+            // 
+            // cFactor
+            // 
+            this.cFactor.AutoSize = true;
+            this.cFactor.Location = new System.Drawing.Point(1766, 298);
+            this.cFactor.Name = "cFactor";
+            this.cFactor.Size = new System.Drawing.Size(87, 32);
+            this.cFactor.TabIndex = 84;
+            this.cFactor.Text = "0.000";
+            // 
+            // aboutToolStripMenuItem
+            // 
+            this.aboutToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.VersionString});
+            this.aboutToolStripMenuItem.Name = "aboutToolStripMenuItem";
+            this.aboutToolStripMenuItem.Size = new System.Drawing.Size(124, 45);
+            this.aboutToolStripMenuItem.Text = "About";
+            // 
+            // VersionString
+            // 
+            this.VersionString.Name = "VersionString";
+            this.VersionString.Size = new System.Drawing.Size(448, 54);
+            this.VersionString.Text = "Version 1.0.0";
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(16F, 31F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(2044, 1313);
+            this.Controls.Add(this.cFactor);
+            this.Controls.Add(this.label6);
+            this.Controls.Add(this.Calibrate);
             this.Controls.Add(this.SetPropValve);
             this.Controls.Add(this.textBox4);
             this.Controls.Add(this.SetBlower);
@@ -644,5 +697,10 @@ namespace FlowWorks
         private System.Windows.Forms.NumericUpDown SetBlower;
         private System.Windows.Forms.TextBox textBox4;
         private System.Windows.Forms.NumericUpDown SetPropValve;
+        private System.Windows.Forms.Button Calibrate;
+        private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.Label cFactor;
+        private System.Windows.Forms.ToolStripMenuItem aboutToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem VersionString;
     }
 }

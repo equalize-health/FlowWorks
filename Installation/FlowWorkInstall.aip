@@ -7,10 +7,10 @@
     <ROW Property="ARPCOMMENTS" Value="This installer database contains the logic and data required to install [|ProductName]." ValueLocId="*"/>
     <ROW Property="ARPPRODUCTICON" Value="EqualizeHealthLogo.exe" Type="8"/>
     <ROW Property="Manufacturer" Value="Equalize Health"/>
-    <ROW Property="ProductCode" Value="1033:{18EF3827-D53E-4CC0-81DD-F2DC5A403F11} " Type="16"/>
+    <ROW Property="ProductCode" Value="1033:{499CF2AE-8D46-40F7-A1F6-BDFDACC0F75F} " Type="16"/>
     <ROW Property="ProductLanguage" Value="1033"/>
     <ROW Property="ProductName" Value="Flow Works"/>
-    <ROW Property="ProductVersion" Value="1.0.2" Type="32"/>
+    <ROW Property="ProductVersion" Value="1.0.3" Type="32"/>
     <ROW Property="SecureCustomProperties" Value="OLDPRODUCTS;AI_NEWERPRODUCTFOUND"/>
     <ROW Property="UpgradeCode" Value="{1D91BCCC-FBEA-436A-9086-EAD749EDA01E}"/>
     <ROW Property="WindowsType9X" MultiBuildValue="AnyCPU_Debug:Windows 9x/ME" ValueLocId="-"/>

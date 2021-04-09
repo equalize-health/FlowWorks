@@ -382,6 +382,8 @@ namespace FlowWorks
         public int blowerSpeed;
         public int babyPressurePIDEnable;
         public int fio2PIDEnable;
+        public double cFactor;
+        public int calibrationState;
         public double propValveSetting { get; set; }
         public int blowerSetting { get; set; }
         public string Data
@@ -455,6 +457,12 @@ namespace FlowWorks
                             break;
                         case 19:
                             this.fio2PIDEnable =  Convert.ToInt32(dataList[i]);
+                            break;
+                        case 20:
+                            this.cFactor = Convert.ToDouble(dataList[i]);
+                            break;
+                        case 21:
+                            this.calibrationState = Convert.ToInt32(dataList[i]);
                             break;
                     }
                 }

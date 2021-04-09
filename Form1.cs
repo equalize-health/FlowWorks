@@ -16,8 +16,6 @@ namespace FlowWorks
         private List<string> commandHistory;
         private int commandHistoryIndex = 0;
 
-        public float BabyPressure { get; private set; }
-
         public delegate void BoolParameterDelegate(bool b);
         public delegate void StringParameterDelegate(string s);
         public delegate void DeviceStatusParameterDelegate(DeviceStatus deviceStatus);
@@ -150,7 +148,23 @@ namespace FlowWorks
         }
         public void UpdateDeviceStatus(DeviceStatus deviceStatus)
         {
-            this.BabyPressure = deviceStatus.babyPressure;
+            this.BabyPressure.Text = deviceStatus.babyPressure.ToString("#.##");
+            this.FlowLeak.Text = deviceStatus.flowLeak.ToString("#.##");
+            this.PressExp.Text = deviceStatus.pressExp.ToString("#.##");
+            this.FlowExp.Text = deviceStatus.flowExp.ToString("#.##");
+            this.PressCkt.Text = deviceStatus.pressCkt.ToString("#.##");
+            this.TempProx.Text = deviceStatus.tempProx.ToString("#.##");
+            this.TempDist.Text = deviceStatus.tempDist.ToString("#.##");
+            this.TempPlate.Text = deviceStatus.tempHeater.ToString("#.##");
+            this.PressInsp.Text = deviceStatus.pressInsp.ToString("#.##");
+            this.BlowerSpeed.Text = deviceStatus.blowerSpeed.ToString("#.##");
+            this.FlowInsp.Text = deviceStatus.flowInsp.ToString("#.##");
+            this.FlowOx.Text = deviceStatus.flowOx.ToString("#.##");
+            this.TempAmb.Text = deviceStatus.tempPCB.ToString("#.##");
+            this.Fio2Setpt.Value = (decimal)deviceStatus.fio2Setpt;
+            this.PressBabySetpt.Value = (decimal)deviceStatus.pressSetpt;
+
+            /*
             this.firmwareVersionLabel.Text = "v" + deviceStatus.fwVersionMajor.ToString() +
                                              "." + deviceStatus.fwVersionMinor.ToString() +
                                              "." + deviceStatus.fwVersionRevision.ToString();
@@ -160,6 +174,7 @@ namespace FlowWorks
             this.timeLabel.Text = deviceStatus.timeHours.ToString() + ":" +
                                   deviceStatus.timeMinutes.ToString("00") + ":" +
                                   deviceStatus.timeSeconds.ToString("00");
+            */
         }
         // private helper functions
         private void OverwriteLastCommandWith(string s)
@@ -222,7 +237,7 @@ namespace FlowWorks
         public void UpdateResponse(string s)
         {
             // Ignore lines starting with comma
-            if (!s.StartsWith(","))
+            if (!s.StartsWith(",") && !s.StartsWith("&"))
                 this.responseBox.AppendText(s + "\r\n");
         }
 
@@ -288,6 +303,28 @@ namespace FlowWorks
                     e.Handled = true;
                     break;
             }
+        }
+
+        private void PressBabySetpt_ValueChanged(object sender, EventArgs e)
+        {
+            fwViewer.AddTerminalCommand("pressSetpt(" + this.PressBabySetpt.Value + ")");
+        }
+
+        private void Fio2Setpt_ValueChanged(object sender, EventArgs e)
+        {
+            fwViewer.AddTerminalCommand("fio2Setpt(" + this.Fio2Setpt.Value + ")");
+        }
+
+        private void StartBabyPressure_Click(object sender, EventArgs e)
+        {
+            fwViewer.AddTerminalCommand("pressSetpt("+this.PressBabySetpt.Value+")");
+            fwViewer.AddTerminalCommand("togglePIDPress");
+        }
+
+        private void StartFiO2_Click(object sender, EventArgs e)
+        {
+            fwViewer.AddTerminalCommand("fio2Setpt(" + this.Fio2Setpt.Value + ")");
+            fwViewer.AddTerminalCommand("togglePIDFiO2");
         }
     }
 }

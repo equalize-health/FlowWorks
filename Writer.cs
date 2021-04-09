@@ -73,6 +73,10 @@ namespace FlowWorks {
       {
         if (this.enabled)
         {
+            if (command.StartsWith("."))
+                    {
+                        Console.WriteLine("Starts with .");
+                    }
             this.terminalCommandQueue.Enqueue(command);
         }
       }

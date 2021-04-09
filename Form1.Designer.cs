@@ -36,6 +36,7 @@ namespace FlowWorks
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.setupMenu = new System.Windows.Forms.ToolStripMenuItem();
             this.comportMenu = new System.Windows.Forms.ToolStripMenuItem();
@@ -59,7 +60,30 @@ namespace FlowWorks
             this.label4 = new System.Windows.Forms.Label();
             this.responseBox = new System.Windows.Forms.TextBox();
             this.label5 = new System.Windows.Forms.Label();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.BlowerSpeed = new System.Windows.Forms.Label();
+            this.BabyPressure = new System.Windows.Forms.Label();
+            this.FlowLeak = new System.Windows.Forms.Label();
+            this.PressExp = new System.Windows.Forms.Label();
+            this.PressCkt = new System.Windows.Forms.Label();
+            this.FlowExp = new System.Windows.Forms.Label();
+            this.TempProx = new System.Windows.Forms.Label();
+            this.TempDist = new System.Windows.Forms.Label();
+            this.TempPlate = new System.Windows.Forms.Label();
+            this.PressInsp = new System.Windows.Forms.Label();
+            this.FlowInsp = new System.Windows.Forms.Label();
+            this.FlowOx = new System.Windows.Forms.Label();
+            this.TempAmb = new System.Windows.Forms.Label();
+            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.PressBabySetpt = new System.Windows.Forms.NumericUpDown();
+            this.textBox2 = new System.Windows.Forms.TextBox();
+            this.Fio2Setpt = new System.Windows.Forms.NumericUpDown();
+            this.StartBabyPressure = new System.Windows.Forms.Button();
+            this.StartFiO2 = new System.Windows.Forms.Button();
             this.menuStrip1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.PressBabySetpt)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.Fio2Setpt)).BeginInit();
             this.SuspendLayout();
             // 
             // menuStrip1
@@ -71,7 +95,7 @@ namespace FlowWorks
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
             this.menuStrip1.Padding = new System.Windows.Forms.Padding(5, 2, 0, 2);
-            this.menuStrip1.Size = new System.Drawing.Size(2044, 49);
+            this.menuStrip1.Size = new System.Drawing.Size(2044, 60);
             this.menuStrip1.TabIndex = 0;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -137,19 +161,19 @@ namespace FlowWorks
             this.connectedTextBox.Location = new System.Drawing.Point(203, 70);
             this.connectedTextBox.Name = "connectedTextBox";
             this.connectedTextBox.ReadOnly = true;
-            this.connectedTextBox.Size = new System.Drawing.Size(63, 38);
+            this.connectedTextBox.Size = new System.Drawing.Size(31, 38);
             this.connectedTextBox.TabIndex = 18;
             // 
             // commandBox
             // 
             this.commandBox.AcceptsReturn = true;
             this.commandBox.Font = new System.Drawing.Font("Courier New", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.commandBox.Location = new System.Drawing.Point(52, 622);
+            this.commandBox.Location = new System.Drawing.Point(52, 792);
             this.commandBox.Margin = new System.Windows.Forms.Padding(4);
             this.commandBox.Multiline = true;
             this.commandBox.Name = "commandBox";
             this.commandBox.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.commandBox.Size = new System.Drawing.Size(647, 289);
+            this.commandBox.Size = new System.Drawing.Size(647, 119);
             this.commandBox.TabIndex = 20;
             this.commandBox.Click += new System.EventHandler(this.commandBox_Click);
             this.commandBox.KeyDown += new System.Windows.Forms.KeyEventHandler(this.commandBox_KeyDown);
@@ -166,7 +190,7 @@ namespace FlowWorks
             // dateLabel
             // 
             this.dateLabel.AutoSize = true;
-            this.dateLabel.Location = new System.Drawing.Point(882, 621);
+            this.dateLabel.Location = new System.Drawing.Point(1153, 834);
             this.dateLabel.Name = "dateLabel";
             this.dateLabel.Size = new System.Drawing.Size(127, 32);
             this.dateLabel.TabIndex = 49;
@@ -175,7 +199,7 @@ namespace FlowWorks
             // label7
             // 
             this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(724, 621);
+            this.label7.Location = new System.Drawing.Point(995, 834);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(83, 32);
             this.label7.TabIndex = 50;
@@ -184,7 +208,7 @@ namespace FlowWorks
             // timeLabel
             // 
             this.timeLabel.AutoSize = true;
-            this.timeLabel.Location = new System.Drawing.Point(882, 653);
+            this.timeLabel.Location = new System.Drawing.Point(1153, 866);
             this.timeLabel.Name = "timeLabel";
             this.timeLabel.Size = new System.Drawing.Size(127, 32);
             this.timeLabel.TabIndex = 51;
@@ -193,7 +217,7 @@ namespace FlowWorks
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(724, 653);
+            this.label1.Location = new System.Drawing.Point(995, 866);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(86, 32);
             this.label1.TabIndex = 52;
@@ -211,7 +235,7 @@ namespace FlowWorks
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(46, 573);
+            this.label3.Location = new System.Drawing.Point(46, 756);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(153, 32);
             this.label3.TabIndex = 54;
@@ -252,11 +276,242 @@ namespace FlowWorks
             this.label5.TabIndex = 57;
             this.label5.Text = "Response Box:";
             // 
+            // pictureBox1
+            // 
+            this.pictureBox1.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("pictureBox1.BackgroundImage")));
+            this.pictureBox1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.pictureBox1.Location = new System.Drawing.Point(42, 125);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(1548, 602);
+            this.pictureBox1.TabIndex = 58;
+            this.pictureBox1.TabStop = false;
+            // 
+            // BlowerSpeed
+            // 
+            this.BlowerSpeed.AutoSize = true;
+            this.BlowerSpeed.Location = new System.Drawing.Point(435, 547);
+            this.BlowerSpeed.Name = "BlowerSpeed";
+            this.BlowerSpeed.Size = new System.Drawing.Size(31, 32);
+            this.BlowerSpeed.TabIndex = 59;
+            this.BlowerSpeed.Text = "0";
+            // 
+            // BabyPressure
+            // 
+            this.BabyPressure.AutoSize = true;
+            this.BabyPressure.Location = new System.Drawing.Point(1275, 298);
+            this.BabyPressure.Name = "BabyPressure";
+            this.BabyPressure.Size = new System.Drawing.Size(71, 32);
+            this.BabyPressure.TabIndex = 60;
+            this.BabyPressure.Text = "0.00";
+            // 
+            // FlowLeak
+            // 
+            this.FlowLeak.AutoSize = true;
+            this.FlowLeak.Location = new System.Drawing.Point(1134, 298);
+            this.FlowLeak.Name = "FlowLeak";
+            this.FlowLeak.Size = new System.Drawing.Size(55, 32);
+            this.FlowLeak.TabIndex = 61;
+            this.FlowLeak.Text = "0.0";
+            // 
+            // PressExp
+            // 
+            this.PressExp.AutoSize = true;
+            this.PressExp.Location = new System.Drawing.Point(1450, 237);
+            this.PressExp.Name = "PressExp";
+            this.PressExp.Size = new System.Drawing.Size(55, 32);
+            this.PressExp.TabIndex = 62;
+            this.PressExp.Text = "0.0";
+            // 
+            // PressCkt
+            // 
+            this.PressCkt.AutoSize = true;
+            this.PressCkt.Location = new System.Drawing.Point(1200, 604);
+            this.PressCkt.Name = "PressCkt";
+            this.PressCkt.Size = new System.Drawing.Size(55, 32);
+            this.PressCkt.TabIndex = 63;
+            this.PressCkt.Text = "0.0";
+            // 
+            // FlowExp
+            // 
+            this.FlowExp.AutoSize = true;
+            this.FlowExp.Location = new System.Drawing.Point(1518, 337);
+            this.FlowExp.Name = "FlowExp";
+            this.FlowExp.Size = new System.Drawing.Size(55, 32);
+            this.FlowExp.TabIndex = 64;
+            this.FlowExp.Text = "0.0";
+            // 
+            // TempProx
+            // 
+            this.TempProx.AutoSize = true;
+            this.TempProx.Location = new System.Drawing.Point(1082, 427);
+            this.TempProx.Name = "TempProx";
+            this.TempProx.Size = new System.Drawing.Size(55, 32);
+            this.TempProx.TabIndex = 65;
+            this.TempProx.Text = "0.0";
+            // 
+            // TempDist
+            // 
+            this.TempDist.AutoSize = true;
+            this.TempDist.Location = new System.Drawing.Point(798, 313);
+            this.TempDist.Name = "TempDist";
+            this.TempDist.Size = new System.Drawing.Size(55, 32);
+            this.TempDist.TabIndex = 66;
+            this.TempDist.Text = "0.0";
+            // 
+            // TempPlate
+            // 
+            this.TempPlate.AutoSize = true;
+            this.TempPlate.Location = new System.Drawing.Point(776, 593);
+            this.TempPlate.Name = "TempPlate";
+            this.TempPlate.Size = new System.Drawing.Size(55, 32);
+            this.TempPlate.TabIndex = 67;
+            this.TempPlate.Text = "0.0";
+            // 
+            // PressInsp
+            // 
+            this.PressInsp.AutoSize = true;
+            this.PressInsp.Location = new System.Drawing.Point(576, 249);
+            this.PressInsp.Name = "PressInsp";
+            this.PressInsp.Size = new System.Drawing.Size(55, 32);
+            this.PressInsp.TabIndex = 68;
+            this.PressInsp.Text = "0.0";
+            // 
+            // FlowInsp
+            // 
+            this.FlowInsp.AutoSize = true;
+            this.FlowInsp.Location = new System.Drawing.Point(533, 465);
+            this.FlowInsp.Name = "FlowInsp";
+            this.FlowInsp.Size = new System.Drawing.Size(55, 32);
+            this.FlowInsp.TabIndex = 69;
+            this.FlowInsp.Text = "0.0";
+            // 
+            // FlowOx
+            // 
+            this.FlowOx.AutoSize = true;
+            this.FlowOx.Location = new System.Drawing.Point(295, 408);
+            this.FlowOx.Name = "FlowOx";
+            this.FlowOx.Size = new System.Drawing.Size(55, 32);
+            this.FlowOx.TabIndex = 70;
+            this.FlowOx.Text = "0.0";
+            // 
+            // TempAmb
+            // 
+            this.TempAmb.AutoSize = true;
+            this.TempAmb.Location = new System.Drawing.Point(1026, 237);
+            this.TempAmb.Name = "TempAmb";
+            this.TempAmb.Size = new System.Drawing.Size(55, 32);
+            this.TempAmb.TabIndex = 71;
+            this.TempAmb.Text = "0.0";
+            // 
+            // textBox1
+            // 
+            this.textBox1.Location = new System.Drawing.Point(379, 652);
+            this.textBox1.Name = "textBox1";
+            this.textBox1.Size = new System.Drawing.Size(251, 38);
+            this.textBox1.TabIndex = 72;
+            this.textBox1.Text = "Set Baby Pressure:";
+            // 
+            // PressBabySetpt
+            // 
+            this.PressBabySetpt.Location = new System.Drawing.Point(645, 652);
+            this.PressBabySetpt.Maximum = new decimal(new int[] {
+            10,
+            0,
+            0,
+            0});
+            this.PressBabySetpt.Minimum = new decimal(new int[] {
+            3,
+            0,
+            0,
+            0});
+            this.PressBabySetpt.Name = "PressBabySetpt";
+            this.PressBabySetpt.Size = new System.Drawing.Size(120, 38);
+            this.PressBabySetpt.TabIndex = 73;
+            this.PressBabySetpt.Value = new decimal(new int[] {
+            3,
+            0,
+            0,
+            0});
+            this.PressBabySetpt.ValueChanged += new System.EventHandler(this.PressBabySetpt_ValueChanged);
+            // 
+            // textBox2
+            // 
+            this.textBox2.Location = new System.Drawing.Point(980, 652);
+            this.textBox2.Name = "textBox2";
+            this.textBox2.Size = new System.Drawing.Size(144, 38);
+            this.textBox2.TabIndex = 74;
+            this.textBox2.Text = "Set FiO2:";
+            // 
+            // Fio2Setpt
+            // 
+            this.Fio2Setpt.Increment = new decimal(new int[] {
+            5,
+            0,
+            0,
+            0});
+            this.Fio2Setpt.Location = new System.Drawing.Point(1140, 652);
+            this.Fio2Setpt.Minimum = new decimal(new int[] {
+            20,
+            0,
+            0,
+            0});
+            this.Fio2Setpt.Name = "Fio2Setpt";
+            this.Fio2Setpt.Size = new System.Drawing.Size(120, 38);
+            this.Fio2Setpt.TabIndex = 75;
+            this.Fio2Setpt.Value = new decimal(new int[] {
+            20,
+            0,
+            0,
+            0});
+            this.Fio2Setpt.ValueChanged += new System.EventHandler(this.Fio2Setpt_ValueChanged);
+            // 
+            // StartBabyPressure
+            // 
+            this.StartBabyPressure.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
+            this.StartBabyPressure.Location = new System.Drawing.Point(782, 652);
+            this.StartBabyPressure.Name = "StartBabyPressure";
+            this.StartBabyPressure.Size = new System.Drawing.Size(110, 51);
+            this.StartBabyPressure.TabIndex = 76;
+            this.StartBabyPressure.Text = "Start";
+            this.StartBabyPressure.UseVisualStyleBackColor = false;
+            this.StartBabyPressure.Click += new System.EventHandler(this.StartBabyPressure_Click);
+            // 
+            // StartFiO2
+            // 
+            this.StartFiO2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
+            this.StartFiO2.Location = new System.Drawing.Point(1281, 650);
+            this.StartFiO2.Name = "StartFiO2";
+            this.StartFiO2.Size = new System.Drawing.Size(110, 53);
+            this.StartFiO2.TabIndex = 77;
+            this.StartFiO2.Text = "Start";
+            this.StartFiO2.UseVisualStyleBackColor = false;
+            this.StartFiO2.Click += new System.EventHandler(this.StartFiO2_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(16F, 31F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(2044, 1313);
+            this.Controls.Add(this.StartFiO2);
+            this.Controls.Add(this.StartBabyPressure);
+            this.Controls.Add(this.Fio2Setpt);
+            this.Controls.Add(this.textBox2);
+            this.Controls.Add(this.PressBabySetpt);
+            this.Controls.Add(this.textBox1);
+            this.Controls.Add(this.TempAmb);
+            this.Controls.Add(this.FlowOx);
+            this.Controls.Add(this.FlowInsp);
+            this.Controls.Add(this.PressInsp);
+            this.Controls.Add(this.TempPlate);
+            this.Controls.Add(this.TempDist);
+            this.Controls.Add(this.TempProx);
+            this.Controls.Add(this.FlowExp);
+            this.Controls.Add(this.PressCkt);
+            this.Controls.Add(this.PressExp);
+            this.Controls.Add(this.FlowLeak);
+            this.Controls.Add(this.BabyPressure);
+            this.Controls.Add(this.BlowerSpeed);
+            this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.responseBox);
             this.Controls.Add(this.label4);
@@ -276,6 +531,9 @@ namespace FlowWorks
             this.Text = "FlowWorks App";
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.PressBabySetpt)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.Fio2Setpt)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -298,5 +556,25 @@ namespace FlowWorks
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.TextBox responseBox;
         private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.PictureBox pictureBox1;
+        private System.Windows.Forms.Label BlowerSpeed;
+        private System.Windows.Forms.Label BabyPressure;
+        private System.Windows.Forms.Label FlowLeak;
+        private System.Windows.Forms.Label PressExp;
+        private System.Windows.Forms.Label PressCkt;
+        private System.Windows.Forms.Label FlowExp;
+        private System.Windows.Forms.Label TempProx;
+        private System.Windows.Forms.Label TempDist;
+        private System.Windows.Forms.Label TempPlate;
+        private System.Windows.Forms.Label PressInsp;
+        private System.Windows.Forms.Label FlowInsp;
+        private System.Windows.Forms.Label FlowOx;
+        private System.Windows.Forms.Label TempAmb;
+        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.NumericUpDown PressBabySetpt;
+        private System.Windows.Forms.TextBox textBox2;
+        private System.Windows.Forms.NumericUpDown Fio2Setpt;
+        private System.Windows.Forms.Button StartBabyPressure;
+        private System.Windows.Forms.Button StartFiO2;
     }
 }

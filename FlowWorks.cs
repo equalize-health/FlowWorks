@@ -23,6 +23,7 @@ namespace FlowWorks
         private Form1 form;
         public volatile SerialPort serialPort;
         private bool streamingPaused;
+        private bool dataPending;
 
         // constructor
         public FlowWorks(Form1 f)
@@ -66,9 +67,30 @@ namespace FlowWorks
             //Thread timestampThread = new Thread(new ThreadStart(this.timeStampUpdate));
             //timestampThread.IsBackground = true;
             //timestampThread.Start();
-            //Thread statusRequestThread = new Thread(new ThreadStart(this.statusRequestUpdate));
-            //statusRequestThread.IsBackground = true;
-            //statusRequestThread.Start();
+            Thread statusRequestThread = new Thread(new ThreadStart(this.statusRequestUpdate));
+            statusRequestThread.IsBackground = true;
+            statusRequestThread.Start();
+        }
+        // This function sends commands to the target to retrieve information
+        // It runs in a thread, constantly sending the command
+        void statusRequestUpdate()
+        {
+            while (true)
+            {
+                if (this.reader.ConnectionIsOpen) // && this.deviceConnected)
+                {
+                    if (!this.dataPending)
+                    {
+                        this.dataPending = true;
+                        this.reader.DiscardBytes();
+                        this.reader.updateTimeStamp();
+                        //Console.WriteLine(DateTime.UtcNow.ToString("HH:mm:ss.fff") + " statusRequestUpdate");
+                        this.writer.AddTerminalCommand("sendData");
+                    }
+                    // This means we request data every 50 msecs
+                    Thread.Sleep(500);
+                }
+            }
         }
         private void LoadSettings()
         {
@@ -151,7 +173,7 @@ namespace FlowWorks
                     this.writer.Enabled = true;
                    // this.heartbeatGenerator.SendHeartbeat();
                     this.deviceConnected = true;
-                    //this.imagePending = false;
+                    //this.dataPending = false;
                     break;
                 case Reader.Event.ReadFailure:
                     this.CloseConnection();
@@ -159,7 +181,7 @@ namespace FlowWorks
                 case Reader.Event.ResetStream:
                     Console.WriteLine(DateTime.UtcNow.ToString("HH:mm:ss.fff") + " ResetStream");
                     this.CloseConnection(); // Hard close the port
-                                            //would like to delay some time here before setting imagePending false
+                                            //would like to delay some time here before setting dataPending false
                     Thread.Sleep(500);
                     break;
             }
@@ -198,6 +220,7 @@ namespace FlowWorks
             {
                 form.BeginInvoke(new Form1.DeviceStatusParameterDelegate(form.UpdateDeviceStatus),
                                  new object[] { deviceStatus });
+                this.dataPending = false;
             }
         }
         public void StatusNotification(ConnectionManager.Status status)
@@ -226,15 +249,85 @@ namespace FlowWorks
     public class DeviceStatus
     {
         // public data
-        public float babyPressure;
-        public byte[] Data
+        public double pressInsp;
+        public double pressExp;
+        public double flowInsp;
+        public double flowOx;
+        public double tempDist;
+        public double tempProx;
+        public double tempHeater;
+        public double tempPCB;
+        public double fio2;
+        public double babyPressure;
+        public double flowExp;
+        public double flowLeak;
+        public double fio2Setpt;
+        public double pressSetpt;
+        public double pressCkt;
+        public int blowerSpeed;
+        public string Data
         {
             set
             {
-                if (value.Length >= 4)
+                string[] dataList = value.Split(',');
+                for (int i=0; i < dataList.Length; i++)
                 {
-                    this.babyPressure = BitConverter.ToInt32(value, 0);
+                    switch (i)
+                    {
+                        case 0:
+                            this.pressInsp = Convert.ToDouble(dataList[i]);
+                            break;
+                        case 1:
+                            this.pressExp = Convert.ToDouble(dataList[i]);
+                            break;
+                        case 2:
+                            this.flowInsp = Convert.ToDouble(dataList[i]);
+                            break;
+                        case 3:
+                            this.flowOx = Convert.ToDouble(dataList[i]);
+                            break;
+                        case 4:
+                            this.tempDist = Convert.ToDouble(dataList[i]);
+                            break;
+                        case 5:
+                            this.tempProx = Convert.ToDouble(dataList[i]);
+                            break;
+                        case 6:
+                            this.tempHeater = Convert.ToDouble(dataList[i]);
+                            break;
+                        case 7:
+                            this.tempPCB = Convert.ToDouble(dataList[i]);
+                            break;
+                        case 8:
+                            this.fio2 = Convert.ToDouble(dataList[i]);
+                            break;
+                        case 9:
+                            this.babyPressure = Convert.ToDouble(dataList[i]);
+                            break;
+                        case 10:
+                            this.flowExp = Convert.ToDouble(dataList[i]);
+                            break;
+                        case 11:
+                            this.flowLeak = Convert.ToDouble(dataList[i]);
+                            break;
+                        case 12:
+                            this.fio2Setpt = Convert.ToDouble(dataList[i]);
+                            if (this.fio2Setpt < 21) this.fio2Setpt = 21;
+                            break;
+                        case 13:
+                            this.pressSetpt = Convert.ToDouble(dataList[i]);
+                            if (this.pressSetpt < 3) this.pressSetpt = 3;
+                            break;
+                        case 14:
+                            this.blowerSpeed = Convert.ToInt32(dataList[i]);
+                            this.blowerSpeed = (this.blowerSpeed - 70) / 10;
+                            break;
+                        case 15:
+                            this.pressCkt = Convert.ToDouble(dataList[i]);
+                            break;
+                    }
                 }
+ 
             }
         }
 

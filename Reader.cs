@@ -55,7 +55,7 @@ namespace FlowWorks {
         }
     }
 
-    public bool DebugPrintsEnabled = false;
+    public bool DebugPrintsEnabled = true;
     public bool ErrorPrintsEnabled = true;
 
     // constructor
@@ -66,7 +66,7 @@ namespace FlowWorks {
                   Form1 form)
     {
       // constants
-      this.kDeviceReadyMsg = ",";
+      this.kDeviceReadyMsg = "senddata";
       this.serialPort = port;
       this.delimiterWord = 987654321;
 
@@ -82,9 +82,10 @@ namespace FlowWorks {
       // publishing functions
       this.PublishEvent = publishEvent;
       this.PublishDeviceResponse = publishResponse;
+      this.PublishStatusResponse = publishStatus;
 
       // read buffers
-      this.deviceStatusDataBuffer = new byte[0];
+      //this.deviceStatusDataBuffer;
 
       this.formVar = form;
     }
@@ -126,7 +127,7 @@ namespace FlowWorks {
               {
                 // CR -- end of message from device
                 case '\r':
-                  if (this.deviceResponse != this.kDeviceReadyMsg)
+                  if ((this.deviceResponse != this.kDeviceReadyMsg) && (this.deviceResponse.Length > 1))
                   {
                     this.PublishDeviceResponse(this.deviceResponse);
                   }
@@ -137,6 +138,21 @@ namespace FlowWorks {
                 // newline -- ignore
                 case '\n':
                   break;
+                case '&':
+                    if (this.readingDeviceResponse)
+                    {  // normal char inside device response
+                        this.deviceResponse += c;
+                    } else
+                    {
+                        DeviceStatus deviceStatus = new DeviceStatus();
+
+                        if (this.ParseDataStream(ref deviceStatus))
+                        {
+                            this.PublishStatusResponse(deviceStatus);
+                        }
+
+                    }
+                    break;
 
                 // normal character -- add to the device response
                 default:
@@ -170,6 +186,16 @@ namespace FlowWorks {
         }
       }
     }
+
+    private bool ParseDataStream(ref DeviceStatus deviceStatus)
+    {
+        //if (this.ReadDataBlock(ref this.deviceStatusDataBuffer, deviceStatus.deviceStatusSize, 100))
+        this.deviceStatusDataBuffer = this.serialPort.ReadLine();
+
+        deviceStatus.Data = this.deviceStatusDataBuffer;
+        return true;
+    }
+
     public void Reset()
     {
       this.connectionIsOpen = false;
@@ -221,22 +247,20 @@ namespace FlowWorks {
     private EventPublicationFunction PublishEvent;
     private DeviceResponsePublicationFunction PublishDeviceResponse;
 
-    // read buffers
-    private byte[] deviceStatusDataBuffer;
+        public DeviceStatusPublicationFunction PublishStatusResponse { get; }
+
+        // read buffers
+        private string deviceStatusDataBuffer;
 
     // private methods
 
     private bool ReadDeviceStatus(ref DeviceStatus deviceStatus)
     {
-      if (this.ReadDataBlock(ref this.deviceStatusDataBuffer, deviceStatus.deviceStatusSize, 100))
-      {
-        deviceStatus.Data = this.deviceStatusDataBuffer;
+        this.deviceStatusDataBuffer = this.serialPort.ReadLine();
+
+        //deviceStatus.Data = this.deviceStatusDataBuffer;
         return true;
-      }
-      else
-      {
-        return false;
-      }
+
     }
 
     //Data block must match expected size and be retrieved within the timeout period
@@ -244,91 +268,45 @@ namespace FlowWorks {
     {
       byte[] readBuffer = new byte[4];
       TimeSpan diff;
-      
-        // first 4 bytes contain the block size
-        int readBytes = 0;
-        if (DebugPrintsEnabled) Console.WriteLine(DateTime.UtcNow.ToString("HH:mm:ss.fff") + " Getting Magic Word");
-        while (readBytes < 4)
-        {
-          if (this.serialPort.BytesToRead > 0)
-          {
-            readBytes += this.serialPort.Read(readBuffer, readBytes, 4 - readBytes);
-          }
-        }
 
-      // first 4 bytes contain the block size
       int bytesRead = 0;
       //Thread.Sleep(10);
-      if (DebugPrintsEnabled)  Console.WriteLine(DateTime.UtcNow.ToString("HH:mm:ss.fff") + " Got Magic Word, getting length");
       DateTime curTime = DateTime.Now;
-      while (bytesRead < 4)
-      {
-        if (this.serialPort.BytesToRead > 0)
-        {
-          bytesRead += this.serialPort.Read(readBuffer, bytesRead, 4 - bytesRead);
-        }
-        else
-        {
-        //  this.sendReadBufferContinuePacket();
-          diff = DateTime.Now - curTime;
-          if (diff.Seconds > timeoutms/1000)
-          {
-            if (ErrorPrintsEnabled) Console.WriteLine(DateTime.UtcNow.ToString("HH:mm:ss.fff") + " Timeout in ReadDataBlock " + diff.Milliseconds);
-            return false;
-          }
-        }
-      }
-      //this.sendReadBufferContinuePacket();
-      // if block size is different than expected, resize our data buffer
-      int blockSize = BitConverter.ToInt32(readBuffer, 0);
-      if (DebugPrintsEnabled) Console.WriteLine(DateTime.UtcNow.ToString("HH:mm:ss.fff") + " Got length " + blockSize + ", getting data");
-      if (blockSize > 40000)
-      {
-        if( ErrorPrintsEnabled) Console.WriteLine("Block Size invalid: " + blockSize);
-        return false;
-      }
-      curTime = DateTime.Now;
-      if (dataBlock.Length != blockSize)
-      {
-        dataBlock = new byte[blockSize];
-      }
-      int firmwareMajor = BitConverter.ToInt32(dataBlock, 0);
-      int firmwareMinor = BitConverter.ToInt32(dataBlock, 4);
-      int firmwareSub = BitConverter.ToInt32(dataBlock, 8);
-      bool firmwareCheck = ((firmwareMajor >= 4) && (firmwareMinor >= 1) && (firmwareSub >= 4));
-      // Only check blocksize of metadata if we have firmware that has been updated with extra fields
-      if (!firmwareCheck || (blockSize == expectedSize))
-      {
-        if (dataBlock.Length != blockSize)
-        {
-          dataBlock = new byte[blockSize];
-        }
-        //Thread.Sleep(10);
+ 
+      //int firmwareMajor = BitConverter.ToInt32(dataBlock, 0);
+      //int firmwareMinor = BitConverter.ToInt32(dataBlock, 4);
+      //int firmwareSub = BitConverter.ToInt32(dataBlock, 8);
+      //bool firmwareCheck = ((firmwareMajor >= 4) && (firmwareMinor >= 1) && (firmwareSub >= 4));
+
         // read in the block
         bytesRead = 0;
-        while (bytesRead < blockSize)
+        if (dataBlock.Length != expectedSize)
         {
-          if (this.serialPort.BytesToRead > 0)
-          {
-            bytesRead += this.serialPort.Read(dataBlock, bytesRead, blockSize - bytesRead);
-          }
-          else
-          {
-            //this.sendReadBufferContinuePacket();
-            diff = DateTime.Now - curTime;
-            if (diff.Milliseconds > timeoutms)
-            {
-              if (ErrorPrintsEnabled) Console.WriteLine(DateTime.UtcNow.ToString("HH:mm:ss.fff") + " 2nd Timeout in ReadDataBlock " + diff.Milliseconds + " reading size " + blockSize);
-              return false;
-            }
-          }
+            dataBlock = new byte[expectedSize];
         }
-        if (DebugPrintsEnabled) Console.WriteLine(DateTime.UtcNow.ToString("HH:mm:ss.fff") + " Got Data bytes: " + bytesRead);
-        //this.sendReadBufferContinuePacket();
-        return true;  //data block successfully retrieved
-      }
-      if (ErrorPrintsEnabled) Console.WriteLine(DateTime.UtcNow.ToString("HH:mm:ss.fff") + " Failed in ReadDataBlock " + blockSize);
-      return false;
+        while (bytesRead < expectedSize)
+        {
+            if (this.serialPort.BytesToRead > 0)
+            {
+                bytesRead += this.serialPort.Read(dataBlock, bytesRead, expectedSize - bytesRead);
+            }
+            else
+            {
+                //this.sendReadBufferContinuePacket();
+                diff = DateTime.Now - curTime;
+                if (diff.Milliseconds > timeoutms)
+                {
+                    if (ErrorPrintsEnabled) Console.WriteLine(DateTime.UtcNow.ToString("HH:mm:ss.fff") + " 2nd Timeout in ReadDataBlock " + diff.Milliseconds + " reading size " + expectedSize);
+                    return false;
+                }
+            }
+            if (DebugPrintsEnabled) Console.WriteLine(DateTime.UtcNow.ToString("HH:mm:ss.fff") + " Got Data bytes: " + bytesRead);
+            //this.sendReadBufferContinuePacket();
+            return true;  //data block successfully retrieved
+        }
+
+        if (ErrorPrintsEnabled) Console.WriteLine(DateTime.UtcNow.ToString("HH:mm:ss.fff") + " Failed in ReadDataBlock " + expectedSize);
+          return false;
     }
 
     private bool DeviceReadyMsgReceived(char c)

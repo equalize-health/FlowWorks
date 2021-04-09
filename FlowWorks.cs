@@ -14,24 +14,28 @@ namespace FlowWorks
         private Reader reader;
         private Config config;
         public volatile ConnectionManager connectionManager;
+        public DeviceData deviceData;   // updated on each new status read from the device
         private DeviceStatus deviceStatus;   // updated on each new status read from the device
-        private bool deviceConnected;
+        //private bool deviceConnected;
         // constants
         private readonly int kDefaultComportNum;
-        private readonly int kStreamingTimeout;
+        private readonly int kDefaultDataRequestInterval;
+        //private readonly int kStreamingTimeout;
         // objects
         private Form1 form;
         public volatile SerialPort serialPort;
-        private bool streamingPaused;
+        public bool streamingPaused;
         private bool dataPending;
+        private int dataRequestIntervalmsecs;
 
         // constructor
         public FlowWorks(Form1 f)
         {
             // constants
             this.kDefaultComportNum = 3;
-            // how long do we wait for images
-            this.kStreamingTimeout = 4; // was 2;
+            this.kDefaultDataRequestInterval = 100;
+            // how long do we wait for feedback
+            //this.kStreamingTimeout = 4; // was 2;
             this.form = f;
 
             // load settings
@@ -43,13 +47,14 @@ namespace FlowWorks
             this.serialPort = new SerialPort(comportName, 115200, Parity.None, 8, StopBits.One);
             this.connectionManager = new ConnectionManager(serialPort, this.EventNotification, this.StatusNotification);
             this.writer = new Writer(serialPort, this.EventNotification);
-            this.reader = new Reader(serialPort, this.EventNotification, this.DeviceResponseReceived, this.DeviceStatusReceived, this.form);
+            this.reader = new Reader(serialPort, this.EventNotification, this.DeviceResponseReceived, this.DeviceDataReceived, this.DeviceStatusReceived, this.form);
 
             // settings
 
             // initial state
-            this.deviceStatus = new DeviceStatus();
-            this.deviceConnected = false;
+            this.deviceData = new DeviceData();
+            this.streamingPaused = true;
+            this.dataRequestIntervalmsecs = kDefaultDataRequestInterval;  // default data request interval is 100 msecs
 
             // launch background threads
             Thread connectionMgrThread = new Thread(new ThreadStart(this.connectionManager.Run));
@@ -67,11 +72,37 @@ namespace FlowWorks
             //Thread timestampThread = new Thread(new ThreadStart(this.timeStampUpdate));
             //timestampThread.IsBackground = true;
             //timestampThread.Start();
+            Thread dataRequestThread = new Thread(new ThreadStart(this.dataRequestUpdate));
+            dataRequestThread.IsBackground = true;
+            dataRequestThread.Start();
             Thread statusRequestThread = new Thread(new ThreadStart(this.statusRequestUpdate));
             statusRequestThread.IsBackground = true;
             statusRequestThread.Start();
+
+            this.streamingPaused = false;
         }
-        // This function sends commands to the target to retrieve information
+        // This function sends commands to the target to retrieve data information
+        // It runs in a thread, constantly sending the command
+        void dataRequestUpdate()
+        {
+            while (true)
+            {
+                if (this.reader.ConnectionIsOpen) // && this.deviceConnected)
+                {
+                    // This means we request data every 100 msecs (default)
+                    Thread.Sleep(dataRequestIntervalmsecs);
+                    if ((!this.dataPending) && !(streamingPaused))
+                    {
+                        this.dataPending = true;
+                        this.reader.DiscardBytes();
+                        this.reader.updateTimeStamp();
+                        //Console.WriteLine(DateTime.UtcNow.ToString("HH:mm:ss.fff") + " dataRequestUpdate");
+                        this.writer.AddTerminalCommand("sendData");
+                    }
+                }
+            }
+        }
+        // This function sends commands to the target to retrieve data information
         // It runs in a thread, constantly sending the command
         void statusRequestUpdate()
         {
@@ -79,13 +110,13 @@ namespace FlowWorks
             {
                 if (this.reader.ConnectionIsOpen) // && this.deviceConnected)
                 {
-                    if (!this.dataPending)
+                    if ((!this.dataPending) && !(streamingPaused))
                     {
                         this.dataPending = true;
                         this.reader.DiscardBytes();
                         this.reader.updateTimeStamp();
                         //Console.WriteLine(DateTime.UtcNow.ToString("HH:mm:ss.fff") + " statusRequestUpdate");
-                        this.writer.AddTerminalCommand("sendData");
+                        this.writer.AddTerminalCommand("sendStatus");
                     }
                     // This means we request data every 50 msecs
                     Thread.Sleep(500);
@@ -128,6 +159,9 @@ namespace FlowWorks
         }
         public void AddTerminalCommand(string command)
         {
+            this.streamingPaused = true;
+            // Pause the request interval
+            this.dataRequestIntervalmsecs = 1000;
             this.writer.AddTerminalCommand(command);
         }
         private void SaveSettings()
@@ -172,8 +206,8 @@ namespace FlowWorks
                     // when device becomes ready, immediately send a heartbeat.  Then enable image streaming.
                     this.writer.Enabled = true;
                    // this.heartbeatGenerator.SendHeartbeat();
-                    this.deviceConnected = true;
-                    //this.dataPending = false;
+                   // this.deviceConnected = true;
+                    this.dataPending = false;
                     break;
                 case Reader.Event.ReadFailure:
                     this.CloseConnection();
@@ -186,6 +220,15 @@ namespace FlowWorks
                     break;
             }
         }
+        public void DeviceDataReceived(DeviceData deviceData)
+        {
+            // If streaming is paused, don't save the data from the board - this interferes with trying to change settings
+            if (!this.streamingPaused)
+            {
+                this.deviceData = deviceData;  // save the information locally
+                this.PostDeviceDataToUI(deviceData);
+            }
+        }
         public void DeviceStatusReceived(DeviceStatus deviceStatus)
         {
             this.deviceStatus = deviceStatus;  // save the information locally
@@ -194,6 +237,14 @@ namespace FlowWorks
         public void DeviceResponseReceived(string s)
         {
             this.PostResponseToUI(s);
+            // If we get an "ack" to a given command, un-pause the streaming
+            if (s.Contains("Command:"))
+            {
+                this.streamingPaused = false;
+                this.dataPending = false;
+                this.dataRequestIntervalmsecs = kDefaultDataRequestInterval;
+            }
+
         }
         private void PostConnectedStatus(bool isConnected)
         {
@@ -214,6 +265,15 @@ namespace FlowWorks
             }
         }
 
+        private void PostDeviceDataToUI(DeviceData deviceData)
+        {
+            if (form.IsHandleCreated)
+            {
+                form.BeginInvoke(new Form1.DeviceDataParameterDelegate(form.UpdateDeviceData),
+                                 new object[] { deviceData });
+                this.dataPending = false;
+            }
+        }
         private void PostDeviceStatusToUI(DeviceStatus deviceStatus)
         {
             if (form.IsHandleCreated)
@@ -233,7 +293,7 @@ namespace FlowWorks
         {
             this.connectionManager.ConnectionOpenerEnabled = false;
             this.connectionManager.CloseConnection();
-            this.deviceConnected = false;
+            //this.deviceConnected = false;
             this.ResetState();
             this.connectionManager.ConnectionOpenerEnabled = true;
         }
@@ -247,6 +307,61 @@ namespace FlowWorks
 
     }
     public class DeviceStatus
+    {
+        // public data
+        public int versionMajor;
+        public int versionMinor;
+        public int versionBuild;
+        public int timeHour;
+        public int timeMin;
+        public int timeSec;
+        public int dateMonth;
+        public int dateDay;
+        public int dateYear;
+
+        public string Status
+        {
+            set
+            {
+                string[] dataList = value.Split(',');
+                for (int i = 0; i < dataList.Length; i++)
+                {
+                    switch (i)
+                    {
+                        case 0:
+                            this.versionMajor = Convert.ToInt32(dataList[i]);
+                            break;
+                        case 1:
+                            this.versionMinor = Convert.ToInt32(dataList[i]);
+                            break;
+                        case 2:
+                            this.versionBuild = Convert.ToInt32(dataList[i]);
+                            break;
+                        case 3:
+                            this.timeHour = Convert.ToInt32(dataList[i]);
+                            break;
+                        case 4:
+                            this.timeMin = Convert.ToInt32(dataList[i]);
+                            break;
+                        case 5:
+                            this.timeSec = Convert.ToInt32(dataList[i]);
+                            break;
+                        case 6:
+                            this.dateMonth = Convert.ToInt32(dataList[i]);
+                            break;
+                        case 7:
+                            this.dateDay = Convert.ToInt32(dataList[i]);
+                            break;
+                        case 8:
+                            this.dateYear = Convert.ToInt32(dataList[i]);
+                            break;
+                    }
+                }
+
+            }
+        }
+    }
+    public class DeviceData
     {
         // public data
         public double pressInsp;
@@ -265,6 +380,10 @@ namespace FlowWorks
         public double pressSetpt;
         public double pressCkt;
         public int blowerSpeed;
+        public int babyPressurePIDEnable;
+        public int fio2PIDEnable;
+        public double propValveSetting { get; set; }
+        public int blowerSetting { get; set; }
         public string Data
         {
             set
@@ -324,6 +443,18 @@ namespace FlowWorks
                             break;
                         case 15:
                             this.pressCkt = Convert.ToDouble(dataList[i]);
+                            break;
+                        case 16:
+                            this.propValveSetting = Convert.ToDouble(dataList[i]);
+                            break;
+                        case 17:
+                            this.blowerSetting = Convert.ToInt32(dataList[i]);
+                            break;
+                        case 18:
+                            this.babyPressurePIDEnable = Convert.ToInt32(dataList[i]);
+                            break;
+                        case 19:
+                            this.fio2PIDEnable =  Convert.ToInt32(dataList[i]);
                             break;
                     }
                 }

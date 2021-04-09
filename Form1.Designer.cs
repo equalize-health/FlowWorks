@@ -80,10 +80,16 @@ namespace FlowWorks
             this.Fio2Setpt = new System.Windows.Forms.NumericUpDown();
             this.StartBabyPressure = new System.Windows.Forms.Button();
             this.StartFiO2 = new System.Windows.Forms.Button();
+            this.textBox3 = new System.Windows.Forms.TextBox();
+            this.SetBlower = new System.Windows.Forms.NumericUpDown();
+            this.textBox4 = new System.Windows.Forms.TextBox();
+            this.SetPropValve = new System.Windows.Forms.NumericUpDown();
             this.menuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.PressBabySetpt)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.Fio2Setpt)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.SetBlower)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.SetPropValve)).BeginInit();
             this.SuspendLayout();
             // 
             // menuStrip1
@@ -405,9 +411,10 @@ namespace FlowWorks
             // 
             // textBox1
             // 
-            this.textBox1.Location = new System.Drawing.Point(379, 652);
+            this.textBox1.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.textBox1.Location = new System.Drawing.Point(396, 654);
             this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(251, 38);
+            this.textBox1.Size = new System.Drawing.Size(243, 31);
             this.textBox1.TabIndex = 72;
             this.textBox1.Text = "Set Baby Pressure:";
             // 
@@ -425,7 +432,7 @@ namespace FlowWorks
             0,
             0});
             this.PressBabySetpt.Name = "PressBabySetpt";
-            this.PressBabySetpt.Size = new System.Drawing.Size(120, 38);
+            this.PressBabySetpt.Size = new System.Drawing.Size(78, 38);
             this.PressBabySetpt.TabIndex = 73;
             this.PressBabySetpt.Value = new decimal(new int[] {
             3,
@@ -436,9 +443,10 @@ namespace FlowWorks
             // 
             // textBox2
             // 
-            this.textBox2.Location = new System.Drawing.Point(980, 652);
+            this.textBox2.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.textBox2.Location = new System.Drawing.Point(1005, 655);
             this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(144, 38);
+            this.textBox2.Size = new System.Drawing.Size(126, 31);
             this.textBox2.TabIndex = 74;
             this.textBox2.Text = "Set FiO2:";
             // 
@@ -456,7 +464,7 @@ namespace FlowWorks
             0,
             0});
             this.Fio2Setpt.Name = "Fio2Setpt";
-            this.Fio2Setpt.Size = new System.Drawing.Size(120, 38);
+            this.Fio2Setpt.Size = new System.Drawing.Size(93, 38);
             this.Fio2Setpt.TabIndex = 75;
             this.Fio2Setpt.Value = new decimal(new int[] {
             20,
@@ -467,8 +475,8 @@ namespace FlowWorks
             // 
             // StartBabyPressure
             // 
-            this.StartBabyPressure.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
-            this.StartBabyPressure.Location = new System.Drawing.Point(782, 652);
+            this.StartBabyPressure.BackColor = System.Drawing.Color.Red;
+            this.StartBabyPressure.Location = new System.Drawing.Point(754, 645);
             this.StartBabyPressure.Name = "StartBabyPressure";
             this.StartBabyPressure.Size = new System.Drawing.Size(110, 51);
             this.StartBabyPressure.TabIndex = 76;
@@ -478,8 +486,8 @@ namespace FlowWorks
             // 
             // StartFiO2
             // 
-            this.StartFiO2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
-            this.StartFiO2.Location = new System.Drawing.Point(1281, 650);
+            this.StartFiO2.BackColor = System.Drawing.Color.Red;
+            this.StartFiO2.Location = new System.Drawing.Point(1263, 647);
             this.StartFiO2.Name = "StartFiO2";
             this.StartFiO2.Size = new System.Drawing.Size(110, 53);
             this.StartFiO2.TabIndex = 77;
@@ -487,11 +495,64 @@ namespace FlowWorks
             this.StartFiO2.UseVisualStyleBackColor = false;
             this.StartFiO2.Click += new System.EventHandler(this.StartFiO2_Click);
             // 
+            // textBox3
+            // 
+            this.textBox3.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.textBox3.Location = new System.Drawing.Point(415, 334);
+            this.textBox3.Name = "textBox3";
+            this.textBox3.Size = new System.Drawing.Size(92, 31);
+            this.textBox3.TabIndex = 78;
+            this.textBox3.Text = "Blower";
+            // 
+            // SetBlower
+            // 
+            this.SetBlower.Increment = new decimal(new int[] {
+            50,
+            0,
+            0,
+            0});
+            this.SetBlower.Location = new System.Drawing.Point(405, 372);
+            this.SetBlower.Maximum = new decimal(new int[] {
+            511,
+            0,
+            0,
+            0});
+            this.SetBlower.Name = "SetBlower";
+            this.SetBlower.Size = new System.Drawing.Size(110, 38);
+            this.SetBlower.TabIndex = 79;
+            this.SetBlower.ValueChanged += new System.EventHandler(this.SetBlower_ValueChanged);
+            // 
+            // textBox4
+            // 
+            this.textBox4.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.textBox4.Location = new System.Drawing.Point(161, 238);
+            this.textBox4.Name = "textBox4";
+            this.textBox4.Size = new System.Drawing.Size(137, 31);
+            this.textBox4.TabIndex = 80;
+            this.textBox4.Text = "Prop Valve";
+            // 
+            // SetPropValve
+            // 
+            this.SetPropValve.Increment = new decimal(new int[] {
+            5,
+            0,
+            0,
+            0});
+            this.SetPropValve.Location = new System.Drawing.Point(161, 275);
+            this.SetPropValve.Name = "SetPropValve";
+            this.SetPropValve.Size = new System.Drawing.Size(103, 38);
+            this.SetPropValve.TabIndex = 81;
+            this.SetPropValve.ValueChanged += new System.EventHandler(this.SetPropValve_ValueChanged);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(16F, 31F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(2044, 1313);
+            this.Controls.Add(this.SetPropValve);
+            this.Controls.Add(this.textBox4);
+            this.Controls.Add(this.SetBlower);
+            this.Controls.Add(this.textBox3);
             this.Controls.Add(this.StartFiO2);
             this.Controls.Add(this.StartBabyPressure);
             this.Controls.Add(this.Fio2Setpt);
@@ -525,6 +586,7 @@ namespace FlowWorks
             this.Controls.Add(this.commandBox);
             this.Controls.Add(this.connectedTextBox);
             this.Controls.Add(this.menuStrip1);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MainMenuStrip = this.menuStrip1;
             this.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.Name = "Form1";
@@ -534,6 +596,8 @@ namespace FlowWorks
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.PressBabySetpt)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.Fio2Setpt)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.SetBlower)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.SetPropValve)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -576,5 +640,9 @@ namespace FlowWorks
         private System.Windows.Forms.NumericUpDown Fio2Setpt;
         private System.Windows.Forms.Button StartBabyPressure;
         private System.Windows.Forms.Button StartFiO2;
+        private System.Windows.Forms.TextBox textBox3;
+        private System.Windows.Forms.NumericUpDown SetBlower;
+        private System.Windows.Forms.TextBox textBox4;
+        private System.Windows.Forms.NumericUpDown SetPropValve;
     }
 }

@@ -15,9 +15,15 @@ namespace FlowWorks
         private FlowWorks fwViewer;
         private List<string> commandHistory;
         private int commandHistoryIndex = 0;
+        private decimal oldPropValue;
+        private decimal oldBlowerValue;
+
+        public bool FiO2UnderPIDControl { get; private set; }
+        public bool BabyPressureUnderPIDControl { get; private set; }
 
         public delegate void BoolParameterDelegate(bool b);
         public delegate void StringParameterDelegate(string s);
+        public delegate void DeviceDataParameterDelegate(DeviceData deviceData);
         public delegate void DeviceStatusParameterDelegate(DeviceStatus deviceStatus);
 
         public Form1()
@@ -146,35 +152,65 @@ namespace FlowWorks
             this.fwViewer.ComportNum = comportNum;
             this.UpdateCheckmarkInComportMenu(comportNum);
         }
-        public void UpdateDeviceStatus(DeviceStatus deviceStatus)
+        public void UpdateDeviceData(DeviceData deviceData)
         {
-            this.BabyPressure.Text = deviceStatus.babyPressure.ToString("#.##");
-            this.FlowLeak.Text = deviceStatus.flowLeak.ToString("#.##");
-            this.PressExp.Text = deviceStatus.pressExp.ToString("#.##");
-            this.FlowExp.Text = deviceStatus.flowExp.ToString("#.##");
-            this.PressCkt.Text = deviceStatus.pressCkt.ToString("#.##");
-            this.TempProx.Text = deviceStatus.tempProx.ToString("#.##");
-            this.TempDist.Text = deviceStatus.tempDist.ToString("#.##");
-            this.TempPlate.Text = deviceStatus.tempHeater.ToString("#.##");
-            this.PressInsp.Text = deviceStatus.pressInsp.ToString("#.##");
-            this.BlowerSpeed.Text = deviceStatus.blowerSpeed.ToString("#.##");
-            this.FlowInsp.Text = deviceStatus.flowInsp.ToString("#.##");
-            this.FlowOx.Text = deviceStatus.flowOx.ToString("#.##");
-            this.TempAmb.Text = deviceStatus.tempPCB.ToString("#.##");
-            this.Fio2Setpt.Value = (decimal)deviceStatus.fio2Setpt;
-            this.PressBabySetpt.Value = (decimal)deviceStatus.pressSetpt;
-
-            /*
-            this.firmwareVersionLabel.Text = "v" + deviceStatus.fwVersionMajor.ToString() +
-                                             "." + deviceStatus.fwVersionMinor.ToString() +
-                                             "." + deviceStatus.fwVersionRevision.ToString();
+            this.BabyPressure.Text = deviceData.babyPressure.ToString("#.##");
+            this.FlowLeak.Text = deviceData.flowLeak.ToString("#.##");
+            this.PressExp.Text = deviceData.pressExp.ToString("0.##");
+            this.FlowExp.Text = deviceData.flowExp.ToString("#.##");
+            this.PressCkt.Text = deviceData.pressCkt.ToString("#.##");
+            if (deviceData.tempProx < -40) this.TempProx.Text = "N/C";
+            else this.TempProx.Text = deviceData.tempProx.ToString("#.##");
+            if (deviceData.tempDist < -40) this.TempDist.Text = "N/C";
+            else this.TempDist.Text = deviceData.tempDist.ToString("#.##");
+            if (deviceData.tempHeater < -40) this.TempPlate.Text = "N/C";
+            else this.TempPlate.Text = deviceData.tempHeater.ToString("#.##");
+            this.PressInsp.Text = deviceData.pressInsp.ToString("0.##");
+            this.BlowerSpeed.Text = deviceData.blowerSpeed.ToString("#.##");
+            this.FlowInsp.Text = deviceData.flowInsp.ToString("0.##");
+            this.FlowOx.Text = deviceData.flowOx.ToString("0.##");
+            this.TempAmb.Text = deviceData.tempPCB.ToString("#.##");
+            this.Fio2Setpt.Value = (decimal)deviceData.fio2Setpt;
+            this.PressBabySetpt.Value = (decimal)deviceData.pressSetpt;
+            if (Convert.ToBoolean(deviceData.fio2PIDEnable))
+            {
+                this.StartFiO2.BackColor = Color.Red;
+                this.FiO2UnderPIDControl = true;
+                this.StartFiO2.Text = "Stop";
+            }
+            else
+            {
+                this.StartFiO2.BackColor = Color.Green;
+                this.FiO2UnderPIDControl = false;
+                this.StartFiO2.Text = "Start";
+            }
+            if (Convert.ToBoolean(deviceData.babyPressurePIDEnable))
+            {
+                this.StartBabyPressure.BackColor = Color.Red;
+                this.BabyPressureUnderPIDControl = true;
+                this.StartBabyPressure.Text = "Stop";
+            }
+            else
+            {
+                this.StartBabyPressure.BackColor = Color.Green;
+                this.BabyPressureUnderPIDControl = false;
+                this.StartBabyPressure.Text = "Start";
+            }
+            this.SetBlower.Value = (decimal)deviceData.blowerSetting;
+            this.SetPropValve.Value = (decimal)deviceData.propValveSetting;
+        }
+            public void UpdateDeviceStatus(DeviceStatus deviceStatus)
+        {            
+            this.firmwareVersionLabel.Text = "v" + deviceStatus.versionMajor.ToString() +
+                                             "." + deviceStatus.versionMinor.ToString() +
+                                             "." + deviceStatus.versionBuild.ToString();
             this.dateLabel.Text = deviceStatus.dateMonth.ToString() + "/" +
                                   deviceStatus.dateDay.ToString() + "/" +
                                   deviceStatus.dateYear.ToString("00");
-            this.timeLabel.Text = deviceStatus.timeHours.ToString() + ":" +
-                                  deviceStatus.timeMinutes.ToString("00") + ":" +
-                                  deviceStatus.timeSeconds.ToString("00");
-            */
+            this.timeLabel.Text = deviceStatus.timeHour.ToString() + ":" +
+                                  deviceStatus.timeMin.ToString("00") + ":" +
+                                  deviceStatus.timeSec.ToString("00");
+            
         }
         // private helper functions
         private void OverwriteLastCommandWith(string s)
@@ -237,7 +273,7 @@ namespace FlowWorks
         public void UpdateResponse(string s)
         {
             // Ignore lines starting with comma
-            if (!s.StartsWith(",") && !s.StartsWith("&"))
+            if (!s.StartsWith(",") && !s.StartsWith("&") && !s.StartsWith("!"))
                 this.responseBox.AppendText(s + "\r\n");
         }
 
@@ -325,6 +361,37 @@ namespace FlowWorks
         {
             fwViewer.AddTerminalCommand("fio2Setpt(" + this.Fio2Setpt.Value + ")");
             fwViewer.AddTerminalCommand("togglePIDFiO2");
+        }
+
+        private void SetBlower_ValueChanged(object sender, EventArgs e)
+        {
+            fwViewer.deviceData.blowerSetting = Convert.ToInt32(this.SetBlower.Value);
+            // Only send the blower command if the user has deliberately changed the value
+            if (this.BabyPressureUnderPIDControl == true)
+            {
+                this.SetBlower.BackColor = Color.Gray;
+            }
+            else if ((oldBlowerValue < this.SetBlower.Value) || (oldBlowerValue > this.SetBlower.Value))
+            {
+                fwViewer.AddTerminalCommand("blower(" + this.SetBlower.Value + ")");
+                this.SetBlower.BackColor = Color.Empty;
+            }
+            oldBlowerValue = this.SetBlower.Value;
+        }
+        private void SetPropValve_ValueChanged(object sender, EventArgs e)
+        {
+            fwViewer.deviceData.propValveSetting = Convert.ToDouble(this.SetPropValve.Value);
+            // Only send the propValve command if the user has deliberately changed the value
+            if (this.FiO2UnderPIDControl == true)
+            {
+                this.SetPropValve.BackColor = Color.Gray;
+            }
+            else if ((oldPropValue < this.SetPropValve.Value) || (oldPropValue > this.SetPropValve.Value))
+            {
+                fwViewer.AddTerminalCommand("propValve(" + this.SetPropValve.Value + ")");
+                this.SetPropValve.BackColor = Color.Empty;
+            }
+            oldPropValue = this.SetPropValve.Value;
         }
     }
 }

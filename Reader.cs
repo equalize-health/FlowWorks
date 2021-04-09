@@ -20,6 +20,7 @@ namespace FlowWorks {
     // public delegates
     public delegate void EventPublicationFunction(Event e);
     public delegate void DeviceResponsePublicationFunction(string s);
+    public delegate void DeviceDataPublicationFunction(DeviceData deviceData);
     public delegate void DeviceStatusPublicationFunction(DeviceStatus deviceStatus);
 
     // public properties
@@ -62,18 +63,16 @@ namespace FlowWorks {
     public Reader(SerialPort port,
                   EventPublicationFunction publishEvent,
                   DeviceResponsePublicationFunction publishResponse,
+                  DeviceDataPublicationFunction publishData,
                   DeviceStatusPublicationFunction publishStatus,
                   Form1 form)
     {
       // constants
       this.kDeviceReadyMsg = "senddata";
       this.serialPort = port;
-      this.delimiterWord = 987654321;
 
       // initial state
       this.connectionIsOpen = false;
-      this.deviceReady = false;
-      this.deviceReadyMsgCharIndex = 0;       // used in detecting 'device ready' msg
       this.deviceResponse = "";
       this.readingDeviceResponse = false;
       this.lastStreamTime = new DateTime();
@@ -82,10 +81,8 @@ namespace FlowWorks {
       // publishing functions
       this.PublishEvent = publishEvent;
       this.PublishDeviceResponse = publishResponse;
+      this.PublishDataResponse = publishData;
       this.PublishStatusResponse = publishStatus;
-
-      // read buffers
-      //this.deviceStatusDataBuffer;
 
       this.formVar = form;
     }
@@ -112,64 +109,69 @@ namespace FlowWorks {
               bytesRead = this.serialPort.Read(readBuffer, 0, 1);
             }
             char c = Convert.ToChar(readBuffer[0]);
-            // if device has not yet sent a 'device ready' message, continue watching for one
-            if (!this.deviceReady)
+
+            switch (c)
             {
-              this.deviceReady = this.DeviceReadyMsgReceived(c);
-              if (this.deviceReady)
-              {
-                this.PublishEvent(Event.DeviceReady);
-              }
-            }
-            else
-            {
-              switch (c)
-              {
-                // CR -- end of message from device
-                case '\r':
-                  if ((this.deviceResponse != this.kDeviceReadyMsg) && (this.deviceResponse.Length > 1))
-                  {
+            // CR -- end of message from device
+            case '\r':
+                if ((this.deviceResponse != this.kDeviceReadyMsg) && (this.deviceResponse != "sendstatus") && (this.deviceResponse.Length > 1))
+                {
                     this.PublishDeviceResponse(this.deviceResponse);
-                  }
-                  this.deviceResponse = "";
-                  this.readingDeviceResponse = false;
-                  break;
+                }
+                this.deviceResponse = "";
+                this.readingDeviceResponse = false;
+                break;
 
-                // newline -- ignore
-                case '\n':
-                  break;
-                case '&':
-                    if (this.readingDeviceResponse)
-                    {  // normal char inside device response
-                        this.deviceResponse += c;
-                    } else
-                    {
-                        DeviceStatus deviceStatus = new DeviceStatus();
-
-                        if (this.ParseDataStream(ref deviceStatus))
-                        {
-                            this.PublishStatusResponse(deviceStatus);
-                        }
-
-                    }
-                    break;
-
-                // normal character -- add to the device response
-                default:
-                  //if the character is not printable (<=0x1F or > 0x7E) except tab 0x09 - then the entire deviceResponse is bogus
-                  if (c != 0x09 && (c < 0x20 || c > 0x7E))
-                  {
-                    this.deviceResponse = "";
-                    this.readingDeviceResponse = false;
-                  }
-                  else
-                  {
+            // newline -- ignore
+            case '\n':
+                break;
+            case '&':
+                if (this.readingDeviceResponse)
+                {  // normal char inside device response
                     this.deviceResponse += c;
-                    this.readingDeviceResponse = true;
-                  }
-                  break;
-              }
+                } else
+                {
+                    DeviceData deviceData = new DeviceData();
+
+                    if (this.ParseDataStream(ref deviceData))
+                    {
+                        this.PublishDataResponse(deviceData);
+                    }
+
+                }
+                break;
+            case '!':
+                if (this.readingDeviceResponse)
+                {  // normal char inside device response
+                    this.deviceResponse += c;
+                }
+                else
+                {
+                    DeviceStatus deviceStatus = new DeviceStatus();
+
+                    if (this.ParseStatusStream(ref deviceStatus))
+                    {
+                        this.PublishStatusResponse(deviceStatus);
+                    }
+
+                }
+                break;
+            // normal character -- add to the device response
+            default:
+                //if the character is not printable (<=0x1F or > 0x7E) except tab 0x09 - then the entire deviceResponse is bogus
+                if (c != 0x09 && (c < 0x20 || c > 0x7E))
+                {
+                this.deviceResponse = "";
+                this.readingDeviceResponse = false;
+                }
+                else
+                {
+                this.deviceResponse += c;
+                this.readingDeviceResponse = true;
+                }
+                break;
             }
+
           }
           // if a read error occurred, connection is probably dead; post error msg and close com port
           catch (Exception e)
@@ -187,20 +189,25 @@ namespace FlowWorks {
       }
     }
 
-    private bool ParseDataStream(ref DeviceStatus deviceStatus)
+    private bool ParseDataStream(ref DeviceData deviceData)
     {
         //if (this.ReadDataBlock(ref this.deviceStatusDataBuffer, deviceStatus.deviceStatusSize, 100))
         this.deviceStatusDataBuffer = this.serialPort.ReadLine();
 
-        deviceStatus.Data = this.deviceStatusDataBuffer;
+        deviceData.Data = this.deviceStatusDataBuffer;
         return true;
     }
+    private bool ParseStatusStream(ref DeviceStatus deviceStatus)
+    {
+        //if (this.ReadDataBlock(ref this.deviceStatusDataBuffer, deviceStatus.deviceStatusSize, 100))
+        this.deviceStatusDataBuffer = this.serialPort.ReadLine();
 
+        deviceStatus.Status = this.deviceStatusDataBuffer;
+        return true;
+    }
     public void Reset()
     {
       this.connectionIsOpen = false;
-      this.deviceReady = false;
-      this.deviceReadyMsgCharIndex = 0;
       this.deviceResponse = "";
       this.readingDeviceResponse = false;
       if (ErrorPrintsEnabled) Console.WriteLine("Reset Read thread ");
@@ -229,7 +236,6 @@ namespace FlowWorks {
 
     // constants
     private readonly string kDeviceReadyMsg;
-    private readonly int delimiterWord;
 
     // components
     private SerialPort serialPort;
@@ -237,8 +243,6 @@ namespace FlowWorks {
 
     // state
     private volatile bool connectionIsOpen;
-    private volatile bool deviceReady;
-    private volatile int deviceReadyMsgCharIndex;
     private volatile string deviceResponse;
     private volatile bool readingDeviceResponse;
     private DateTime lastStreamTime;
@@ -247,94 +251,21 @@ namespace FlowWorks {
     private EventPublicationFunction PublishEvent;
     private DeviceResponsePublicationFunction PublishDeviceResponse;
 
-        public DeviceStatusPublicationFunction PublishStatusResponse { get; }
+    public DeviceDataPublicationFunction PublishDataResponse { get; }
+    public DeviceStatusPublicationFunction PublishStatusResponse { get; }
 
-        // read buffers
-        private string deviceStatusDataBuffer;
+    // read buffers
+    private string deviceStatusDataBuffer;
 
     // private methods
 
-    private bool ReadDeviceStatus(ref DeviceStatus deviceStatus)
+    private bool ReadDeviceData(ref DeviceData deviceData)
     {
         this.deviceStatusDataBuffer = this.serialPort.ReadLine();
 
         //deviceStatus.Data = this.deviceStatusDataBuffer;
         return true;
 
-    }
-
-    //Data block must match expected size and be retrieved within the timeout period
-    private bool ReadDataBlock(ref byte[] dataBlock, int expectedSize, int timeoutms)
-    {
-      byte[] readBuffer = new byte[4];
-      TimeSpan diff;
-
-      int bytesRead = 0;
-      //Thread.Sleep(10);
-      DateTime curTime = DateTime.Now;
- 
-      //int firmwareMajor = BitConverter.ToInt32(dataBlock, 0);
-      //int firmwareMinor = BitConverter.ToInt32(dataBlock, 4);
-      //int firmwareSub = BitConverter.ToInt32(dataBlock, 8);
-      //bool firmwareCheck = ((firmwareMajor >= 4) && (firmwareMinor >= 1) && (firmwareSub >= 4));
-
-        // read in the block
-        bytesRead = 0;
-        if (dataBlock.Length != expectedSize)
-        {
-            dataBlock = new byte[expectedSize];
-        }
-        while (bytesRead < expectedSize)
-        {
-            if (this.serialPort.BytesToRead > 0)
-            {
-                bytesRead += this.serialPort.Read(dataBlock, bytesRead, expectedSize - bytesRead);
-            }
-            else
-            {
-                //this.sendReadBufferContinuePacket();
-                diff = DateTime.Now - curTime;
-                if (diff.Milliseconds > timeoutms)
-                {
-                    if (ErrorPrintsEnabled) Console.WriteLine(DateTime.UtcNow.ToString("HH:mm:ss.fff") + " 2nd Timeout in ReadDataBlock " + diff.Milliseconds + " reading size " + expectedSize);
-                    return false;
-                }
-            }
-            if (DebugPrintsEnabled) Console.WriteLine(DateTime.UtcNow.ToString("HH:mm:ss.fff") + " Got Data bytes: " + bytesRead);
-            //this.sendReadBufferContinuePacket();
-            return true;  //data block successfully retrieved
-        }
-
-        if (ErrorPrintsEnabled) Console.WriteLine(DateTime.UtcNow.ToString("HH:mm:ss.fff") + " Failed in ReadDataBlock " + expectedSize);
-          return false;
-    }
-
-    private bool DeviceReadyMsgReceived(char c)
-    {
-      bool result;
-      // does c match the char we're looking for?
-      if (this.kDeviceReadyMsg[this.deviceReadyMsgCharIndex] == c)
-      {
-        // advance to next char
-        this.deviceReadyMsgCharIndex++;
-        // do we have a complete match?
-        if (this.deviceReadyMsgCharIndex == this.kDeviceReadyMsg.Length)
-        {
-          result = true;
-          this.deviceReadyMsgCharIndex = 0;
-        }
-        else
-        {
-          result = false;
-        }
-      }
-      else
-      {
-        // start over
-        this.deviceReadyMsgCharIndex = 0;
-        result = false;
-      }
-      return result;
     }
 
   }

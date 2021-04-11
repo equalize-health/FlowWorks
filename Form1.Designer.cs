@@ -89,12 +89,31 @@ namespace FlowWorks
             this.cFactor = new System.Windows.Forms.Label();
             this.aboutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.VersionString = new System.Windows.Forms.ToolStripMenuItem();
+            this.textBox5 = new System.Windows.Forms.TextBox();
+            this.label8 = new System.Windows.Forms.Label();
+            this.StartHeatPlate = new System.Windows.Forms.Button();
+            this.label9 = new System.Windows.Forms.Label();
+            this.StartHeatWire = new System.Windows.Forms.Button();
+            this.textBox6 = new System.Windows.Forms.TextBox();
+            this.textBox7 = new System.Windows.Forms.TextBox();
+            this.textBox8 = new System.Windows.Forms.TextBox();
+            this.textBox9 = new System.Windows.Forms.TextBox();
+            this.textBox10 = new System.Windows.Forms.TextBox();
+            this.textBox11 = new System.Windows.Forms.TextBox();
+            this.textBox12 = new System.Windows.Forms.TextBox();
+            this.textBox13 = new System.Windows.Forms.TextBox();
+            this.textBox14 = new System.Windows.Forms.TextBox();
+            this.textBox15 = new System.Windows.Forms.TextBox();
+            this.HeatPlateSetting = new System.Windows.Forms.NumericUpDown();
+            this.HeatWireSetting = new System.Windows.Forms.NumericUpDown();
             this.menuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.PressBabySetpt)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.Fio2Setpt)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.SetBlower)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.SetPropValve)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.HeatPlateSetting)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.HeatWireSetting)).BeginInit();
             this.SuspendLayout();
             // 
             // menuStrip1
@@ -180,7 +199,7 @@ namespace FlowWorks
             // 
             this.commandBox.AcceptsReturn = true;
             this.commandBox.Font = new System.Drawing.Font("Courier New", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.commandBox.Location = new System.Drawing.Point(52, 792);
+            this.commandBox.Location = new System.Drawing.Point(52, 866);
             this.commandBox.Margin = new System.Windows.Forms.Padding(4);
             this.commandBox.Multiline = true;
             this.commandBox.Name = "commandBox";
@@ -202,7 +221,7 @@ namespace FlowWorks
             // dateLabel
             // 
             this.dateLabel.AutoSize = true;
-            this.dateLabel.Location = new System.Drawing.Point(1153, 834);
+            this.dateLabel.Location = new System.Drawing.Point(908, 76);
             this.dateLabel.Name = "dateLabel";
             this.dateLabel.Size = new System.Drawing.Size(127, 32);
             this.dateLabel.TabIndex = 49;
@@ -211,7 +230,7 @@ namespace FlowWorks
             // label7
             // 
             this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(995, 834);
+            this.label7.Location = new System.Drawing.Point(819, 76);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(83, 32);
             this.label7.TabIndex = 50;
@@ -220,7 +239,7 @@ namespace FlowWorks
             // timeLabel
             // 
             this.timeLabel.AutoSize = true;
-            this.timeLabel.Location = new System.Drawing.Point(1153, 866);
+            this.timeLabel.Location = new System.Drawing.Point(1219, 76);
             this.timeLabel.Name = "timeLabel";
             this.timeLabel.Size = new System.Drawing.Size(127, 32);
             this.timeLabel.TabIndex = 51;
@@ -229,7 +248,7 @@ namespace FlowWorks
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(995, 866);
+            this.label1.Location = new System.Drawing.Point(1118, 76);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(86, 32);
             this.label1.TabIndex = 52;
@@ -247,7 +266,7 @@ namespace FlowWorks
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(46, 756);
+            this.label3.Location = new System.Drawing.Point(46, 812);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(153, 32);
             this.label3.TabIndex = 54;
@@ -270,7 +289,7 @@ namespace FlowWorks
             this.responseBox.BackColor = System.Drawing.SystemColors.GradientActiveCaption;
             this.responseBox.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.responseBox.Font = new System.Drawing.Font("Courier New", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.responseBox.Location = new System.Drawing.Point(52, 995);
+            this.responseBox.Location = new System.Drawing.Point(52, 1073);
             this.responseBox.Margin = new System.Windows.Forms.Padding(4);
             this.responseBox.Multiline = true;
             this.responseBox.Name = "responseBox";
@@ -282,7 +301,7 @@ namespace FlowWorks
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(46, 959);
+            this.label5.Location = new System.Drawing.Point(46, 1012);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(207, 32);
             this.label5.TabIndex = 57;
@@ -292,16 +311,16 @@ namespace FlowWorks
             // 
             this.pictureBox1.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("pictureBox1.BackgroundImage")));
             this.pictureBox1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.pictureBox1.Location = new System.Drawing.Point(42, 125);
+            this.pictureBox1.Location = new System.Drawing.Point(52, 134);
             this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(1548, 602);
+            this.pictureBox1.Size = new System.Drawing.Size(1548, 646);
             this.pictureBox1.TabIndex = 58;
             this.pictureBox1.TabStop = false;
             // 
             // BlowerSpeed
             // 
             this.BlowerSpeed.AutoSize = true;
-            this.BlowerSpeed.Location = new System.Drawing.Point(435, 547);
+            this.BlowerSpeed.Location = new System.Drawing.Point(446, 584);
             this.BlowerSpeed.Name = "BlowerSpeed";
             this.BlowerSpeed.Size = new System.Drawing.Size(31, 32);
             this.BlowerSpeed.TabIndex = 59;
@@ -310,7 +329,7 @@ namespace FlowWorks
             // BabyPressure
             // 
             this.BabyPressure.AutoSize = true;
-            this.BabyPressure.Location = new System.Drawing.Point(1275, 298);
+            this.BabyPressure.Location = new System.Drawing.Point(1261, 323);
             this.BabyPressure.Name = "BabyPressure";
             this.BabyPressure.Size = new System.Drawing.Size(71, 32);
             this.BabyPressure.TabIndex = 60;
@@ -319,7 +338,7 @@ namespace FlowWorks
             // FlowLeak
             // 
             this.FlowLeak.AutoSize = true;
-            this.FlowLeak.Location = new System.Drawing.Point(1134, 298);
+            this.FlowLeak.Location = new System.Drawing.Point(1149, 323);
             this.FlowLeak.Name = "FlowLeak";
             this.FlowLeak.Size = new System.Drawing.Size(55, 32);
             this.FlowLeak.TabIndex = 61;
@@ -328,7 +347,7 @@ namespace FlowWorks
             // PressExp
             // 
             this.PressExp.AutoSize = true;
-            this.PressExp.Location = new System.Drawing.Point(1450, 237);
+            this.PressExp.Location = new System.Drawing.Point(1430, 248);
             this.PressExp.Name = "PressExp";
             this.PressExp.Size = new System.Drawing.Size(55, 32);
             this.PressExp.TabIndex = 62;
@@ -337,7 +356,7 @@ namespace FlowWorks
             // PressCkt
             // 
             this.PressCkt.AutoSize = true;
-            this.PressCkt.Location = new System.Drawing.Point(1200, 604);
+            this.PressCkt.Location = new System.Drawing.Point(1219, 584);
             this.PressCkt.Name = "PressCkt";
             this.PressCkt.Size = new System.Drawing.Size(55, 32);
             this.PressCkt.TabIndex = 63;
@@ -346,7 +365,7 @@ namespace FlowWorks
             // FlowExp
             // 
             this.FlowExp.AutoSize = true;
-            this.FlowExp.Location = new System.Drawing.Point(1518, 337);
+            this.FlowExp.Location = new System.Drawing.Point(1530, 363);
             this.FlowExp.Name = "FlowExp";
             this.FlowExp.Size = new System.Drawing.Size(55, 32);
             this.FlowExp.TabIndex = 64;
@@ -355,7 +374,7 @@ namespace FlowWorks
             // TempProx
             // 
             this.TempProx.AutoSize = true;
-            this.TempProx.Location = new System.Drawing.Point(1082, 427);
+            this.TempProx.Location = new System.Drawing.Point(1101, 457);
             this.TempProx.Name = "TempProx";
             this.TempProx.Size = new System.Drawing.Size(55, 32);
             this.TempProx.TabIndex = 65;
@@ -364,7 +383,7 @@ namespace FlowWorks
             // TempDist
             // 
             this.TempDist.AutoSize = true;
-            this.TempDist.Location = new System.Drawing.Point(798, 313);
+            this.TempDist.Location = new System.Drawing.Point(817, 336);
             this.TempDist.Name = "TempDist";
             this.TempDist.Size = new System.Drawing.Size(55, 32);
             this.TempDist.TabIndex = 66;
@@ -373,7 +392,7 @@ namespace FlowWorks
             // TempPlate
             // 
             this.TempPlate.AutoSize = true;
-            this.TempPlate.Location = new System.Drawing.Point(776, 593);
+            this.TempPlate.Location = new System.Drawing.Point(858, 584);
             this.TempPlate.Name = "TempPlate";
             this.TempPlate.Size = new System.Drawing.Size(55, 32);
             this.TempPlate.TabIndex = 67;
@@ -382,7 +401,7 @@ namespace FlowWorks
             // PressInsp
             // 
             this.PressInsp.AutoSize = true;
-            this.PressInsp.Location = new System.Drawing.Point(576, 249);
+            this.PressInsp.Location = new System.Drawing.Point(568, 249);
             this.PressInsp.Name = "PressInsp";
             this.PressInsp.Size = new System.Drawing.Size(55, 32);
             this.PressInsp.TabIndex = 68;
@@ -391,7 +410,7 @@ namespace FlowWorks
             // FlowInsp
             // 
             this.FlowInsp.AutoSize = true;
-            this.FlowInsp.Location = new System.Drawing.Point(533, 465);
+            this.FlowInsp.Location = new System.Drawing.Point(532, 501);
             this.FlowInsp.Name = "FlowInsp";
             this.FlowInsp.Size = new System.Drawing.Size(55, 32);
             this.FlowInsp.TabIndex = 69;
@@ -400,7 +419,7 @@ namespace FlowWorks
             // FlowOx
             // 
             this.FlowOx.AutoSize = true;
-            this.FlowOx.Location = new System.Drawing.Point(295, 408);
+            this.FlowOx.Location = new System.Drawing.Point(305, 439);
             this.FlowOx.Name = "FlowOx";
             this.FlowOx.Size = new System.Drawing.Size(55, 32);
             this.FlowOx.TabIndex = 70;
@@ -409,7 +428,7 @@ namespace FlowWorks
             // TempAmb
             // 
             this.TempAmb.AutoSize = true;
-            this.TempAmb.Location = new System.Drawing.Point(1026, 237);
+            this.TempAmb.Location = new System.Drawing.Point(1006, 260);
             this.TempAmb.Name = "TempAmb";
             this.TempAmb.Size = new System.Drawing.Size(55, 32);
             this.TempAmb.TabIndex = 71;
@@ -418,7 +437,7 @@ namespace FlowWorks
             // textBox1
             // 
             this.textBox1.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.textBox1.Location = new System.Drawing.Point(396, 654);
+            this.textBox1.Location = new System.Drawing.Point(395, 652);
             this.textBox1.Name = "textBox1";
             this.textBox1.Size = new System.Drawing.Size(243, 31);
             this.textBox1.TabIndex = 72;
@@ -426,7 +445,7 @@ namespace FlowWorks
             // 
             // PressBabySetpt
             // 
-            this.PressBabySetpt.Location = new System.Drawing.Point(645, 652);
+            this.PressBabySetpt.Location = new System.Drawing.Point(644, 650);
             this.PressBabySetpt.Maximum = new decimal(new int[] {
             10,
             0,
@@ -450,7 +469,7 @@ namespace FlowWorks
             // textBox2
             // 
             this.textBox2.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.textBox2.Location = new System.Drawing.Point(1005, 655);
+            this.textBox2.Location = new System.Drawing.Point(993, 650);
             this.textBox2.Name = "textBox2";
             this.textBox2.Size = new System.Drawing.Size(126, 31);
             this.textBox2.TabIndex = 74;
@@ -463,14 +482,14 @@ namespace FlowWorks
             0,
             0,
             0});
-            this.Fio2Setpt.Location = new System.Drawing.Point(1140, 652);
+            this.Fio2Setpt.Location = new System.Drawing.Point(1125, 648);
             this.Fio2Setpt.Minimum = new decimal(new int[] {
             20,
             0,
             0,
             0});
             this.Fio2Setpt.Name = "Fio2Setpt";
-            this.Fio2Setpt.Size = new System.Drawing.Size(93, 38);
+            this.Fio2Setpt.Size = new System.Drawing.Size(79, 38);
             this.Fio2Setpt.TabIndex = 75;
             this.Fio2Setpt.Value = new decimal(new int[] {
             20,
@@ -482,7 +501,7 @@ namespace FlowWorks
             // StartBabyPressure
             // 
             this.StartBabyPressure.BackColor = System.Drawing.Color.Red;
-            this.StartBabyPressure.Location = new System.Drawing.Point(754, 645);
+            this.StartBabyPressure.Location = new System.Drawing.Point(644, 694);
             this.StartBabyPressure.Name = "StartBabyPressure";
             this.StartBabyPressure.Size = new System.Drawing.Size(110, 51);
             this.StartBabyPressure.TabIndex = 76;
@@ -493,7 +512,7 @@ namespace FlowWorks
             // StartFiO2
             // 
             this.StartFiO2.BackColor = System.Drawing.Color.Red;
-            this.StartFiO2.Location = new System.Drawing.Point(1263, 647);
+            this.StartFiO2.Location = new System.Drawing.Point(1124, 694);
             this.StartFiO2.Name = "StartFiO2";
             this.StartFiO2.Size = new System.Drawing.Size(110, 53);
             this.StartFiO2.TabIndex = 77;
@@ -504,7 +523,7 @@ namespace FlowWorks
             // textBox3
             // 
             this.textBox3.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.textBox3.Location = new System.Drawing.Point(415, 334);
+            this.textBox3.Location = new System.Drawing.Point(415, 351);
             this.textBox3.Name = "textBox3";
             this.textBox3.Size = new System.Drawing.Size(92, 31);
             this.textBox3.TabIndex = 78;
@@ -517,7 +536,7 @@ namespace FlowWorks
             0,
             0,
             0});
-            this.SetBlower.Location = new System.Drawing.Point(405, 372);
+            this.SetBlower.Location = new System.Drawing.Point(415, 388);
             this.SetBlower.Maximum = new decimal(new int[] {
             511,
             0,
@@ -531,7 +550,7 @@ namespace FlowWorks
             // textBox4
             // 
             this.textBox4.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.textBox4.Location = new System.Drawing.Point(161, 238);
+            this.textBox4.Location = new System.Drawing.Point(167, 261);
             this.textBox4.Name = "textBox4";
             this.textBox4.Size = new System.Drawing.Size(137, 31);
             this.textBox4.TabIndex = 80;
@@ -544,7 +563,7 @@ namespace FlowWorks
             0,
             0,
             0});
-            this.SetPropValve.Location = new System.Drawing.Point(161, 275);
+            this.SetPropValve.Location = new System.Drawing.Point(167, 298);
             this.SetPropValve.Name = "SetPropValve";
             this.SetPropValve.Size = new System.Drawing.Size(103, 38);
             this.SetPropValve.TabIndex = 81;
@@ -565,7 +584,7 @@ namespace FlowWorks
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(1637, 298);
+            this.label6.Location = new System.Drawing.Point(1641, 281);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(123, 32);
             this.label6.TabIndex = 83;
@@ -574,7 +593,7 @@ namespace FlowWorks
             // cFactor
             // 
             this.cFactor.AutoSize = true;
-            this.cFactor.Location = new System.Drawing.Point(1766, 298);
+            this.cFactor.Location = new System.Drawing.Point(1781, 281);
             this.cFactor.Name = "cFactor";
             this.cFactor.Size = new System.Drawing.Size(87, 32);
             this.cFactor.TabIndex = 84;
@@ -594,11 +613,196 @@ namespace FlowWorks
             this.VersionString.Size = new System.Drawing.Size(448, 54);
             this.VersionString.Text = "Version 1.0.0";
             // 
+            // textBox5
+            // 
+            this.textBox5.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.textBox5.Location = new System.Drawing.Point(732, 657);
+            this.textBox5.Name = "textBox5";
+            this.textBox5.Size = new System.Drawing.Size(98, 31);
+            this.textBox5.TabIndex = 85;
+            this.textBox5.Text = "cmH2O";
+            // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.Location = new System.Drawing.Point(1627, 363);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(277, 32);
+            this.label8.TabIndex = 86;
+            this.label8.Text = "Set Heat Plate Temp";
+            // 
+            // StartHeatPlate
+            // 
+            this.StartHeatPlate.BackColor = System.Drawing.Color.Red;
+            this.StartHeatPlate.Location = new System.Drawing.Point(1786, 398);
+            this.StartHeatPlate.Name = "StartHeatPlate";
+            this.StartHeatPlate.Size = new System.Drawing.Size(110, 53);
+            this.StartHeatPlate.TabIndex = 88;
+            this.StartHeatPlate.Text = "Start";
+            this.StartHeatPlate.UseVisualStyleBackColor = false;
+            this.StartHeatPlate.Click += new System.EventHandler(this.StartHeatPlate_Click);
+            // 
+            // label9
+            // 
+            this.label9.AutoSize = true;
+            this.label9.Location = new System.Drawing.Point(1627, 474);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(269, 32);
+            this.label9.TabIndex = 89;
+            this.label9.Text = "Set Heat Wire Temp";
+            // 
+            // StartHeatWire
+            // 
+            this.StartHeatWire.BackColor = System.Drawing.Color.Red;
+            this.StartHeatWire.Location = new System.Drawing.Point(1786, 509);
+            this.StartHeatWire.Name = "StartHeatWire";
+            this.StartHeatWire.Size = new System.Drawing.Size(110, 53);
+            this.StartHeatWire.TabIndex = 91;
+            this.StartHeatWire.Text = "Start";
+            this.StartHeatWire.UseVisualStyleBackColor = false;
+            this.StartHeatWire.Click += new System.EventHandler(this.StartHeatWire_Click);
+            // 
+            // textBox6
+            // 
+            this.textBox6.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.textBox6.Location = new System.Drawing.Point(637, 249);
+            this.textBox6.Name = "textBox6";
+            this.textBox6.Size = new System.Drawing.Size(98, 31);
+            this.textBox6.TabIndex = 94;
+            this.textBox6.Text = "cmH2O";
+            // 
+            // textBox7
+            // 
+            this.textBox7.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.textBox7.Location = new System.Drawing.Point(893, 334);
+            this.textBox7.Name = "textBox7";
+            this.textBox7.Size = new System.Drawing.Size(38, 31);
+            this.textBox7.TabIndex = 95;
+            this.textBox7.Text = "C";
+            // 
+            // textBox8
+            // 
+            this.textBox8.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.textBox8.Location = new System.Drawing.Point(1079, 260);
+            this.textBox8.Name = "textBox8";
+            this.textBox8.Size = new System.Drawing.Size(51, 31);
+            this.textBox8.TabIndex = 96;
+            this.textBox8.Text = "\r\nC\r\n";
+            // 
+            // textBox9
+            // 
+            this.textBox9.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.textBox9.Location = new System.Drawing.Point(1340, 323);
+            this.textBox9.Name = "textBox9";
+            this.textBox9.Size = new System.Drawing.Size(98, 31);
+            this.textBox9.TabIndex = 97;
+            this.textBox9.Text = "cmH2O";
+            // 
+            // textBox10
+            // 
+            this.textBox10.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.textBox10.Location = new System.Drawing.Point(1498, 248);
+            this.textBox10.Name = "textBox10";
+            this.textBox10.Size = new System.Drawing.Size(98, 31);
+            this.textBox10.TabIndex = 98;
+            this.textBox10.Text = "cmH2O";
+            // 
+            // textBox11
+            // 
+            this.textBox11.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.textBox11.Location = new System.Drawing.Point(1223, 652);
+            this.textBox11.Name = "textBox11";
+            this.textBox11.Size = new System.Drawing.Size(98, 31);
+            this.textBox11.TabIndex = 99;
+            this.textBox11.Text = "%O2";
+            // 
+            // textBox12
+            // 
+            this.textBox12.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.textBox12.Location = new System.Drawing.Point(1742, 408);
+            this.textBox12.Name = "textBox12";
+            this.textBox12.Size = new System.Drawing.Size(38, 31);
+            this.textBox12.TabIndex = 100;
+            this.textBox12.Text = "C";
+            // 
+            // textBox13
+            // 
+            this.textBox13.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.textBox13.Location = new System.Drawing.Point(1742, 520);
+            this.textBox13.Name = "textBox13";
+            this.textBox13.Size = new System.Drawing.Size(38, 31);
+            this.textBox13.TabIndex = 101;
+            this.textBox13.Text = "C";
+            // 
+            // textBox14
+            // 
+            this.textBox14.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.textBox14.Location = new System.Drawing.Point(934, 585);
+            this.textBox14.Name = "textBox14";
+            this.textBox14.Size = new System.Drawing.Size(38, 31);
+            this.textBox14.TabIndex = 102;
+            this.textBox14.Text = "C";
+            // 
+            // textBox15
+            // 
+            this.textBox15.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.textBox15.Location = new System.Drawing.Point(1282, 585);
+            this.textBox15.Name = "textBox15";
+            this.textBox15.Size = new System.Drawing.Size(98, 31);
+            this.textBox15.TabIndex = 103;
+            this.textBox15.Text = "cmH2O";
+            // 
+            // HeatPlateSetting
+            // 
+            this.HeatPlateSetting.DecimalPlaces = 1;
+            this.HeatPlateSetting.Increment = new decimal(new int[] {
+            2,
+            0,
+            0,
+            0});
+            this.HeatPlateSetting.Location = new System.Drawing.Point(1618, 406);
+            this.HeatPlateSetting.Name = "HeatPlateSetting";
+            this.HeatPlateSetting.Size = new System.Drawing.Size(120, 38);
+            this.HeatPlateSetting.TabIndex = 104;
+            this.HeatPlateSetting.ValueChanged += new System.EventHandler(this.HeatPlateSetting_ValueChanged);
+            // 
+            // HeatWireSetting
+            // 
+            this.HeatWireSetting.DecimalPlaces = 1;
+            this.HeatWireSetting.Location = new System.Drawing.Point(1618, 516);
+            this.HeatWireSetting.Maximum = new decimal(new int[] {
+            40,
+            0,
+            0,
+            0});
+            this.HeatWireSetting.Name = "HeatWireSetting";
+            this.HeatWireSetting.Size = new System.Drawing.Size(120, 38);
+            this.HeatWireSetting.TabIndex = 105;
+            this.HeatWireSetting.ValueChanged += new System.EventHandler(this.HeatWireSetting_ValueChanged);
+            // 
             // Form1
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(16F, 31F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.AutoScaleDimensions = new System.Drawing.SizeF(240F, 240F);
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
+            this.AutoSize = true;
             this.ClientSize = new System.Drawing.Size(2044, 1313);
+            this.Controls.Add(this.HeatWireSetting);
+            this.Controls.Add(this.HeatPlateSetting);
+            this.Controls.Add(this.textBox15);
+            this.Controls.Add(this.textBox14);
+            this.Controls.Add(this.textBox13);
+            this.Controls.Add(this.textBox12);
+            this.Controls.Add(this.textBox11);
+            this.Controls.Add(this.textBox10);
+            this.Controls.Add(this.textBox9);
+            this.Controls.Add(this.textBox8);
+            this.Controls.Add(this.textBox7);
+            this.Controls.Add(this.textBox6);
+            this.Controls.Add(this.StartHeatWire);
+            this.Controls.Add(this.label9);
+            this.Controls.Add(this.StartHeatPlate);
+            this.Controls.Add(this.label8);
+            this.Controls.Add(this.textBox5);
             this.Controls.Add(this.cFactor);
             this.Controls.Add(this.label6);
             this.Controls.Add(this.Calibrate);
@@ -651,6 +855,8 @@ namespace FlowWorks
             ((System.ComponentModel.ISupportInitialize)(this.Fio2Setpt)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.SetBlower)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.SetPropValve)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.HeatPlateSetting)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.HeatWireSetting)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -702,5 +908,22 @@ namespace FlowWorks
         private System.Windows.Forms.Label cFactor;
         private System.Windows.Forms.ToolStripMenuItem aboutToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem VersionString;
+        private System.Windows.Forms.TextBox textBox5;
+        private System.Windows.Forms.Label label8;
+        private System.Windows.Forms.Button StartHeatPlate;
+        private System.Windows.Forms.Label label9;
+        private System.Windows.Forms.Button StartHeatWire;
+        private System.Windows.Forms.TextBox textBox6;
+        private System.Windows.Forms.TextBox textBox7;
+        private System.Windows.Forms.TextBox textBox8;
+        private System.Windows.Forms.TextBox textBox9;
+        private System.Windows.Forms.TextBox textBox10;
+        private System.Windows.Forms.TextBox textBox11;
+        private System.Windows.Forms.TextBox textBox12;
+        private System.Windows.Forms.TextBox textBox13;
+        private System.Windows.Forms.TextBox textBox14;
+        private System.Windows.Forms.TextBox textBox15;
+        private System.Windows.Forms.NumericUpDown HeatPlateSetting;
+        private System.Windows.Forms.NumericUpDown HeatWireSetting;
     }
 }

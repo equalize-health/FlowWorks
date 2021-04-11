@@ -7,10 +7,10 @@
     <ROW Property="ARPCOMMENTS" Value="This installer database contains the logic and data required to install [|ProductName]." ValueLocId="*"/>
     <ROW Property="ARPPRODUCTICON" Value="EqualizeHealthLogo.exe" Type="8"/>
     <ROW Property="Manufacturer" Value="Equalize Health"/>
-    <ROW Property="ProductCode" Value="1033:{499CF2AE-8D46-40F7-A1F6-BDFDACC0F75F} " Type="16"/>
+    <ROW Property="ProductCode" Value="1033:{01CA3442-B046-4004-B97A-CAA516EC5757} " Type="16"/>
     <ROW Property="ProductLanguage" Value="1033"/>
     <ROW Property="ProductName" Value="Flow Works"/>
-    <ROW Property="ProductVersion" Value="1.0.3" Type="32"/>
+    <ROW Property="ProductVersion" Value="1.0.5" Type="32"/>
     <ROW Property="SecureCustomProperties" Value="OLDPRODUCTS;AI_NEWERPRODUCTFOUND"/>
     <ROW Property="UpgradeCode" Value="{1D91BCCC-FBEA-436A-9086-EAD749EDA01E}"/>
     <ROW Property="WindowsType9X" MultiBuildValue="AnyCPU_Debug:Windows 9x/ME" ValueLocId="-"/>
@@ -24,16 +24,13 @@
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.MsiDirsComponent">
     <ROW Directory="APPDIR" Directory_Parent="TARGETDIR" DefaultDir="APPDIR:." IsPseudoRoot="1"/>
-    <ROW Directory="DesktopFolder" Directory_Parent="TARGETDIR" DefaultDir="DESKTO~1|DesktopFolder" IsPseudoRoot="1"/>
-    <ROW Directory="SHORTCUTDIR" Directory_Parent="TARGETDIR" DefaultDir="SHORTC~1|SHORTCUTDIR" IsPseudoRoot="1"/>
     <ROW Directory="TARGETDIR" DefaultDir="SourceDir"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.MsiCompsComponent">
     <ROW Component="APPDIR" ComponentId="{668F4860-44E6-42F4-BA67-01BA79EA83B3}" Directory_="APPDIR" Attributes="0"/>
-    <ROW Component="FlowLite.exe" ComponentId="{5DD31E4A-5079-43DD-92E7-56A9407B13AC}" Directory_="APPDIR" Attributes="0" KeyPath="FlowLite.exe"/>
-    <ROW Component="FlowLite.exe.config" ComponentId="{58EBBFAD-76D6-4A4D-8327-5EB0D5BF0AAB}" Directory_="APPDIR" Attributes="0" KeyPath="FlowLite.exe.config" Type="0"/>
+    <ROW Component="FlowLite.exe.config" ComponentId="{58EBBFAD-76D6-4A4D-8327-5EB0D5BF0AAB}" Directory_="APPDIR" Attributes="0" KeyPath="EqualizeHealthLogo.ico" Type="0"/>
+    <ROW Component="FlowWorks.exe" ComponentId="{0FDD61D2-7A33-4154-846F-3ED19C3A880C}" Directory_="APPDIR" Attributes="0" KeyPath="FlowWorks.exe"/>
     <ROW Component="ProductInformation" ComponentId="{0DFD1C82-F34B-43F0-A5E2-B34FC4881152}" Directory_="APPDIR" Attributes="4" KeyPath="Version"/>
-    <ROW Component="SHORTCUTDIR" ComponentId="{D55490F7-A2DE-4A60-88C8-6D52C30767E4}" Directory_="SHORTCUTDIR" Attributes="0"/>
     <ROW Component="System.Core.dll" ComponentId="{4830F684-3F29-4B7A-8BCA-9C94CF49DD17}" Directory_="APPDIR" Attributes="0" KeyPath="System.Core.dll"/>
     <ROW Component="System.Data.dll" ComponentId="{6A27C317-DA3A-48D0-85D5-6A29D54123EB}" Directory_="APPDIR" Attributes="0" KeyPath="System.Data.dll"/>
     <ROW Component="System.Drawing.dll" ComponentId="{C839A1E6-FE83-4939-A903-57DBBD643E08}" Directory_="APPDIR" Attributes="0" KeyPath="System.Drawing.dll"/>
@@ -48,17 +45,17 @@
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.MsiFilesComponent">
     <ROW File="System.Core.dll" Component_="System.Core.dll" FileName="SYSTEM~1.DLL|System.Core.dll" Attributes="0" SourcePath="..\..\..\..\..\..\..\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.7.2\System.Core.dll" SelfReg="false"/>
-    <ROW File="FlowLite.exe" Component_="FlowLite.exe" FileName="FlowLite.exe" Attributes="0" SourcePath="..\bin\Debug\FlowLite.exe" SelfReg="false" DigSign="true"/>
-    <ROW File="FlowLite.exe.config" Component_="FlowLite.exe.config" FileName="FLOWLI~1.CON|FlowLite.exe.config" Attributes="0" SourcePath="..\bin\Debug\FlowLite.exe.config" SelfReg="false"/>
     <ROW File="System.Windows.Forms.dll" Component_="System.Windows.Forms.dll" FileName="SYSTEM~2.DLL|System.Windows.Forms.dll" Attributes="0" SourcePath="..\..\..\..\..\..\..\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.7.2\System.Windows.Forms.dll" SelfReg="false"/>
     <ROW File="mscorlib.dll" Component_="mscorlib.dll" FileName="mscorlib.dll" Attributes="0" SourcePath="..\..\..\..\..\..\..\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.7.2\mscorlib.dll" SelfReg="false"/>
     <ROW File="System.Drawing.dll" Component_="System.Drawing.dll" FileName="SYSTEM~3.DLL|System.Drawing.dll" Attributes="0" SourcePath="..\..\..\..\..\..\..\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.7.2\System.Drawing.dll" SelfReg="false"/>
     <ROW File="System.Data.dll" Component_="System.Data.dll" FileName="SYSTEM~4.DLL|System.Data.dll" Attributes="0" SourcePath="..\..\..\..\..\..\..\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.7.2\System.Data.dll" SelfReg="false"/>
     <ROW File="System.dll" Component_="System.dll" FileName="System.dll" Attributes="0" SourcePath="..\..\..\..\..\..\..\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.7.2\System.dll" SelfReg="false"/>
     <ROW File="System.Xml.dll" Component_="System.Xml.dll" FileName="SYSTEM~5.DLL|System.Xml.dll" Attributes="0" SourcePath="..\..\..\..\..\..\..\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.7.2\System.Xml.dll" SelfReg="false"/>
-    <ROW File="FlowLite.pdb" Component_="FlowLite.exe" FileName="FlowLite.pdb" Attributes="0" SourcePath="..\bin\Debug\FlowLite.pdb" SelfReg="false"/>
     <ROW File="EqualizeHealthLogo.ico" Component_="FlowLite.exe.config" FileName="EQUALI~1.ICO|EqualizeHealth Logo.ico" Attributes="0" SourcePath="..\EqualizeHealth Logo.ico" SelfReg="false"/>
     <ROW File="FlowSchematic.jpg" Component_="FlowLite.exe.config" FileName="FLOWSC~1.JPG|FlowSchematic.jpg" Attributes="0" SourcePath="..\FlowSchematic.jpg" SelfReg="false"/>
+    <ROW File="FlowWorks.exe" Component_="FlowWorks.exe" FileName="FLOWWO~1.EXE|FlowWorks.exe" Attributes="0" SourcePath="..\bin\Debug\FlowWorks.exe" SelfReg="false" DigSign="true"/>
+    <ROW File="FlowWorks.exe.config" Component_="FlowLite.exe.config" FileName="FLOWWO~1.CON|FlowWorks.exe.config" Attributes="0" SourcePath="..\bin\Debug\FlowWorks.exe.config" SelfReg="false"/>
+    <ROW File="FlowWorks.pdb" Component_="FlowWorks.exe" FileName="FLOWWO~1.PDB|FlowWorks.pdb" Attributes="0" SourcePath="..\bin\Debug\FlowWorks.pdb" SelfReg="false"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.BootstrOptComponent">
     <ROW BootstrOptKey="GlobalOptions" DownloadFolder="[AppDataFolder][|Manufacturer]\[|ProductName]\prerequisites" Options="2"/>
@@ -113,7 +110,6 @@
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.MsiCreateFolderComponent">
     <ROW Directory_="APPDIR" Component_="APPDIR" ManualDelete="true"/>
-    <ROW Directory_="SHORTCUTDIR" Component_="SHORTCUTDIR" ManualDelete="false"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.MsiCustActComponent">
     <ROW Action="AI_DOWNGRADE" Type="19" Target="4010"/>
@@ -133,7 +129,6 @@
     <ROW Feature_="MainFeature" Component_="APPDIR"/>
     <ROW Feature_="MainFeature" Component_="ProductInformation"/>
     <ROW Feature_="MainFeature" Component_="System.Core.dll"/>
-    <ROW Feature_="MainFeature" Component_="FlowLite.exe"/>
     <ROW Feature_="MainFeature" Component_="FlowLite.exe.config"/>
     <ROW Feature_="MainFeature" Component_="System.Windows.Forms.dll"/>
     <ROW Feature_="MainFeature" Component_="mscorlib.dll"/>
@@ -141,7 +136,7 @@
     <ROW Feature_="MainFeature" Component_="System.Data.dll"/>
     <ROW Feature_="MainFeature" Component_="System.dll"/>
     <ROW Feature_="MainFeature" Component_="System.Xml.dll"/>
-    <ROW Feature_="MainFeature" Component_="SHORTCUTDIR"/>
+    <ROW Feature_="MainFeature" Component_="FlowWorks.exe"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.MsiIconsComponent">
     <ROW Name="EqualizeHealthLogo.exe" SourcePath="..\EqualizeHealth Logo.ico" Index="0"/>
@@ -169,10 +164,6 @@
   <COMPONENT cid="caphyon.advinst.msicomp.MsiRegsComponent">
     <ROW Registry="Path" Root="-1" Key="Software\[Manufacturer]\[ProductName]" Name="Path" Value="[APPDIR]" Component_="ProductInformation"/>
     <ROW Registry="Version" Root="-1" Key="Software\[Manufacturer]\[ProductName]" Name="Version" Value="[ProductVersion]" Component_="ProductInformation"/>
-  </COMPONENT>
-  <COMPONENT cid="caphyon.advinst.msicomp.MsiShortsComponent">
-    <ROW Shortcut="FlowLite.exe" Directory_="SHORTCUTDIR" Name="FlowLite.exe" Component_="FlowLite.exe" Target="[#FlowLite.exe]" Description="FlowLite.exe" Hotkey="0" IconIndex="0" ShowCmd="1" WkDir="APPDIR"/>
-    <ROW Shortcut="FlowLite.exe_1" Directory_="DesktopFolder" Name="FlowLite.exe" Component_="FlowLite.exe" Target="[#FlowLite.exe]" Description="FlowLite.exe" Hotkey="0" IconIndex="0" ShowCmd="1" WkDir="APPDIR"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.MsiThemeComponent">
     <ATTRIBUTE name="UsedTheme" value="classic"/>

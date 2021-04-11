@@ -18,10 +18,14 @@ namespace FlowWorks
         private int commandHistoryIndex = 0;
         private decimal oldPropValue;
         private decimal oldBlowerValue;
+        private double oldHeatPlateValue;
+        private double oldHeatWireValue;
 
         public bool FiO2UnderPIDControl { get; private set; }
         public bool BabyPressureUnderPIDControl { get; private set; }
         public int CalibrationState;
+        public bool HeatPlateUnderPIDControl;
+        public bool HeatWireUnderPIDControl;
 
         public delegate void BoolParameterDelegate(bool b);
         public delegate void StringParameterDelegate(string s);
@@ -198,10 +202,36 @@ namespace FlowWorks
                 this.BabyPressureUnderPIDControl = false;
                 this.StartBabyPressure.Text = "Start";
             }
+            if (Convert.ToBoolean(deviceData.heatPlatePIDEnable))
+            {
+                this.StartHeatPlate.BackColor = Color.Red;
+                this.HeatPlateUnderPIDControl = true;
+                this.StartHeatPlate.Text = "Stop";
+            }
+            else
+            {
+                this.StartHeatPlate.BackColor = Color.Green;
+                this.HeatPlateUnderPIDControl = false;
+                this.StartHeatPlate.Text = "Start";
+            }
+            if (Convert.ToBoolean(deviceData.heatWirePIDEnable))
+            {
+                this.StartHeatWire.BackColor = Color.Red;
+                this.HeatWireUnderPIDControl = true;
+                this.StartHeatWire.Text = "Stop";
+            }
+            else
+            {
+                this.StartHeatWire.BackColor = Color.Green;
+                this.HeatWireUnderPIDControl = false;
+                this.StartHeatWire.Text = "Start";
+            }
             this.SetBlower.Value = (decimal)deviceData.blowerSetting;
             this.SetPropValve.Value = (decimal)deviceData.propValveSetting;
             this.cFactor.Text = deviceData.cFactor.ToString("N3");
             this.CalibrationState = deviceData.calibrationState;
+            this.HeatPlateSetting.Text = deviceData.heatPlateSetpt.ToString("N1");
+            this.HeatWireSetting.Text = deviceData.heatWireSetpt.ToString("N1");
         }
         public void UpdateDeviceStatus(DeviceStatus deviceStatus)
         {            
@@ -406,6 +436,57 @@ namespace FlowWorks
                 fwViewer.AddTerminalCommand("calibrate");
             }
             calibratePopup.Dispose();
+        }
+
+        private void StartHeatPlate_Click(object sender, EventArgs e)
+        {
+            fwViewer.AddTerminalCommand("heatPlateSetpt(" + Convert.ToDouble(this.HeatPlateSetting.Text) + ")");
+            fwViewer.AddTerminalCommand("togglePIDHeatPlate");
+            if (StartHeatPlate.Text == "Stop")
+            {
+                fwViewer.AddTerminalCommand("heatPlate(0)");
+            }
+        }
+
+        private void StartHeatWire_Click(object sender, EventArgs e)
+        {
+            fwViewer.AddTerminalCommand("heatWireSetpt(" + Convert.ToDouble(this.HeatWireSetting.Text) + ")");
+            fwViewer.AddTerminalCommand("togglePIDHeatWire");
+            if (StartHeatWire.Text == "Stop")
+            {
+                fwViewer.AddTerminalCommand("heatWire(0)");
+            }
+        }
+
+        private void HeatPlateSetting_ValueChanged(object sender, EventArgs e)
+        {
+            double newHeatPlateValue = Convert.ToDouble(this.HeatPlateSetting.Value);
+            fwViewer.deviceData.heatPlateSetpt = newHeatPlateValue;
+            if (this.HeatPlateUnderPIDControl == true)
+            {
+                this.HeatPlateSetting.BackColor = Color.Gray;
+            }
+            else if ((oldHeatPlateValue < newHeatPlateValue) || (oldHeatPlateValue > newHeatPlateValue))
+            {
+                fwViewer.AddTerminalCommand("heatPlateSetpt(" + newHeatPlateValue + ")");
+                this.HeatPlateSetting.BackColor = Color.Empty;
+            }
+            oldHeatPlateValue = newHeatPlateValue;
+        }
+
+        private void HeatWireSetting_ValueChanged(object sender, EventArgs e)
+        {
+            double newHeatWireValue = Convert.ToDouble(this.HeatWireSetting.Value);
+            fwViewer.deviceData.heatWireSetpt = newHeatWireValue;
+            if (this.HeatWireUnderPIDControl == true)
+            {
+                this.HeatWireSetting.BackColor = Color.Gray;
+            }
+            else if ((oldHeatWireValue < newHeatWireValue) || (oldHeatWireValue > newHeatWireValue))
+            {
+                fwViewer.AddTerminalCommand("heatWireSetpt(" + newHeatWireValue + ")");
+            }
+            oldHeatWireValue = newHeatWireValue;
         }
     }
 }

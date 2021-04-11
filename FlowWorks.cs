@@ -384,6 +384,10 @@ namespace FlowWorks
         public int fio2PIDEnable;
         public double cFactor;
         public int calibrationState;
+        public double heatPlateSetpt;
+        public double heatWireSetpt;
+        public int heatPlatePIDEnable;
+        public int heatWirePIDEnable;
         public double propValveSetting { get; set; }
         public int blowerSetting { get; set; }
         public string Data
@@ -463,6 +467,18 @@ namespace FlowWorks
                             break;
                         case 21:
                             this.calibrationState = Convert.ToInt32(dataList[i]);
+                            break;
+                        case 22:
+                            this.heatPlateSetpt = Convert.ToDouble(dataList[i]);
+                            break;
+                        case 23:
+                            this.heatWireSetpt = Convert.ToDouble(dataList[i]);
+                            break;
+                        case 24:
+                            this.heatPlatePIDEnable = Convert.ToInt32(dataList[i]);
+                            break;
+                        case 25:
+                            this.heatWirePIDEnable = Convert.ToInt32(dataList[i]);
                             break;
                     }
                 }

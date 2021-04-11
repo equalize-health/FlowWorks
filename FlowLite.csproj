@@ -7,7 +7,7 @@
     <ProjectGuid>{9CAE2004-CD16-4710-BE4F-0E4A4CEF21DE}</ProjectGuid>
     <OutputType>Exe</OutputType>
     <RootNamespace>FlowLite</RootNamespace>
-    <AssemblyName>FlowLite</AssemblyName>
+    <AssemblyName>FlowWorks</AssemblyName>
     <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
@@ -22,6 +22,7 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>

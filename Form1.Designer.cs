@@ -90,24 +90,24 @@ namespace FlowWorks
             this.Calibrate = new System.Windows.Forms.Button();
             this.label6 = new System.Windows.Forms.Label();
             this.cFactor = new System.Windows.Forms.Label();
-            this.textBox5 = new System.Windows.Forms.TextBox();
             this.label8 = new System.Windows.Forms.Label();
             this.StartHeatPlate = new System.Windows.Forms.Button();
             this.label9 = new System.Windows.Forms.Label();
             this.StartHeatWire = new System.Windows.Forms.Button();
-            this.textBox6 = new System.Windows.Forms.TextBox();
-            this.textBox7 = new System.Windows.Forms.TextBox();
             this.textBox8 = new System.Windows.Forms.TextBox();
             this.textBox9 = new System.Windows.Forms.TextBox();
-            this.textBox10 = new System.Windows.Forms.TextBox();
             this.textBox11 = new System.Windows.Forms.TextBox();
             this.textBox12 = new System.Windows.Forms.TextBox();
             this.textBox13 = new System.Windows.Forms.TextBox();
-            this.textBox14 = new System.Windows.Forms.TextBox();
-            this.textBox15 = new System.Windows.Forms.TextBox();
             this.HeatPlateSetting = new System.Windows.Forms.NumericUpDown();
             this.HeatWireSetting = new System.Windows.Forms.NumericUpDown();
+            this.textBox17 = new System.Windows.Forms.TextBox();
+            this.textBox14 = new System.Windows.Forms.TextBox();
             this.textBox16 = new System.Windows.Forms.TextBox();
+            this.textBox7 = new System.Windows.Forms.TextBox();
+            this.textBox15 = new System.Windows.Forms.TextBox();
+            this.textBox5 = new System.Windows.Forms.TextBox();
+            this.textBox6 = new System.Windows.Forms.TextBox();
             this.menuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.PressBabySetpt)).BeginInit();
@@ -206,7 +206,7 @@ namespace FlowWorks
             this.connectedTextBox.BackColor = System.Drawing.SystemColors.Control;
             this.connectedTextBox.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.connectedTextBox.Location = new System.Drawing.Point(202, 70);
-            this.connectedTextBox.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.connectedTextBox.Margin = new System.Windows.Forms.Padding(2);
             this.connectedTextBox.Name = "connectedTextBox";
             this.connectedTextBox.ReadOnly = true;
             this.connectedTextBox.Size = new System.Drawing.Size(32, 38);
@@ -217,7 +217,7 @@ namespace FlowWorks
             this.commandBox.AcceptsReturn = true;
             this.commandBox.Font = new System.Drawing.Font("Courier New", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.commandBox.Location = new System.Drawing.Point(52, 865);
-            this.commandBox.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
+            this.commandBox.Margin = new System.Windows.Forms.Padding(5);
             this.commandBox.Multiline = true;
             this.commandBox.Name = "commandBox";
             this.commandBox.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
@@ -315,7 +315,7 @@ namespace FlowWorks
             this.responseBox.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.responseBox.Font = new System.Drawing.Font("Courier New", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.responseBox.Location = new System.Drawing.Point(52, 1072);
-            this.responseBox.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
+            this.responseBox.Margin = new System.Windows.Forms.Padding(5);
             this.responseBox.Multiline = true;
             this.responseBox.Name = "responseBox";
             this.responseBox.ReadOnly = true;
@@ -338,7 +338,7 @@ namespace FlowWorks
             this.pictureBox1.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("pictureBox1.BackgroundImage")));
             this.pictureBox1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.pictureBox1.Location = new System.Drawing.Point(52, 135);
-            this.pictureBox1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.pictureBox1.Margin = new System.Windows.Forms.Padding(2);
             this.pictureBox1.Name = "pictureBox1";
             this.pictureBox1.Size = new System.Drawing.Size(1548, 645);
             this.pictureBox1.TabIndex = 58;
@@ -478,7 +478,7 @@ namespace FlowWorks
             // 
             this.textBox1.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.textBox1.Location = new System.Drawing.Point(395, 652);
-            this.textBox1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.textBox1.Margin = new System.Windows.Forms.Padding(2);
             this.textBox1.Name = "textBox1";
             this.textBox1.Size = new System.Drawing.Size(242, 31);
             this.textBox1.TabIndex = 72;
@@ -487,7 +487,7 @@ namespace FlowWorks
             // PressBabySetpt
             // 
             this.PressBabySetpt.Location = new System.Drawing.Point(645, 650);
-            this.PressBabySetpt.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.PressBabySetpt.Margin = new System.Windows.Forms.Padding(2);
             this.PressBabySetpt.Maximum = new decimal(new int[] {
             10,
             0,
@@ -512,7 +512,7 @@ namespace FlowWorks
             // 
             this.textBox2.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.textBox2.Location = new System.Drawing.Point(992, 650);
-            this.textBox2.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.textBox2.Margin = new System.Windows.Forms.Padding(2);
             this.textBox2.Name = "textBox2";
             this.textBox2.Size = new System.Drawing.Size(125, 31);
             this.textBox2.TabIndex = 74;
@@ -526,7 +526,7 @@ namespace FlowWorks
             0,
             0});
             this.Fio2Setpt.Location = new System.Drawing.Point(1125, 648);
-            this.Fio2Setpt.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.Fio2Setpt.Margin = new System.Windows.Forms.Padding(2);
             this.Fio2Setpt.Minimum = new decimal(new int[] {
             20,
             0,
@@ -546,7 +546,7 @@ namespace FlowWorks
             // 
             this.StartBabyPressure.BackColor = System.Drawing.Color.Red;
             this.StartBabyPressure.Location = new System.Drawing.Point(645, 695);
-            this.StartBabyPressure.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.StartBabyPressure.Margin = new System.Windows.Forms.Padding(2);
             this.StartBabyPressure.Name = "StartBabyPressure";
             this.StartBabyPressure.Size = new System.Drawing.Size(110, 50);
             this.StartBabyPressure.TabIndex = 76;
@@ -558,7 +558,7 @@ namespace FlowWorks
             // 
             this.StartFiO2.BackColor = System.Drawing.Color.Red;
             this.StartFiO2.Location = new System.Drawing.Point(1125, 695);
-            this.StartFiO2.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.StartFiO2.Margin = new System.Windows.Forms.Padding(2);
             this.StartFiO2.Name = "StartFiO2";
             this.StartFiO2.Size = new System.Drawing.Size(110, 52);
             this.StartFiO2.TabIndex = 77;
@@ -570,7 +570,7 @@ namespace FlowWorks
             // 
             this.textBox3.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.textBox3.Location = new System.Drawing.Point(415, 350);
-            this.textBox3.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.textBox3.Margin = new System.Windows.Forms.Padding(2);
             this.textBox3.Name = "textBox3";
             this.textBox3.Size = new System.Drawing.Size(92, 31);
             this.textBox3.TabIndex = 78;
@@ -584,7 +584,7 @@ namespace FlowWorks
             0,
             0});
             this.SetBlower.Location = new System.Drawing.Point(415, 388);
-            this.SetBlower.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.SetBlower.Margin = new System.Windows.Forms.Padding(2);
             this.SetBlower.Maximum = new decimal(new int[] {
             511,
             0,
@@ -599,7 +599,7 @@ namespace FlowWorks
             // 
             this.textBox4.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.textBox4.Location = new System.Drawing.Point(168, 260);
-            this.textBox4.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.textBox4.Margin = new System.Windows.Forms.Padding(2);
             this.textBox4.Name = "textBox4";
             this.textBox4.Size = new System.Drawing.Size(138, 31);
             this.textBox4.TabIndex = 80;
@@ -613,7 +613,7 @@ namespace FlowWorks
             0,
             0});
             this.SetPropValve.Location = new System.Drawing.Point(168, 298);
-            this.SetPropValve.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.SetPropValve.Margin = new System.Windows.Forms.Padding(2);
             this.SetPropValve.Name = "SetPropValve";
             this.SetPropValve.Size = new System.Drawing.Size(102, 38);
             this.SetPropValve.TabIndex = 81;
@@ -624,7 +624,7 @@ namespace FlowWorks
             this.Calibrate.BackColor = System.Drawing.SystemColors.GradientActiveCaption;
             this.Calibrate.FlatAppearance.BorderSize = 2;
             this.Calibrate.Location = new System.Drawing.Point(1632, 162);
-            this.Calibrate.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.Calibrate.Margin = new System.Windows.Forms.Padding(2);
             this.Calibrate.Name = "Calibrate";
             this.Calibrate.Size = new System.Drawing.Size(288, 105);
             this.Calibrate.TabIndex = 82;
@@ -652,16 +652,6 @@ namespace FlowWorks
             this.cFactor.TabIndex = 84;
             this.cFactor.Text = "0.000";
             // 
-            // textBox5
-            // 
-            this.textBox5.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.textBox5.Location = new System.Drawing.Point(732, 658);
-            this.textBox5.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
-            this.textBox5.Name = "textBox5";
-            this.textBox5.Size = new System.Drawing.Size(98, 31);
-            this.textBox5.TabIndex = 85;
-            this.textBox5.Text = "cmH2O";
-            // 
             // label8
             // 
             this.label8.AutoSize = true;
@@ -676,7 +666,7 @@ namespace FlowWorks
             // 
             this.StartHeatPlate.BackColor = System.Drawing.Color.Red;
             this.StartHeatPlate.Location = new System.Drawing.Point(1785, 398);
-            this.StartHeatPlate.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.StartHeatPlate.Margin = new System.Windows.Forms.Padding(2);
             this.StartHeatPlate.Name = "StartHeatPlate";
             this.StartHeatPlate.Size = new System.Drawing.Size(110, 52);
             this.StartHeatPlate.TabIndex = 88;
@@ -698,7 +688,7 @@ namespace FlowWorks
             // 
             this.StartHeatWire.BackColor = System.Drawing.Color.Red;
             this.StartHeatWire.Location = new System.Drawing.Point(1785, 510);
-            this.StartHeatWire.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.StartHeatWire.Margin = new System.Windows.Forms.Padding(2);
             this.StartHeatWire.Name = "StartHeatWire";
             this.StartHeatWire.Size = new System.Drawing.Size(110, 52);
             this.StartHeatWire.TabIndex = 91;
@@ -706,105 +696,58 @@ namespace FlowWorks
             this.StartHeatWire.UseVisualStyleBackColor = false;
             this.StartHeatWire.Click += new System.EventHandler(this.StartHeatWire_Click);
             // 
-            // textBox6
-            // 
-            this.textBox6.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.textBox6.Location = new System.Drawing.Point(638, 250);
-            this.textBox6.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
-            this.textBox6.Name = "textBox6";
-            this.textBox6.Size = new System.Drawing.Size(98, 31);
-            this.textBox6.TabIndex = 94;
-            this.textBox6.Text = "cmH2O";
-            // 
-            // textBox7
-            // 
-            this.textBox7.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.textBox7.Location = new System.Drawing.Point(892, 335);
-            this.textBox7.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
-            this.textBox7.Name = "textBox7";
-            this.textBox7.Size = new System.Drawing.Size(38, 31);
-            this.textBox7.TabIndex = 95;
-            this.textBox7.Text = "C";
-            // 
             // textBox8
             // 
             this.textBox8.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.textBox8.Location = new System.Drawing.Point(1080, 260);
-            this.textBox8.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.textBox8.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.1F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.textBox8.Location = new System.Drawing.Point(1072, 253);
+            this.textBox8.Margin = new System.Windows.Forms.Padding(2);
             this.textBox8.Name = "textBox8";
-            this.textBox8.Size = new System.Drawing.Size(50, 31);
+            this.textBox8.Size = new System.Drawing.Size(50, 42);
             this.textBox8.TabIndex = 96;
-            this.textBox8.Text = "\r\nC\r\n";
+            this.textBox8.Text = "℃";
             // 
             // textBox9
             // 
             this.textBox9.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.textBox9.Location = new System.Drawing.Point(1340, 322);
-            this.textBox9.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.textBox9.Margin = new System.Windows.Forms.Padding(2);
             this.textBox9.Name = "textBox9";
             this.textBox9.Size = new System.Drawing.Size(98, 31);
             this.textBox9.TabIndex = 97;
-            this.textBox9.Text = "cmH2O";
-            // 
-            // textBox10
-            // 
-            this.textBox10.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.textBox10.Location = new System.Drawing.Point(1498, 248);
-            this.textBox10.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
-            this.textBox10.Name = "textBox10";
-            this.textBox10.Size = new System.Drawing.Size(98, 31);
-            this.textBox10.TabIndex = 98;
-            this.textBox10.Text = "cmH2O";
+            this.textBox9.Text = "cmH₂O";
             // 
             // textBox11
             // 
             this.textBox11.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.textBox11.Location = new System.Drawing.Point(1222, 652);
-            this.textBox11.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.textBox11.Margin = new System.Windows.Forms.Padding(2);
             this.textBox11.Name = "textBox11";
             this.textBox11.Size = new System.Drawing.Size(98, 31);
             this.textBox11.TabIndex = 99;
-            this.textBox11.Text = "%O2";
+            this.textBox11.Text = "%O₂";
             // 
             // textBox12
             // 
             this.textBox12.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.textBox12.Location = new System.Drawing.Point(1742, 408);
-            this.textBox12.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.textBox12.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.1F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.textBox12.Location = new System.Drawing.Point(1742, 401);
+            this.textBox12.Margin = new System.Windows.Forms.Padding(2);
             this.textBox12.Name = "textBox12";
-            this.textBox12.Size = new System.Drawing.Size(38, 31);
+            this.textBox12.Size = new System.Drawing.Size(38, 42);
             this.textBox12.TabIndex = 100;
-            this.textBox12.Text = "C";
+            this.textBox12.Text = "℃";
             // 
             // textBox13
             // 
             this.textBox13.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.textBox13.Location = new System.Drawing.Point(1742, 520);
-            this.textBox13.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.textBox13.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.1F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.textBox13.Location = new System.Drawing.Point(1742, 511);
+            this.textBox13.Margin = new System.Windows.Forms.Padding(2);
             this.textBox13.Name = "textBox13";
-            this.textBox13.Size = new System.Drawing.Size(38, 31);
+            this.textBox13.Size = new System.Drawing.Size(38, 42);
             this.textBox13.TabIndex = 101;
-            this.textBox13.Text = "C";
-            // 
-            // textBox14
-            // 
-            this.textBox14.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.textBox14.Location = new System.Drawing.Point(935, 585);
-            this.textBox14.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
-            this.textBox14.Name = "textBox14";
-            this.textBox14.Size = new System.Drawing.Size(38, 31);
-            this.textBox14.TabIndex = 102;
-            this.textBox14.Text = "C";
-            // 
-            // textBox15
-            // 
-            this.textBox15.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.textBox15.Location = new System.Drawing.Point(1282, 585);
-            this.textBox15.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
-            this.textBox15.Name = "textBox15";
-            this.textBox15.Size = new System.Drawing.Size(98, 31);
-            this.textBox15.TabIndex = 103;
-            this.textBox15.Text = "cmH2O";
+            this.textBox13.Text = "℃";
             // 
             // HeatPlateSetting
             // 
@@ -815,7 +758,7 @@ namespace FlowWorks
             0,
             0});
             this.HeatPlateSetting.Location = new System.Drawing.Point(1618, 405);
-            this.HeatPlateSetting.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.HeatPlateSetting.Margin = new System.Windows.Forms.Padding(2);
             this.HeatPlateSetting.Name = "HeatPlateSetting";
             this.HeatPlateSetting.Size = new System.Drawing.Size(120, 38);
             this.HeatPlateSetting.TabIndex = 104;
@@ -825,7 +768,7 @@ namespace FlowWorks
             // 
             this.HeatWireSetting.DecimalPlaces = 1;
             this.HeatWireSetting.Location = new System.Drawing.Point(1618, 515);
-            this.HeatWireSetting.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.HeatWireSetting.Margin = new System.Windows.Forms.Padding(2);
             this.HeatWireSetting.Maximum = new decimal(new int[] {
             40,
             0,
@@ -836,15 +779,78 @@ namespace FlowWorks
             this.HeatWireSetting.TabIndex = 105;
             this.HeatWireSetting.ValueChanged += new System.EventHandler(this.HeatWireSetting_ValueChanged);
             // 
+            // textBox17
+            // 
+            this.textBox17.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.textBox17.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.1F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.textBox17.Location = new System.Drawing.Point(931, 579);
+            this.textBox17.Margin = new System.Windows.Forms.Padding(2);
+            this.textBox17.Name = "textBox17";
+            this.textBox17.Size = new System.Drawing.Size(50, 42);
+            this.textBox17.TabIndex = 107;
+            this.textBox17.Text = "℃";
+            // 
+            // textBox14
+            // 
+            this.textBox14.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.textBox14.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.1F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.textBox14.Location = new System.Drawing.Point(1156, 451);
+            this.textBox14.Margin = new System.Windows.Forms.Padding(2);
+            this.textBox14.Name = "textBox14";
+            this.textBox14.Size = new System.Drawing.Size(50, 42);
+            this.textBox14.TabIndex = 108;
+            this.textBox14.Text = "℃";
+            // 
             // textBox16
             // 
             this.textBox16.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.textBox16.Location = new System.Drawing.Point(1154, 458);
+            this.textBox16.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.1F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.textBox16.Location = new System.Drawing.Point(892, 327);
             this.textBox16.Margin = new System.Windows.Forms.Padding(2);
             this.textBox16.Name = "textBox16";
-            this.textBox16.Size = new System.Drawing.Size(50, 31);
-            this.textBox16.TabIndex = 106;
-            this.textBox16.Text = "\r\nC\r\n";
+            this.textBox16.Size = new System.Drawing.Size(50, 42);
+            this.textBox16.TabIndex = 109;
+            this.textBox16.Text = "℃";
+            // 
+            // textBox7
+            // 
+            this.textBox7.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.textBox7.Location = new System.Drawing.Point(1282, 586);
+            this.textBox7.Margin = new System.Windows.Forms.Padding(2);
+            this.textBox7.Name = "textBox7";
+            this.textBox7.Size = new System.Drawing.Size(98, 31);
+            this.textBox7.TabIndex = 110;
+            this.textBox7.Text = "cmH₂O";
+            // 
+            // textBox15
+            // 
+            this.textBox15.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.textBox15.Location = new System.Drawing.Point(732, 653);
+            this.textBox15.Margin = new System.Windows.Forms.Padding(2);
+            this.textBox15.Name = "textBox15";
+            this.textBox15.Size = new System.Drawing.Size(98, 31);
+            this.textBox15.TabIndex = 111;
+            this.textBox15.Text = "cmH₂O";
+            // 
+            // textBox5
+            // 
+            this.textBox5.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.textBox5.Location = new System.Drawing.Point(638, 251);
+            this.textBox5.Margin = new System.Windows.Forms.Padding(2);
+            this.textBox5.Name = "textBox5";
+            this.textBox5.Size = new System.Drawing.Size(98, 31);
+            this.textBox5.TabIndex = 112;
+            this.textBox5.Text = "cmH₂O";
+            // 
+            // textBox6
+            // 
+            this.textBox6.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.textBox6.Location = new System.Drawing.Point(1498, 247);
+            this.textBox6.Margin = new System.Windows.Forms.Padding(2);
+            this.textBox6.Name = "textBox6";
+            this.textBox6.Size = new System.Drawing.Size(98, 31);
+            this.textBox6.TabIndex = 113;
+            this.textBox6.Text = "cmH₂O";
             // 
             // Form1
             // 
@@ -852,24 +858,24 @@ namespace FlowWorks
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
             this.AutoSize = true;
             this.ClientSize = new System.Drawing.Size(1982, 1368);
+            this.Controls.Add(this.textBox6);
+            this.Controls.Add(this.textBox5);
+            this.Controls.Add(this.textBox15);
+            this.Controls.Add(this.textBox7);
             this.Controls.Add(this.textBox16);
+            this.Controls.Add(this.textBox14);
+            this.Controls.Add(this.textBox17);
             this.Controls.Add(this.HeatWireSetting);
             this.Controls.Add(this.HeatPlateSetting);
-            this.Controls.Add(this.textBox15);
-            this.Controls.Add(this.textBox14);
             this.Controls.Add(this.textBox13);
             this.Controls.Add(this.textBox12);
             this.Controls.Add(this.textBox11);
-            this.Controls.Add(this.textBox10);
             this.Controls.Add(this.textBox9);
             this.Controls.Add(this.textBox8);
-            this.Controls.Add(this.textBox7);
-            this.Controls.Add(this.textBox6);
             this.Controls.Add(this.StartHeatWire);
             this.Controls.Add(this.label9);
             this.Controls.Add(this.StartHeatPlate);
             this.Controls.Add(this.label8);
-            this.Controls.Add(this.textBox5);
             this.Controls.Add(this.cFactor);
             this.Controls.Add(this.label6);
             this.Controls.Add(this.Calibrate);
@@ -912,9 +918,9 @@ namespace FlowWorks
             this.Controls.Add(this.menuStrip1);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MainMenuStrip = this.menuStrip1;
-            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "Form1";
-            this.Text = "FlowWorks App 16.0.0.0";
+            this.Text = "FlowWorks App " + Assembly.GetExecutingAssembly().GetName().Version.ToString(); ;
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
@@ -975,23 +981,23 @@ namespace FlowWorks
         private System.Windows.Forms.Label cFactor;
         private System.Windows.Forms.ToolStripMenuItem aboutToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem VersionString;
-        private System.Windows.Forms.TextBox textBox5;
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.Button StartHeatPlate;
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.Button StartHeatWire;
-        private System.Windows.Forms.TextBox textBox6;
-        private System.Windows.Forms.TextBox textBox7;
         private System.Windows.Forms.TextBox textBox8;
         private System.Windows.Forms.TextBox textBox9;
-        private System.Windows.Forms.TextBox textBox10;
         private System.Windows.Forms.TextBox textBox11;
         private System.Windows.Forms.TextBox textBox12;
         private System.Windows.Forms.TextBox textBox13;
-        private System.Windows.Forms.TextBox textBox14;
-        private System.Windows.Forms.TextBox textBox15;
         private System.Windows.Forms.NumericUpDown HeatPlateSetting;
         private System.Windows.Forms.NumericUpDown HeatWireSetting;
+        private System.Windows.Forms.TextBox textBox17;
+        private System.Windows.Forms.TextBox textBox14;
         private System.Windows.Forms.TextBox textBox16;
+        private System.Windows.Forms.TextBox textBox7;
+        private System.Windows.Forms.TextBox textBox15;
+        private System.Windows.Forms.TextBox textBox5;
+        private System.Windows.Forms.TextBox textBox6;
     }
 }

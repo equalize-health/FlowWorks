@@ -43,7 +43,7 @@ namespace FlowWorks
             this.textBox1.Multiline = true;
             this.textBox1.Name = "textBox1";
             this.textBox1.Size = new System.Drawing.Size(662, 190);
-            this.textBox1.TabIndex = 0;
+            this.textBox1.TabIndex = 3;
             this.textBox1.Text = "Before continuing, prepare the circuit for calibration\r\n\r\nFor the test setup with" +
     " a plastic bottle, remove the cap\r\nof the bottle before clicking \"OK\" below.";
             // 
@@ -66,7 +66,7 @@ namespace FlowWorks
             this.CalibrateCancel.Location = new System.Drawing.Point(263, 324);
             this.CalibrateCancel.Name = "CalibrateCancel";
             this.CalibrateCancel.Size = new System.Drawing.Size(268, 63);
-            this.CalibrateCancel.TabIndex = 3;
+            this.CalibrateCancel.TabIndex = 0;
             this.CalibrateCancel.Text = "Cancel";
             this.CalibrateCancel.UseVisualStyleBackColor = false;
             this.CalibrateCancel.Click += new System.EventHandler(this.CalibrateCancel_Click);

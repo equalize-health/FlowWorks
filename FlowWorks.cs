@@ -118,8 +118,8 @@ namespace FlowWorks
                         //Console.WriteLine(DateTime.UtcNow.ToString("HH:mm:ss.fff") + " statusRequestUpdate");
                         this.writer.AddTerminalCommand("sendStatus");
                     }
-                    // This means we request data every 50 msecs
-                    Thread.Sleep(500);
+                    // This means we request data every 1000 msecs
+                    Thread.Sleep(1000);
                 }
             }
         }

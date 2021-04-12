@@ -166,16 +166,16 @@ namespace FlowWorks
             this.FlowExp.Text = deviceData.flowExp.ToString("N2");
             this.PressCkt.Text = deviceData.pressCkt.ToString("#.##");
             if (deviceData.tempProx < -40) this.TempProx.Text = "N/C";
-            else this.TempProx.Text = deviceData.tempProx.ToString("#.##");
+            else this.TempProx.Text = deviceData.tempProx.ToString("N1");
             if (deviceData.tempDist < -40) this.TempDist.Text = "N/C";
-            else this.TempDist.Text = deviceData.tempDist.ToString("#.##");
+            else this.TempDist.Text = deviceData.tempDist.ToString("N1");
             if (deviceData.tempHeater < -40) this.TempPlate.Text = "N/C";
-            else this.TempPlate.Text = deviceData.tempHeater.ToString("#.##");
+            else this.TempPlate.Text = deviceData.tempHeater.ToString("N1");
             this.PressInsp.Text = deviceData.pressInsp.ToString("N2");
             this.BlowerSpeed.Text = deviceData.blowerSpeed.ToString("N0");
             this.FlowInsp.Text = deviceData.flowInsp.ToString("N2");
             this.FlowOx.Text = deviceData.flowOx.ToString("N2");
-            this.TempAmb.Text = deviceData.tempPCB.ToString("#.##");
+            this.TempAmb.Text = deviceData.tempPCB.ToString("N1");
             this.Fio2Setpt.Value = (decimal)deviceData.fio2Setpt;
             this.PressBabySetpt.Value = (decimal)deviceData.pressSetpt;
             if (Convert.ToBoolean(deviceData.fio2PIDEnable))
@@ -445,6 +445,9 @@ namespace FlowWorks
             if (StartHeatPlate.Text == "Stop")
             {
                 fwViewer.AddTerminalCommand("heatPlate(0)");
+            } else
+            {
+                this.HeatPlateSetting.BackColor = Color.Gray;
             }
         }
 
@@ -455,6 +458,9 @@ namespace FlowWorks
             if (StartHeatWire.Text == "Stop")
             {
                 fwViewer.AddTerminalCommand("heatWire(0)");
+            } else
+            {
+                this.HeatWireSetting.BackColor = Color.Gray;
             }
         }
 
@@ -485,6 +491,7 @@ namespace FlowWorks
             else if ((oldHeatWireValue < newHeatWireValue) || (oldHeatWireValue > newHeatWireValue))
             {
                 fwViewer.AddTerminalCommand("heatWireSetpt(" + newHeatWireValue + ")");
+                this.HeatWireSetting.BackColor = Color.Empty;
             }
             oldHeatWireValue = newHeatWireValue;
         }

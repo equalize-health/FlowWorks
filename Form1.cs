@@ -42,6 +42,7 @@ namespace FlowWorks
             this.commandHistory = new List<string>();
             this.ActiveControl = this.commandBox;
             this.VersionString.Text = "Version: " + Assembly.GetExecutingAssembly().GetName().Version.ToString();
+            this.Text = "FlowWorks App " + Assembly.GetExecutingAssembly().GetName().Version.ToString(); ;
         }
 
         //The Comport menu (under Tools menu) may change, so update on every "Tools" click
@@ -207,24 +208,28 @@ namespace FlowWorks
                 this.StartHeatPlate.BackColor = Color.Red;
                 this.HeatPlateUnderPIDControl = true;
                 this.StartHeatPlate.Text = "Stop";
+                this.HeatPlateSetting.BackColor = Color.Gray;
             }
             else
             {
                 this.StartHeatPlate.BackColor = Color.Green;
                 this.HeatPlateUnderPIDControl = false;
                 this.StartHeatPlate.Text = "Start";
+                this.HeatPlateSetting.BackColor = Color.Empty;
             }
             if (Convert.ToBoolean(deviceData.heatWirePIDEnable))
             {
                 this.StartHeatWire.BackColor = Color.Red;
                 this.HeatWireUnderPIDControl = true;
                 this.StartHeatWire.Text = "Stop";
+                this.HeatWireSetting.BackColor = Color.Gray;
             }
             else
             {
                 this.StartHeatWire.BackColor = Color.Green;
                 this.HeatWireUnderPIDControl = false;
                 this.StartHeatWire.Text = "Start";
+                this.HeatWireSetting.BackColor = Color.Empty;
             }
             this.SetBlower.Value = (decimal)deviceData.blowerSetting;
             this.SetPropValve.Value = (decimal)deviceData.propValveSetting;
@@ -478,6 +483,7 @@ namespace FlowWorks
                 this.HeatPlateSetting.BackColor = Color.Empty;
             }
             oldHeatPlateValue = newHeatPlateValue;
+
         }
 
         private void HeatWireSetting_ValueChanged(object sender, EventArgs e)

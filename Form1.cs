@@ -541,8 +541,8 @@ namespace FlowWorks
             startInfo.CreateNoWindow = false;
             startInfo.UseShellExecute = false;
             startInfo.FileName = "C:\\Program Files (x86)\\Microsoft\\Edge\\Application\\msedge.exe ";
-            //startInfo.Arguments = System.IO.Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location) + "/ReleaseNotes.pdf";
-            startInfo.Arguments = "ReleaseNotes.pdf";
+            startInfo.Arguments = "\"" + System.IO.Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location) + "\\ReleaseNotes.pdf" + "\"";
+            //startInfo.Arguments = "ReleaseNotes.pdf";
             Console.WriteLine("Opening file: " + startInfo.Arguments);
             //UpdateResponse("Running program: " + startInfo.FileName);
             startInfo.WindowStyle = ProcessWindowStyle.Normal;

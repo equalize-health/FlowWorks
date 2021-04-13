@@ -112,6 +112,9 @@ namespace FlowWorks
             this.label11 = new System.Windows.Forms.Label();
             this.label12 = new System.Windows.Forms.Label();
             this.label13 = new System.Windows.Forms.Label();
+            this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
+            this.startFirwmareDownloadToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.aboutFirmwareToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.PressBabySetpt)).BeginInit();
@@ -128,11 +131,12 @@ namespace FlowWorks
             this.menuStrip1.ImageScalingSize = new System.Drawing.Size(40, 40);
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.setupMenu,
+            this.toolStripMenuItem1,
             this.aboutToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
             this.menuStrip1.Padding = new System.Windows.Forms.Padding(5, 2, 0, 2);
-            this.menuStrip1.Size = new System.Drawing.Size(1982, 49);
+            this.menuStrip1.Size = new System.Drawing.Size(1982, 52);
             this.menuStrip1.TabIndex = 0;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -914,6 +918,29 @@ namespace FlowWorks
             this.label13.TabIndex = 117;
             this.label13.Text = "- Calculated";
             // 
+            // toolStripMenuItem1
+            // 
+            this.toolStripMenuItem1.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.startFirwmareDownloadToolStripMenuItem,
+            this.aboutFirmwareToolStripMenuItem});
+            this.toolStripMenuItem1.Name = "toolStripMenuItem1";
+            this.toolStripMenuItem1.Size = new System.Drawing.Size(178, 48);
+            this.toolStripMenuItem1.Text = "Download";
+            // 
+            // startFirwmareDownloadToolStripMenuItem
+            // 
+            this.startFirwmareDownloadToolStripMenuItem.Name = "startFirwmareDownloadToolStripMenuItem";
+            this.startFirwmareDownloadToolStripMenuItem.Size = new System.Drawing.Size(517, 54);
+            this.startFirwmareDownloadToolStripMenuItem.Text = "Start Firwmare Download";
+            this.startFirwmareDownloadToolStripMenuItem.Click += new System.EventHandler(this.startFirwmareDownloadToolStripMenuItem_Click);
+            // 
+            // aboutFirmwareToolStripMenuItem
+            // 
+            this.aboutFirmwareToolStripMenuItem.Name = "aboutFirmwareToolStripMenuItem";
+            this.aboutFirmwareToolStripMenuItem.Size = new System.Drawing.Size(517, 54);
+            this.aboutFirmwareToolStripMenuItem.Text = "About Firmware";
+            this.aboutFirmwareToolStripMenuItem.Click += new System.EventHandler(this.aboutFirmwareToolStripMenuItem_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(240F, 240F);
@@ -1069,5 +1096,8 @@ namespace FlowWorks
         private System.Windows.Forms.Label label11;
         private System.Windows.Forms.Label label12;
         private System.Windows.Forms.Label label13;
+        private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem1;
+        private System.Windows.Forms.ToolStripMenuItem startFirwmareDownloadToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem aboutFirmwareToolStripMenuItem;
     }
 }

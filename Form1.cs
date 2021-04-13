@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Reflection;
+using System.Diagnostics;
 
 namespace FlowWorks
 {
@@ -500,6 +501,60 @@ namespace FlowWorks
                 this.HeatWireSetting.BackColor = Color.Empty;
             }
             oldHeatWireValue = newHeatWireValue;
+        }
+
+        private void startFirwmareDownloadToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            DownloadFW downloadPopup = new DownloadFW();
+            if (downloadPopup.ShowDialog(this) == DialogResult.OK)
+            {
+                // Use ProcessStartInfo class
+                ProcessStartInfo startInfo = new ProcessStartInfo();
+                startInfo.CreateNoWindow = false;
+                startInfo.UseShellExecute = false;
+                startInfo.FileName = System.IO.Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location) + "/ProgramAtmel.bat";
+                Console.WriteLine("Execute program: " + startInfo.FileName);
+                UpdateResponse("Running program: " + startInfo.FileName);
+                startInfo.WindowStyle = ProcessWindowStyle.Normal;
+                try
+                {
+                    // Start the process with the info we specified.
+                    // Call WaitForExit and then the using statement will close.
+                    using (Process exeProcess = Process.Start(startInfo))
+                    {
+                        exeProcess.WaitForExit();
+                    }
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine(ex.Message);
+                    UpdateResponse("Error during download: " + ex.Message);
+                }
+            }
+            downloadPopup.Dispose();
+        }
+
+        private void aboutFirmwareToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            // Use ProcessStartInfo class
+            ProcessStartInfo startInfo = new ProcessStartInfo();
+            startInfo.CreateNoWindow = false;
+            startInfo.UseShellExecute = false;
+            startInfo.FileName = "C:\\Program Files (x86)\\Microsoft\\Edge\\Application\\msedge.exe ";
+            //startInfo.Arguments = System.IO.Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location) + "/ReleaseNotes.pdf";
+            startInfo.Arguments = "ReleaseNotes.pdf";
+            Console.WriteLine("Opening file: " + startInfo.Arguments);
+            //UpdateResponse("Running program: " + startInfo.FileName);
+            startInfo.WindowStyle = ProcessWindowStyle.Normal;
+            try
+            {
+                Process exeProcess = Process.Start(startInfo);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+                UpdateResponse("Error while opening PDF File: " + ex.Message);
+            }
         }
     }
 }

@@ -45,6 +45,12 @@
   <ItemGroup>
     <Compile Include="Config.cs" />
     <Compile Include="ConnectionManager.cs" />
+    <Compile Include="DownloadFW.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="DownloadFW.Designer.cs">
+      <DependentUpon>DownloadFW.cs</DependentUpon>
+    </Compile>
     <Compile Include="FlowWorks.cs" />
     <Compile Include="Form1.cs">
       <SubType>Form</SubType>
@@ -76,6 +82,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="DownloadFW.resx">
+      <DependentUpon>DownloadFW.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
       <SubType>Designer</SubType>
@@ -91,6 +100,25 @@
   <ItemGroup>
     <Content Include="EqualizeHealth Logo.ico" />
     <Content Include="FlowSchematic.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <COMReference Include="AxSHDocVw">
+      <Guid>{EAB22AC0-30C1-11CF-A7EB-0000C05BAE0B}</Guid>
+      <VersionMajor>1</VersionMajor>
+      <VersionMinor>1</VersionMinor>
+      <Lcid>0</Lcid>
+      <WrapperTool>aximp</WrapperTool>
+      <Isolated>False</Isolated>
+    </COMReference>
+    <COMReference Include="SHDocVw">
+      <Guid>{EAB22AC0-30C1-11CF-A7EB-0000C05BAE0B}</Guid>
+      <VersionMajor>1</VersionMajor>
+      <VersionMinor>1</VersionMinor>
+      <Lcid>0</Lcid>
+      <WrapperTool>tlbimp</WrapperTool>
+      <Isolated>False</Isolated>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </COMReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -6,7 +6,7 @@ using System.Runtime.InteropServices;
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
 [assembly: AssemblyTitle("Flow Works")]
-[assembly: AssemblyDescription("Control the FlowLite system from the Host, using the USB terminal connection")]
+[assembly: AssemblyDescription("Control the FlowWorks system from the Host, using the USB terminal connection")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("Equalize Health")]
 [assembly: AssemblyProduct("FlowLite")]

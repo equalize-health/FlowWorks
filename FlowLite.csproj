@@ -6,7 +6,7 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProjectGuid>{9CAE2004-CD16-4710-BE4F-0E4A4CEF21DE}</ProjectGuid>
     <OutputType>WinExe</OutputType>
-    <RootNamespace>FlowLite</RootNamespace>
+    <RootNamespace>FlowWorks</RootNamespace>
     <AssemblyName>FlowWorks</AssemblyName>
     <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
@@ -72,6 +72,13 @@
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
     <Compile Include="Reader.cs" />
+    <Compile Include="Simulation.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Simulation.Designer.cs">
+      <DependentUpon>Simulation.cs</DependentUpon>
+      <CustomToolNamespace>FlowWorks</CustomToolNamespace>
+    </Compile>
     <Compile Include="Writer.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -96,10 +103,39 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <EmbeddedResource Include="Simulation.resx">
+      <DependentUpon>Simulation.cs</DependentUpon>
+      <CustomToolNamespace>FlowWorks</CustomToolNamespace>
+    </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="images\10.0_Connect_Middle_Temp_Sensor_REV02.png" />
+    <EmbeddedResource Include="images\11_Connect_End_Temp_Sensor_REV02.png" />
+    <EmbeddedResource Include="images\12.0_Connect_Heater_Cable_toMachine_REV02.png" />
+    <EmbeddedResource Include="images\13.0_Connect_Temp_Cable_toMachine_REV02.png" />
+    <EmbeddedResource Include="images\14.0_Connect_Inspiratory_toMachine_REV03.png" />
+    <EmbeddedResource Include="images\15.0_Connect_Nasal_Interface_REV02.png" />
+    <EmbeddedResource Include="images\16.0_Connect_Oxygen_REV02.png" />
+    <EmbeddedResource Include="images\18.0_Circuit_Test_START_REV01.png" />
+    <EmbeddedResource Include="images\19.0_Circuit_Test_INPROGRESS_REV02.png" />
+    <EmbeddedResource Include="images\1_Splash_START_REV02.png" />
+    <EmbeddedResource Include="images\2.5_Splash_DONE_REV02.png" />
+    <EmbeddedResource Include="images\2_Splash_PROGRESS_REV02.png" />
+    <EmbeddedResource Include="images\6.0_Fill_Humidifier_Chamber_REV03.png" />
+    <EmbeddedResource Include="images\7.0_Reinstall_Humidifier__REV02.PNG" />
+    <EmbeddedResource Include="images\8_Connect_Expiratory__REV02.png" />
+    <EmbeddedResource Include="images\9.0_Connect_Heater_Cable_toCircuit_REV02.png" />
+    <EmbeddedResource Include="images\ALARM_Batt_Banner_Critically_Low_REV02.png" />
+    <EmbeddedResource Include="images\ALARM_High_Pressure_REV02.png" />
+    <EmbeddedResource Include="images\ALARM_Low_FiO2_REV02.png" />
+    <EmbeddedResource Include="images\ALARM_Low_Pressure_REV02.png" />
+    <EmbeddedResource Include="images\Encod_Screen1_Set_REV02.png" />
+    <EmbeddedResource Include="images\Encod_Screen2+3_Ramp+Running_REV03.png" />
+    <EmbeddedResource Include="images\Encod_Screen2DASH_Ramp_REV02.png" />
+    <EmbeddedResource Include="images\Encod_Screen4_Adjusting_REV02.png" />
+    <EmbeddedResource Include="images\1_Splash_START_REV02_800x480_COMPRESSED_RGBA_ASTC_8x8_KHR_Converted.png" />
+    <EmbeddedResource Include="1_Splash_START_REV02_800x480_COMPRESSED_RGBA_ASTC_8x8_KHR_Converted.png" />
     <Content Include="EqualizeHealth Logo.ico" />
-    <Content Include="FlowSchematic.jpg" />
   </ItemGroup>
   <ItemGroup>
     <COMReference Include="AxSHDocVw">

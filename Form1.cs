@@ -33,6 +33,10 @@ namespace FlowWorks
         public delegate void DeviceDataParameterDelegate(DeviceData deviceData);
         public delegate void DeviceStatusParameterDelegate(DeviceStatus deviceStatus);
 
+        private Simulation SimulationScreen;
+        public bool isConnected { get; private set; }
+        public int CurrentScreen { get; private set; }
+
         public Form1()
         {
             InitializeComponent();
@@ -153,6 +157,11 @@ namespace FlowWorks
         public void UpdateConnectedSignal(bool isConnected)
         {
             this.connectedTextBox.BackColor = isConnected ? Color.Lime : SystemColors.Control;
+            this.isConnected = isConnected;
+        }
+        public void SendTerminalCommand(string cmd)
+        {
+            fwViewer.AddTerminalCommand(cmd);
         }
         private void ChangeComport(int comportNum)
         {
@@ -178,6 +187,7 @@ namespace FlowWorks
             this.FlowInsp.Text = deviceData.flowInsp.ToString("N2");
             this.FlowOx.Text = deviceData.flowOx.ToString("N2");
             this.TempAmb.Text = deviceData.tempPCB.ToString("N1");
+            this.FiO2.Text = deviceData.fio2.ToString("N1");
             this.Fio2Setpt.Value = (decimal)deviceData.fio2Setpt;
             this.PressBabySetpt.Value = (decimal)deviceData.pressSetpt;
             if (Convert.ToBoolean(deviceData.fio2PIDEnable))
@@ -209,28 +219,24 @@ namespace FlowWorks
                 this.StartHeatPlate.BackColor = Color.Red;
                 this.HeatPlateUnderPIDControl = true;
                 this.StartHeatPlate.Text = "Stop";
-                this.HeatPlateSetting.BackColor = Color.Gray;
             }
             else
             {
                 this.StartHeatPlate.BackColor = Color.Green;
                 this.HeatPlateUnderPIDControl = false;
                 this.StartHeatPlate.Text = "Start";
-                this.HeatPlateSetting.BackColor = Color.Empty;
             }
             if (Convert.ToBoolean(deviceData.heatWirePIDEnable))
             {
                 this.StartHeatWire.BackColor = Color.Red;
                 this.HeatWireUnderPIDControl = true;
                 this.StartHeatWire.Text = "Stop";
-                this.HeatWireSetting.BackColor = Color.Gray;
             }
             else
             {
                 this.StartHeatWire.BackColor = Color.Green;
                 this.HeatWireUnderPIDControl = false;
                 this.StartHeatWire.Text = "Start";
-                this.HeatWireSetting.BackColor = Color.Empty;
             }
             this.SetBlower.Value = (decimal)deviceData.blowerSetting;
             this.SetPropValve.Value = (decimal)deviceData.propValveSetting;
@@ -250,7 +256,7 @@ namespace FlowWorks
             this.timeLabel.Text = deviceStatus.timeHour.ToString() + ":" +
                                   deviceStatus.timeMin.ToString("00") + ":" +
                                   deviceStatus.timeSec.ToString("00");
-            
+            this.CurrentScreen = deviceStatus.currentScreen;
         }
         // private helper functions
         private void OverwriteLastCommandWith(string s)
@@ -451,9 +457,6 @@ namespace FlowWorks
             if (StartHeatPlate.Text == "Stop")
             {
                 fwViewer.AddTerminalCommand("heatPlate(0)");
-            } else
-            {
-                this.HeatPlateSetting.BackColor = Color.Gray;
             }
         }
 
@@ -464,9 +467,6 @@ namespace FlowWorks
             if (StartHeatWire.Text == "Stop")
             {
                 fwViewer.AddTerminalCommand("heatWire(0)");
-            } else
-            {
-                this.HeatWireSetting.BackColor = Color.Gray;
             }
         }
 
@@ -474,14 +474,9 @@ namespace FlowWorks
         {
             double newHeatPlateValue = Convert.ToDouble(this.HeatPlateSetting.Value);
             fwViewer.deviceData.heatPlateSetpt = newHeatPlateValue;
-            if (this.HeatPlateUnderPIDControl == true)
-            {
-                this.HeatPlateSetting.BackColor = Color.Gray;
-            }
-            else if ((oldHeatPlateValue < newHeatPlateValue) || (oldHeatPlateValue > newHeatPlateValue))
+            if ((oldHeatPlateValue < newHeatPlateValue) || (oldHeatPlateValue > newHeatPlateValue))
             {
                 fwViewer.AddTerminalCommand("heatPlateSetpt(" + newHeatPlateValue + ")");
-                this.HeatPlateSetting.BackColor = Color.Empty;
             }
             oldHeatPlateValue = newHeatPlateValue;
 
@@ -491,14 +486,9 @@ namespace FlowWorks
         {
             double newHeatWireValue = Convert.ToDouble(this.HeatWireSetting.Value);
             fwViewer.deviceData.heatWireSetpt = newHeatWireValue;
-            if (this.HeatWireUnderPIDControl == true)
-            {
-                this.HeatWireSetting.BackColor = Color.Gray;
-            }
-            else if ((oldHeatWireValue < newHeatWireValue) || (oldHeatWireValue > newHeatWireValue))
+            if ((oldHeatWireValue < newHeatWireValue) || (oldHeatWireValue > newHeatWireValue))
             {
                 fwViewer.AddTerminalCommand("heatWireSetpt(" + newHeatWireValue + ")");
-                this.HeatWireSetting.BackColor = Color.Empty;
             }
             oldHeatWireValue = newHeatWireValue;
         }
@@ -555,6 +545,12 @@ namespace FlowWorks
                 Console.WriteLine(ex.Message);
                 UpdateResponse("Error while opening PDF File: " + ex.Message);
             }
+        }
+
+        private void StartSimulation_Click(object sender, EventArgs e)
+        {
+            SimulationScreen = new Simulation(this);
+            DialogResult result = SimulationScreen.ShowDialog();
         }
     }
 }

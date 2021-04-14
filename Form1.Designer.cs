@@ -41,6 +41,9 @@ namespace FlowWorks
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.setupMenu = new System.Windows.Forms.ToolStripMenuItem();
             this.comportMenu = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
+            this.startFirwmareDownloadToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.aboutFirmwareToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.aboutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.VersionString = new System.Windows.Forms.ToolStripMenuItem();
             this.cOM1ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -112,9 +115,10 @@ namespace FlowWorks
             this.label11 = new System.Windows.Forms.Label();
             this.label12 = new System.Windows.Forms.Label();
             this.label13 = new System.Windows.Forms.Label();
-            this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
-            this.startFirwmareDownloadToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.aboutFirmwareToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.label14 = new System.Windows.Forms.Label();
+            this.FiO2 = new System.Windows.Forms.Label();
+            this.textBox10 = new System.Windows.Forms.TextBox();
+            this.StartSimulation = new System.Windows.Forms.Button();
             this.menuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.PressBabySetpt)).BeginInit();
@@ -136,7 +140,7 @@ namespace FlowWorks
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
             this.menuStrip1.Padding = new System.Windows.Forms.Padding(5, 2, 0, 2);
-            this.menuStrip1.Size = new System.Drawing.Size(1982, 52);
+            this.menuStrip1.Size = new System.Drawing.Size(1982, 60);
             this.menuStrip1.TabIndex = 0;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -145,7 +149,7 @@ namespace FlowWorks
             this.setupMenu.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.comportMenu});
             this.setupMenu.Name = "setupMenu";
-            this.setupMenu.Size = new System.Drawing.Size(119, 45);
+            this.setupMenu.Size = new System.Drawing.Size(119, 56);
             this.setupMenu.Text = "Setup";
             this.setupMenu.Click += new System.EventHandler(this.RefreshComList);
             // 
@@ -155,12 +159,35 @@ namespace FlowWorks
             this.comportMenu.Size = new System.Drawing.Size(314, 54);
             this.comportMenu.Text = "COM Port";
             // 
+            // toolStripMenuItem1
+            // 
+            this.toolStripMenuItem1.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.startFirwmareDownloadToolStripMenuItem,
+            this.aboutFirmwareToolStripMenuItem});
+            this.toolStripMenuItem1.Name = "toolStripMenuItem1";
+            this.toolStripMenuItem1.Size = new System.Drawing.Size(178, 56);
+            this.toolStripMenuItem1.Text = "Download";
+            // 
+            // startFirwmareDownloadToolStripMenuItem
+            // 
+            this.startFirwmareDownloadToolStripMenuItem.Name = "startFirwmareDownloadToolStripMenuItem";
+            this.startFirwmareDownloadToolStripMenuItem.Size = new System.Drawing.Size(517, 54);
+            this.startFirwmareDownloadToolStripMenuItem.Text = "Start Firwmare Download";
+            this.startFirwmareDownloadToolStripMenuItem.Click += new System.EventHandler(this.startFirwmareDownloadToolStripMenuItem_Click);
+            // 
+            // aboutFirmwareToolStripMenuItem
+            // 
+            this.aboutFirmwareToolStripMenuItem.Name = "aboutFirmwareToolStripMenuItem";
+            this.aboutFirmwareToolStripMenuItem.Size = new System.Drawing.Size(517, 54);
+            this.aboutFirmwareToolStripMenuItem.Text = "About Firmware";
+            this.aboutFirmwareToolStripMenuItem.Click += new System.EventHandler(this.aboutFirmwareToolStripMenuItem_Click);
+            // 
             // aboutToolStripMenuItem
             // 
             this.aboutToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.VersionString});
             this.aboutToolStripMenuItem.Name = "aboutToolStripMenuItem";
-            this.aboutToolStripMenuItem.Size = new System.Drawing.Size(124, 45);
+            this.aboutToolStripMenuItem.Size = new System.Drawing.Size(124, 56);
             this.aboutToolStripMenuItem.Text = "About";
             // 
             // VersionString
@@ -918,28 +945,52 @@ namespace FlowWorks
             this.label13.TabIndex = 117;
             this.label13.Text = "- Calculated";
             // 
-            // toolStripMenuItem1
+            // label14
             // 
-            this.toolStripMenuItem1.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.startFirwmareDownloadToolStripMenuItem,
-            this.aboutFirmwareToolStripMenuItem});
-            this.toolStripMenuItem1.Name = "toolStripMenuItem1";
-            this.toolStripMenuItem1.Size = new System.Drawing.Size(178, 48);
-            this.toolStripMenuItem1.Text = "Download";
+            this.label14.AutoSize = true;
+            this.label14.BackColor = System.Drawing.SystemColors.Window;
+            this.label14.Font = new System.Drawing.Font("Lucida Console", 8.1F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label14.ForeColor = System.Drawing.Color.Firebrick;
+            this.label14.Location = new System.Drawing.Point(1261, 173);
+            this.label14.Name = "label14";
+            this.label14.Size = new System.Drawing.Size(75, 28);
+            this.label14.TabIndex = 118;
+            this.label14.Text = "FiO₂";
             // 
-            // startFirwmareDownloadToolStripMenuItem
+            // FiO2
             // 
-            this.startFirwmareDownloadToolStripMenuItem.Name = "startFirwmareDownloadToolStripMenuItem";
-            this.startFirwmareDownloadToolStripMenuItem.Size = new System.Drawing.Size(517, 54);
-            this.startFirwmareDownloadToolStripMenuItem.Text = "Start Firwmare Download";
-            this.startFirwmareDownloadToolStripMenuItem.Click += new System.EventHandler(this.startFirwmareDownloadToolStripMenuItem_Click);
+            this.FiO2.AutoSize = true;
+            this.FiO2.ForeColor = System.Drawing.Color.Maroon;
+            this.FiO2.Location = new System.Drawing.Point(1265, 201);
+            this.FiO2.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.FiO2.Name = "FiO2";
+            this.FiO2.Size = new System.Drawing.Size(55, 32);
+            this.FiO2.TabIndex = 119;
+            this.FiO2.Text = "0.0";
             // 
-            // aboutFirmwareToolStripMenuItem
+            // textBox10
             // 
-            this.aboutFirmwareToolStripMenuItem.Name = "aboutFirmwareToolStripMenuItem";
-            this.aboutFirmwareToolStripMenuItem.Size = new System.Drawing.Size(517, 54);
-            this.aboutFirmwareToolStripMenuItem.Text = "About Firmware";
-            this.aboutFirmwareToolStripMenuItem.Click += new System.EventHandler(this.aboutFirmwareToolStripMenuItem_Click);
+            this.textBox10.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.textBox10.Location = new System.Drawing.Point(1328, 200);
+            this.textBox10.Margin = new System.Windows.Forms.Padding(2);
+            this.textBox10.Name = "textBox10";
+            this.textBox10.Size = new System.Drawing.Size(41, 31);
+            this.textBox10.TabIndex = 120;
+            this.textBox10.Text = "%";
+            // 
+            // StartSimulation
+            // 
+            this.StartSimulation.BackColor = System.Drawing.SystemColors.GradientActiveCaption;
+            this.StartSimulation.FlatAppearance.BorderSize = 2;
+            this.StartSimulation.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.900001F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.StartSimulation.Location = new System.Drawing.Point(1617, 675);
+            this.StartSimulation.Margin = new System.Windows.Forms.Padding(2);
+            this.StartSimulation.Name = "StartSimulation";
+            this.StartSimulation.Size = new System.Drawing.Size(288, 105);
+            this.StartSimulation.TabIndex = 121;
+            this.StartSimulation.Text = "Simulation";
+            this.StartSimulation.UseVisualStyleBackColor = false;
+            this.StartSimulation.Click += new System.EventHandler(this.StartSimulation_Click);
             // 
             // Form1
             // 
@@ -947,6 +998,10 @@ namespace FlowWorks
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
             this.AutoSize = true;
             this.ClientSize = new System.Drawing.Size(1982, 1368);
+            this.Controls.Add(this.StartSimulation);
+            this.Controls.Add(this.textBox10);
+            this.Controls.Add(this.FiO2);
+            this.Controls.Add(this.label14);
             this.Controls.Add(this.label13);
             this.Controls.Add(this.label12);
             this.Controls.Add(this.label11);
@@ -1099,5 +1154,9 @@ namespace FlowWorks
         private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem1;
         private System.Windows.Forms.ToolStripMenuItem startFirwmareDownloadToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem aboutFirmwareToolStripMenuItem;
+        private System.Windows.Forms.Label label14;
+        private System.Windows.Forms.Label FiO2;
+        private System.Windows.Forms.TextBox textBox10;
+        private System.Windows.Forms.Button StartSimulation;
     }
 }

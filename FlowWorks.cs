@@ -119,7 +119,7 @@ namespace FlowWorks
                         this.writer.AddTerminalCommand("sendStatus");
                     }
                     // This means we request data every 1000 msecs
-                    Thread.Sleep(1000);
+                    Thread.Sleep(500);
                 }
             }
         }

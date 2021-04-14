@@ -57,6 +57,7 @@ namespace FlowWorks
                     Thread.Sleep(500);
                     if (this.form1.CurrentScreen != this.CurrentScreen)
                     {
+                        Console.WriteLine("Change to screen: "+this.form1.CurrentScreen.ToString());
                         changeScreen(this.form1.CurrentScreen);
                         this.CurrentScreen = this.form1.CurrentScreen;
                     }
@@ -90,102 +91,102 @@ namespace FlowWorks
             string screenName;
             switch (currentScreen)
             {
-                case 3:
+                case 1:
                     //Splash_START:
                     screenName = Assembly.GetEntryAssembly().GetManifestResourceNames()[14];
                     this.simulationPictureBox.Image = new Bitmap(Assembly.GetEntryAssembly().GetManifestResourceStream(screenName));
                     break;
-                case 4:
+                case 2:
                     //Splash_PROGRESS
                     screenName = Assembly.GetEntryAssembly().GetManifestResourceNames()[16];
                     this.simulationPictureBox.Image = new Bitmap(Assembly.GetEntryAssembly().GetManifestResourceStream(screenName));
                     break;
-                case 5:
+                case 3:
                     //Splash_DONE
                     screenName = Assembly.GetEntryAssembly().GetManifestResourceNames()[15];
                     this.simulationPictureBox.Image = new Bitmap(Assembly.GetEntryAssembly().GetManifestResourceStream(screenName));
                     break;
-                case 6:
+                case 4:
                     //Fill_Humidifier
                     screenName = Assembly.GetEntryAssembly().GetManifestResourceNames()[17];
                     this.simulationPictureBox.Image = new Bitmap(Assembly.GetEntryAssembly().GetManifestResourceStream(screenName));
                     break;
-                case 7:
+                case 5:
                     //Reinstall_Humidifier
                     screenName = Assembly.GetEntryAssembly().GetManifestResourceNames()[18];
                     this.simulationPictureBox.Image = new Bitmap(Assembly.GetEntryAssembly().GetManifestResourceStream(screenName));
                     break;
-                case 8:
+                case 6:
                     //Connect_Exp
                     screenName = Assembly.GetEntryAssembly().GetManifestResourceNames()[19];
                     this.simulationPictureBox.Image = new Bitmap(Assembly.GetEntryAssembly().GetManifestResourceStream(screenName));
                     break;
-                case 9:
+                case 7:
                     //connect_Heater_to_Insp
                     screenName = Assembly.GetEntryAssembly().GetManifestResourceNames()[20];
                     this.simulationPictureBox.Image = new Bitmap(Assembly.GetEntryAssembly().GetManifestResourceStream(screenName));
                     break;
-                case 10:
+                case 8:
                     //connect_mid_temp_to_Insp
                     screenName = Assembly.GetEntryAssembly().GetManifestResourceNames()[5];
                     this.simulationPictureBox.Image = new Bitmap(Assembly.GetEntryAssembly().GetManifestResourceStream(screenName));
                     break;
-                case 11:
+                case 9:
                     //connect_end_temp_to_Insp
                     screenName = Assembly.GetEntryAssembly().GetManifestResourceNames()[6];
                     this.simulationPictureBox.Image = new Bitmap(Assembly.GetEntryAssembly().GetManifestResourceStream(screenName));
                     break;
-                case 12:
+                case 10:
                     //connect_heater_cable
                     screenName = Assembly.GetEntryAssembly().GetManifestResourceNames()[7];
                     this.simulationPictureBox.Image = new Bitmap(Assembly.GetEntryAssembly().GetManifestResourceStream(screenName));
                     break;
-                case 13:
+                case 11:
                     //connect_temperature_cable
                     screenName = Assembly.GetEntryAssembly().GetManifestResourceNames()[8];
                     this.simulationPictureBox.Image = new Bitmap(Assembly.GetEntryAssembly().GetManifestResourceStream(screenName));
                     break;
-                case 14:
+                case 12:
                     //connect_insp_tube
                     screenName = Assembly.GetEntryAssembly().GetManifestResourceNames()[9];
                     this.simulationPictureBox.Image = new Bitmap(Assembly.GetEntryAssembly().GetManifestResourceStream(screenName));
                     break;
-                case 15:
+                case 13:
                     //connect_nasal_interface
                     screenName = Assembly.GetEntryAssembly().GetManifestResourceNames()[10];
                     this.simulationPictureBox.Image = new Bitmap(Assembly.GetEntryAssembly().GetManifestResourceStream(screenName));
                     break;
-                case 16:
+                case 14:
                     //connect_oxygen
                     screenName = Assembly.GetEntryAssembly().GetManifestResourceNames()[11];
                     this.simulationPictureBox.Image = new Bitmap(Assembly.GetEntryAssembly().GetManifestResourceStream(screenName));
                     break;
-                case 17:
+                case 15:
                     //self_test_start
                     screenName = Assembly.GetEntryAssembly().GetManifestResourceNames()[12];
                     this.simulationPictureBox.Image = new Bitmap(Assembly.GetEntryAssembly().GetManifestResourceStream(screenName));
                     break;
-                case 18:
+                case 16:
                     //self_test_progress
                     screenName = Assembly.GetEntryAssembly().GetManifestResourceNames()[13];
                     this.simulationPictureBox.Image = new Bitmap(Assembly.GetEntryAssembly().GetManifestResourceStream(screenName));
                     break;
-                case 19:
+                case 17:
                     //running_01 encod_Screen1
                     screenName = Assembly.GetEntryAssembly().GetManifestResourceNames()[25];
                     this.simulationPictureBox.Image = new Bitmap(Assembly.GetEntryAssembly().GetManifestResourceStream(screenName));
                     break;
-                case 20:
+                case 18:
                     //running_02 encod_Screen2
                     screenName = Assembly.GetEntryAssembly().GetManifestResourceNames()[26];
                     this.simulationPictureBox.Image = new Bitmap(Assembly.GetEntryAssembly().GetManifestResourceStream(screenName));
                     break;
-                case 21:
+                case 19:
                     //running_03 encod_ScreenDASH
                     screenName = Assembly.GetEntryAssembly().GetManifestResourceNames()[27];
                     this.simulationPictureBox.Image = new Bitmap(Assembly.GetEntryAssembly().GetManifestResourceStream(screenName));
                     break;
-                case 22:
+                case 20:
                     //running_04 encod_ScreenAdjusting
                     screenName = Assembly.GetEntryAssembly().GetManifestResourceNames()[28];
                     this.simulationPictureBox.Image = new Bitmap(Assembly.GetEntryAssembly().GetManifestResourceStream(screenName));

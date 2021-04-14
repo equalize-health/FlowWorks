@@ -35,6 +35,7 @@ namespace FlowWorks
 
         private Simulation SimulationScreen;
         public bool isConnected { get; private set; }
+        public int CurrentScreen { get; private set; }
 
         public Form1()
         {
@@ -255,7 +256,7 @@ namespace FlowWorks
             this.timeLabel.Text = deviceStatus.timeHour.ToString() + ":" +
                                   deviceStatus.timeMin.ToString("00") + ":" +
                                   deviceStatus.timeSec.ToString("00");
-            
+            this.CurrentScreen = deviceStatus.currentScreen;
         }
         // private helper functions
         private void OverwriteLastCommandWith(string s)

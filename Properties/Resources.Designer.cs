@@ -59,5 +59,15 @@ namespace FlowWorks.Properties {
                 resourceCulture = value;
             }
         }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap _1_Splash_START_REV02_800x480_COMPRESSED_RGBA_ASTC_8x8_KHR_Converted {
+            get {
+                object obj = ResourceManager.GetObject("1_Splash_START_REV02_800x480_COMPRESSED_RGBA_ASTC_8x8_KHR_Converted", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
     }
 }

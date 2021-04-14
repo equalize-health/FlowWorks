@@ -9,7 +9,7 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyDescription("Control the FlowWorks system from the Host, using the USB terminal connection")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("Equalize Health")]
-[assembly: AssemblyProduct("FlowWorks")]
+[assembly: AssemblyProduct("FlowLite")]
 [assembly: AssemblyCopyright("2021")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]

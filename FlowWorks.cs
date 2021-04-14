@@ -318,6 +318,8 @@ namespace FlowWorks
         public int dateMonth;
         public int dateDay;
         public int dateYear;
+        public int currentScreen;
+        private string boardSerialNumber;
 
         public string Status
         {
@@ -354,6 +356,12 @@ namespace FlowWorks
                             break;
                         case 8:
                             this.dateYear = Convert.ToInt32(dataList[i]);
+                            break;
+                        case 9:
+                            this.boardSerialNumber = dataList[i].ToString();
+                            break;
+                        case 10:
+                            this.currentScreen = Convert.ToInt32(dataList[i]);
                             break;
                     }
                 }
@@ -486,17 +494,6 @@ namespace FlowWorks
             }
         }
 
-
-        public int deviceStatusSize = 92;   //must match size of the Data buffer
-        public int dateMonth;
-        public int dateDay;
-        public int dateYear;
-        public int timeHours;
-        public int timeMinutes;
-        public int timeSeconds;
-        public int fwVersionMajor;
-        public int fwVersionMinor;
-        public int fwVersionRevision;
         // event handlers
 
     }

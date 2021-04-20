@@ -619,7 +619,7 @@ namespace FlowWorks
                     {
                         //File.Create(openFileName);
                         // Create header in new file
-                        File.AppendAllText(openFileName, "TIMESTAMP,P_INSP,P_EXP,F_INSP,FL_OX,T_DIST,T_PROX,T_PLATE,T_PCB,FIO2,P_BABY,BLOWER,P_CKT,PROP_V,BLOW_ST,P_BABY_EN,FIO2_EN,C_FACT,CAL_STATE,H_PLATE_SETPT,H_WIRE_SETPT,H_PLATE_EN,H_WIRE_EN"+Environment.NewLine);
+                        File.AppendAllText(openFileName, "TIMESTAMP,P_INSP, P_EXP,F_INS,FL_OX,T_DIS,T_PRX, T_HT,T_PCB,  FIO2,  BABY, F_EXP,F_LEAK,HW_STPT,HW_ACT,HW_CTL,HW_ERR,HW_INT" + Environment.NewLine);
                     }
 
                     logFileOpened = true;

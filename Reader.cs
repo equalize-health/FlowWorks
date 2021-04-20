@@ -117,6 +117,11 @@ namespace FlowWorks {
                 if ((this.deviceResponse != this.kDeviceReadyMsg) && (this.deviceResponse != "sendstatus") && (this.deviceResponse.Length > 1))
                 {
                     this.PublishDeviceResponse(this.deviceResponse);
+                    if (this.deviceResponse.StartsWith(","))
+                    {
+                        formVar.logData(this.deviceResponse);
+                    }
+
                 }
                 this.deviceResponse = "";
                 this.readingDeviceResponse = false;
@@ -193,7 +198,8 @@ namespace FlowWorks {
     {
         //if (this.ReadDataBlock(ref this.deviceStatusDataBuffer, deviceStatus.deviceStatusSize, 100))
         this.deviceStatusDataBuffer = this.serialPort.ReadLine();
-        formVar.logData(this.deviceStatusDataBuffer);
+        // Log the "sendData" data here, but maybe we don't need to see all that - just avgStream stuff starting with a comma
+        //formVar.logData(this.deviceStatusDataBuffer);
         deviceData.Data = this.deviceStatusDataBuffer;
         return true;
     }

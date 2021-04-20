@@ -244,7 +244,6 @@ namespace FlowWorks
                 this.dataPending = false;
                 this.dataRequestIntervalmsecs = kDefaultDataRequestInterval;
             }
-
         }
         private void PostConnectedStatus(bool isConnected)
         {

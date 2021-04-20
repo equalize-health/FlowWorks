@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Reflection;
 using System.Diagnostics;
+using System.IO;
 
 namespace FlowWorks
 {
@@ -34,6 +35,10 @@ namespace FlowWorks
         public delegate void DeviceStatusParameterDelegate(DeviceStatus deviceStatus);
 
         private Simulation SimulationScreen;
+        private bool logFileOpened;
+        private OpenFileDialog openFileDialog1;
+        private string openFileName;
+
         public bool isConnected { get; private set; }
         public int CurrentScreen { get; private set; }
 
@@ -245,6 +250,19 @@ namespace FlowWorks
             this.HeatPlateSetting.Text = deviceData.heatPlateSetpt.ToString("N1");
             this.HeatWireSetting.Text = deviceData.heatWireSetpt.ToString("N1");
         }
+
+        public void logData(string inputString)
+        {
+            if (logFileOpened)
+            {
+                string writeLine;
+                DateTime value = DateTime.Now;
+                writeLine = DateTime.UtcNow.ToString("HH:mm:ss.fff,");
+                writeLine += inputString;
+                File.AppendAllText(openFileName, writeLine + Environment.NewLine);
+            }
+        }
+
         public void UpdateDeviceStatus(DeviceStatus deviceStatus)
         {            
             this.firmwareVersionLabel.Text = "v" + deviceStatus.versionMajor.ToString() +
@@ -551,6 +569,77 @@ namespace FlowWorks
         {
             SimulationScreen = new Simulation(this);
             DialogResult result = SimulationScreen.ShowDialog();
+        }
+
+        private void enableLoggingToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            // If a file is not opened, then set the initial directory to the
+            // FolderBrowserDialog.SelectedPath value.
+            if (!logFileOpened)
+            {
+                this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
+                openFileDialog1.InitialDirectory = Environment.GetFolderPath(Environment.SpecialFolder.Personal);
+                Console.WriteLine("My Documents directory: " + openFileDialog1.InitialDirectory);
+
+                try
+                {
+                    if (!Directory.Exists(openFileDialog1.InitialDirectory))
+                    {
+                        // Logging directory doesn't exist yet
+                        Directory.CreateDirectory(openFileDialog1.InitialDirectory);
+                    }
+                    if (openFileDialog1.InitialDirectory.Length > 1)
+                    {
+                        openFileDialog1.InitialDirectory += "\\FlowWorksLogs";
+                    }
+                    openFileDialog1.FileName = openFileDialog1.InitialDirectory + "\\flowWorks.log";
+                    Console.WriteLine("Logging file: " + openFileDialog1.FileName);
+                } 
+                catch(Exception exp)
+                {
+                    MessageBox.Show("An error occurred while attempting to load the file: " + openFileDialog1.FileName + ".  The error is:"
+                                    + System.Environment.NewLine + exp.ToString() + System.Environment.NewLine);
+                    logFileOpened = false;
+                }
+
+            }
+
+            openFileDialog1.CheckFileExists = false;
+            // Display the openFile dialog.
+            DialogResult result = openFileDialog1.ShowDialog();
+
+            // OK button was pressed.
+            if (result == DialogResult.OK)
+            {
+                openFileName = openFileDialog1.FileName;
+                try
+                {
+                    // Make sure we can open the file
+                    if (!File.Exists(openFileName))
+                    {
+                        //File.Create(openFileName);
+                        // Create header in new file
+                        File.AppendAllText(openFileName, "TIMESTAMP,P_INSP,P_EXP,F_INSP,FL_OX,T_DIST,T_PROX,T_PLATE,T_PCB,FIO2,P_BABY,BLOWER,P_CKT,PROP_V,BLOW_ST,P_BABY_EN,FIO2_EN,C_FACT,CAL_STATE,H_PLATE_SETPT,H_WIRE_SETPT,H_PLATE_EN,H_WIRE_EN"+Environment.NewLine);
+                    }
+
+                    logFileOpened = true;
+                }
+                catch (Exception exp)
+                {
+                    MessageBox.Show("An error occurred while attempting to load the file: "+openFileName+".  The error is:"
+                                    + System.Environment.NewLine + exp.ToString() + System.Environment.NewLine);
+                    logFileOpened = false;
+                }
+                Invalidate();
+
+               // closeMenuItem.Enabled = logFileOpened;
+            }
+
+            // Cancel button was pressed.
+            else if (result == DialogResult.Cancel)
+            {
+                return;
+            }
         }
     }
 }

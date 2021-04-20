@@ -119,6 +119,7 @@ namespace FlowWorks
             this.FiO2 = new System.Windows.Forms.Label();
             this.textBox10 = new System.Windows.Forms.TextBox();
             this.StartSimulation = new System.Windows.Forms.Button();
+            this.enableLoggingToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.PressBabySetpt)).BeginInit();
@@ -140,23 +141,24 @@ namespace FlowWorks
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
             this.menuStrip1.Padding = new System.Windows.Forms.Padding(5, 2, 0, 2);
-            this.menuStrip1.Size = new System.Drawing.Size(1982, 60);
+            this.menuStrip1.Size = new System.Drawing.Size(1982, 52);
             this.menuStrip1.TabIndex = 0;
             this.menuStrip1.Text = "menuStrip1";
             // 
             // setupMenu
             // 
             this.setupMenu.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.comportMenu});
+            this.comportMenu,
+            this.enableLoggingToolStripMenuItem});
             this.setupMenu.Name = "setupMenu";
-            this.setupMenu.Size = new System.Drawing.Size(119, 56);
+            this.setupMenu.Size = new System.Drawing.Size(119, 48);
             this.setupMenu.Text = "Setup";
             this.setupMenu.Click += new System.EventHandler(this.RefreshComList);
             // 
             // comportMenu
             // 
             this.comportMenu.Name = "comportMenu";
-            this.comportMenu.Size = new System.Drawing.Size(314, 54);
+            this.comportMenu.Size = new System.Drawing.Size(448, 54);
             this.comportMenu.Text = "COM Port";
             // 
             // toolStripMenuItem1
@@ -165,7 +167,7 @@ namespace FlowWorks
             this.startFirwmareDownloadToolStripMenuItem,
             this.aboutFirmwareToolStripMenuItem});
             this.toolStripMenuItem1.Name = "toolStripMenuItem1";
-            this.toolStripMenuItem1.Size = new System.Drawing.Size(178, 56);
+            this.toolStripMenuItem1.Size = new System.Drawing.Size(178, 48);
             this.toolStripMenuItem1.Text = "Download";
             // 
             // startFirwmareDownloadToolStripMenuItem
@@ -187,7 +189,7 @@ namespace FlowWorks
             this.aboutToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.VersionString});
             this.aboutToolStripMenuItem.Name = "aboutToolStripMenuItem";
-            this.aboutToolStripMenuItem.Size = new System.Drawing.Size(124, 56);
+            this.aboutToolStripMenuItem.Size = new System.Drawing.Size(124, 48);
             this.aboutToolStripMenuItem.Text = "About";
             // 
             // VersionString
@@ -992,6 +994,13 @@ namespace FlowWorks
             this.StartSimulation.UseVisualStyleBackColor = false;
             this.StartSimulation.Click += new System.EventHandler(this.StartSimulation_Click);
             // 
+            // enableLoggingToolStripMenuItem
+            // 
+            this.enableLoggingToolStripMenuItem.Name = "enableLoggingToolStripMenuItem";
+            this.enableLoggingToolStripMenuItem.Size = new System.Drawing.Size(448, 54);
+            this.enableLoggingToolStripMenuItem.Text = "Enable Logging...";
+            this.enableLoggingToolStripMenuItem.Click += new System.EventHandler(this.enableLoggingToolStripMenuItem_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(240F, 240F);
@@ -1158,5 +1167,6 @@ namespace FlowWorks
         private System.Windows.Forms.Label FiO2;
         private System.Windows.Forms.TextBox textBox10;
         private System.Windows.Forms.Button StartSimulation;
+        private System.Windows.Forms.ToolStripMenuItem enableLoggingToolStripMenuItem;
     }
 }

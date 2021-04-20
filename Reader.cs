@@ -193,7 +193,7 @@ namespace FlowWorks {
     {
         //if (this.ReadDataBlock(ref this.deviceStatusDataBuffer, deviceStatus.deviceStatusSize, 100))
         this.deviceStatusDataBuffer = this.serialPort.ReadLine();
-
+        formVar.logData(this.deviceStatusDataBuffer);
         deviceData.Data = this.deviceStatusDataBuffer;
         return true;
     }

@@ -61,11 +61,23 @@ namespace FlowWorks
                         changeScreen(this.form1.CurrentScreen);
                         this.CurrentScreen = this.form1.CurrentScreen;
                     }
-                    if (this.CurrentScreen == 17)
+                    if ((this.CurrentScreen >= 17) && (this.CurrentScreen <= 20))
                     {
-                        // This is the run state screen
-                        //this.simulationPictureBox.CreateGraphics.draw
+                        // Refresh the box to re-draw the FiO2 and baby pressure
+                        if (this.simulationPictureBox.InvokeRequired)
+                        {
+                            this.simulationPictureBox.Invoke(new MethodInvoker(
+                                delegate ()
+                                {
+                                    this.simulationPictureBox.Refresh();
+                                }
+                            ));
+                        } else
+                        {
+                            this.simulationPictureBox.Refresh();
+                        }
                     }
+
                     if (button1)
                     {
                         this.form1.SendTerminalCommand("button(1)");
@@ -182,8 +194,8 @@ namespace FlowWorks
                     this.simulationPictureBox.Image = new Bitmap(Assembly.GetEntryAssembly().GetManifestResourceStream(screenName));
                     break;
                 case 18:
-                    //running_02 encod_Screen2
-                    screenName = Assembly.GetEntryAssembly().GetManifestResourceNames()[26];
+                    //running_02 encod_Screen2 - use encod_ScreenDASH because our alarm screen isn't ready
+                    screenName = Assembly.GetEntryAssembly().GetManifestResourceNames()[27]; //[26];
                     this.simulationPictureBox.Image = new Bitmap(Assembly.GetEntryAssembly().GetManifestResourceStream(screenName));
                     break;
                 case 19:
@@ -246,7 +258,7 @@ namespace FlowWorks
 
         private void simulationPictureBox_Paint(object sender, PaintEventArgs e)
         {
-            if (this.CurrentScreen == 17)
+            if ((this.CurrentScreen >= 17) && (this.CurrentScreen <= 20))
             {
                 using (Font myFont = new Font("Arial", 24))
                 {
@@ -256,6 +268,28 @@ namespace FlowWorks
                     e.Graphics.DrawString(this.form1.Fio2Setpt.Value.ToString(), myFont, Brushes.WhiteSmoke, new Point(400, 370));
                 }
             }
+            if ((this.CurrentScreen == 18) || (this.CurrentScreen == 19))
+            {
+                float fontSize = 34;
+                using (Font myFont = new Font("Arial", fontSize))
+                {
+                    Size sizeOfText = TextRenderer.MeasureText(this.form1.BabyPressure.Text, new Font("Arial", fontSize));
+                    int bpStartX = 95;
+                    int fio2StartX = 340;
+                    int startY = 285;
+                    Rectangle babyPressureRectangle = new Rectangle(new Point(bpStartX, startY), sizeOfText);
+                    // First fill in the rectangle
+                    e.Graphics.FillRectangle(Brushes.White, babyPressureRectangle);
+                    // Draw the Baby Pressure setpoint here
+                    e.Graphics.DrawString(this.form1.BabyPressure.Text, myFont, Brushes.Black, new Point(bpStartX, startY));
+                    sizeOfText = TextRenderer.MeasureText(this.form1.FiO2.Text, new Font("Arial", fontSize));
+                    Rectangle fio2Rectangle = new Rectangle(new Point(fio2StartX, startY), sizeOfText);
+                    e.Graphics.FillRectangle(Brushes.Gray, fio2Rectangle);
+                    // Draw the FiO2 setpoint here
+                    e.Graphics.DrawString(this.form1.FiO2.Text, myFont, Brushes.WhiteSmoke, new Point(fio2StartX, startY));
+                }
+            }
+
         }
     }
 }

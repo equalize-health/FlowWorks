@@ -1111,7 +1111,7 @@ namespace FlowWorks
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.Label BlowerSpeed;
-        private System.Windows.Forms.Label BabyPressure;
+        public System.Windows.Forms.Label BabyPressure;
         private System.Windows.Forms.Label FlowLeak;
         private System.Windows.Forms.Label PressExp;
         private System.Windows.Forms.Label PressCkt;
@@ -1164,7 +1164,7 @@ namespace FlowWorks
         private System.Windows.Forms.ToolStripMenuItem startFirwmareDownloadToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem aboutFirmwareToolStripMenuItem;
         private System.Windows.Forms.Label label14;
-        private System.Windows.Forms.Label FiO2;
+        public System.Windows.Forms.Label FiO2;
         private System.Windows.Forms.TextBox textBox10;
         private System.Windows.Forms.Button StartSimulation;
         private System.Windows.Forms.ToolStripMenuItem enableLoggingToolStripMenuItem;

@@ -569,6 +569,7 @@ namespace FlowWorks
         {
             SimulationScreen = new Simulation(this);
             DialogResult result = SimulationScreen.ShowDialog();
+            SimulationScreen.Invalidate();
         }
 
         private void enableLoggingToolStripMenuItem_Click(object sender, EventArgs e)

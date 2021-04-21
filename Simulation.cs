@@ -61,6 +61,11 @@ namespace FlowWorks
                         changeScreen(this.form1.CurrentScreen);
                         this.CurrentScreen = this.form1.CurrentScreen;
                     }
+                    if (this.CurrentScreen == 17)
+                    {
+                        // This is the run state screen
+                        //this.simulationPictureBox.CreateGraphics.draw
+                    }
                     if (button1)
                     {
                         this.form1.SendTerminalCommand("button(1)");
@@ -237,6 +242,20 @@ namespace FlowWorks
         private void Simulation_FormClosed(object sender, FormClosedEventArgs e)
         {
             stateChangeThread.Abort();
+        }
+
+        private void simulationPictureBox_Paint(object sender, PaintEventArgs e)
+        {
+            if (this.CurrentScreen == 17)
+            {
+                using (Font myFont = new Font("Arial", 24))
+                {
+                    // Draw the Baby Pressure setpoint here
+                    e.Graphics.DrawString(this.form1.PressBabySetpt.Value.ToString(), myFont, Brushes.Black, new Point(150, 370));
+                    // Draw the FiO2 setpoint here
+                    e.Graphics.DrawString(this.form1.Fio2Setpt.Value.ToString(), myFont, Brushes.WhiteSmoke, new Point(400, 370));
+                }
+            }
         }
     }
 }

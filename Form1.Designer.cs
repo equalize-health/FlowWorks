@@ -1124,9 +1124,9 @@ namespace FlowWorks
         private System.Windows.Forms.Label FlowOx;
         private System.Windows.Forms.Label TempAmb;
         private System.Windows.Forms.TextBox textBox1;
-        private System.Windows.Forms.NumericUpDown PressBabySetpt;
+        public System.Windows.Forms.NumericUpDown PressBabySetpt;
         private System.Windows.Forms.TextBox textBox2;
-        private System.Windows.Forms.NumericUpDown Fio2Setpt;
+        public System.Windows.Forms.NumericUpDown Fio2Setpt;
         private System.Windows.Forms.Button StartBabyPressure;
         private System.Windows.Forms.Button StartFiO2;
         private System.Windows.Forms.TextBox textBox3;

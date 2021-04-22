@@ -41,6 +41,9 @@ namespace FlowWorks
 
         public bool isConnected { get; private set; }
         public int CurrentScreen { get; private set; }
+        public double TempProxValue { get; private set; }
+        public double BabyPressureValue { get; private set; }
+        public double FiO2Value { get; private set; }
 
         public Form1()
         {
@@ -177,10 +180,12 @@ namespace FlowWorks
         public void UpdateDeviceData(DeviceData deviceData)
         {
             this.BabyPressure.Text = deviceData.babyPressure.ToString("N2");
+            this.BabyPressureValue = deviceData.babyPressure;
             this.FlowLeak.Text = deviceData.flowLeak.ToString("N2");
             this.PressExp.Text = deviceData.pressExp.ToString("N2");
             this.FlowExp.Text = deviceData.flowExp.ToString("N2");
             this.PressCkt.Text = deviceData.pressCkt.ToString("#.##");
+            this.TempProxValue = deviceData.tempProx;
             if (deviceData.tempProx < -40) this.TempProx.Text = "N/C";
             else this.TempProx.Text = deviceData.tempProx.ToString("N1");
             if (deviceData.tempDist < -40) this.TempDist.Text = "N/C";
@@ -193,6 +198,7 @@ namespace FlowWorks
             this.FlowOx.Text = deviceData.flowOx.ToString("N2");
             this.TempAmb.Text = deviceData.tempPCB.ToString("N1");
             this.FiO2.Text = deviceData.fio2.ToString("N1");
+            this.FiO2Value = deviceData.fio2;
             this.Fio2Setpt.Value = (decimal)deviceData.fio2Setpt;
             this.PressBabySetpt.Value = (decimal)deviceData.pressSetpt;
             if (Convert.ToBoolean(deviceData.fio2PIDEnable))

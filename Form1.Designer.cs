@@ -41,6 +41,7 @@ namespace FlowWorks
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.setupMenu = new System.Windows.Forms.ToolStripMenuItem();
             this.comportMenu = new System.Windows.Forms.ToolStripMenuItem();
+            this.enableLoggingToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.startFirwmareDownloadToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.aboutFirmwareToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -119,7 +120,6 @@ namespace FlowWorks
             this.FiO2 = new System.Windows.Forms.Label();
             this.textBox10 = new System.Windows.Forms.TextBox();
             this.StartSimulation = new System.Windows.Forms.Button();
-            this.enableLoggingToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.PressBabySetpt)).BeginInit();
@@ -141,7 +141,7 @@ namespace FlowWorks
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
             this.menuStrip1.Padding = new System.Windows.Forms.Padding(5, 2, 0, 2);
-            this.menuStrip1.Size = new System.Drawing.Size(1982, 52);
+            this.menuStrip1.Size = new System.Drawing.Size(1982, 49);
             this.menuStrip1.TabIndex = 0;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -151,15 +151,22 @@ namespace FlowWorks
             this.comportMenu,
             this.enableLoggingToolStripMenuItem});
             this.setupMenu.Name = "setupMenu";
-            this.setupMenu.Size = new System.Drawing.Size(119, 48);
+            this.setupMenu.Size = new System.Drawing.Size(119, 45);
             this.setupMenu.Text = "Setup";
             this.setupMenu.Click += new System.EventHandler(this.RefreshComList);
             // 
             // comportMenu
             // 
             this.comportMenu.Name = "comportMenu";
-            this.comportMenu.Size = new System.Drawing.Size(448, 54);
+            this.comportMenu.Size = new System.Drawing.Size(411, 54);
             this.comportMenu.Text = "COM Port";
+            // 
+            // enableLoggingToolStripMenuItem
+            // 
+            this.enableLoggingToolStripMenuItem.Name = "enableLoggingToolStripMenuItem";
+            this.enableLoggingToolStripMenuItem.Size = new System.Drawing.Size(411, 54);
+            this.enableLoggingToolStripMenuItem.Text = "Enable Logging...";
+            this.enableLoggingToolStripMenuItem.Click += new System.EventHandler(this.enableLoggingToolStripMenuItem_Click);
             // 
             // toolStripMenuItem1
             // 
@@ -167,7 +174,7 @@ namespace FlowWorks
             this.startFirwmareDownloadToolStripMenuItem,
             this.aboutFirmwareToolStripMenuItem});
             this.toolStripMenuItem1.Name = "toolStripMenuItem1";
-            this.toolStripMenuItem1.Size = new System.Drawing.Size(178, 48);
+            this.toolStripMenuItem1.Size = new System.Drawing.Size(178, 45);
             this.toolStripMenuItem1.Text = "Download";
             // 
             // startFirwmareDownloadToolStripMenuItem
@@ -189,7 +196,7 @@ namespace FlowWorks
             this.aboutToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.VersionString});
             this.aboutToolStripMenuItem.Name = "aboutToolStripMenuItem";
-            this.aboutToolStripMenuItem.Size = new System.Drawing.Size(124, 48);
+            this.aboutToolStripMenuItem.Size = new System.Drawing.Size(124, 45);
             this.aboutToolStripMenuItem.Text = "About";
             // 
             // VersionString
@@ -528,7 +535,7 @@ namespace FlowWorks
             // textBox1
             // 
             this.textBox1.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.textBox1.Location = new System.Drawing.Point(395, 652);
+            this.textBox1.Location = new System.Drawing.Point(393, 652);
             this.textBox1.Margin = new System.Windows.Forms.Padding(2);
             this.textBox1.Name = "textBox1";
             this.textBox1.Size = new System.Drawing.Size(242, 31);
@@ -537,7 +544,7 @@ namespace FlowWorks
             // 
             // PressBabySetpt
             // 
-            this.PressBabySetpt.Location = new System.Drawing.Point(645, 650);
+            this.PressBabySetpt.Location = new System.Drawing.Point(638, 650);
             this.PressBabySetpt.Margin = new System.Windows.Forms.Padding(2);
             this.PressBabySetpt.Maximum = new decimal(new int[] {
             10,
@@ -550,7 +557,7 @@ namespace FlowWorks
             0,
             0});
             this.PressBabySetpt.Name = "PressBabySetpt";
-            this.PressBabySetpt.Size = new System.Drawing.Size(78, 38);
+            this.PressBabySetpt.Size = new System.Drawing.Size(85, 38);
             this.PressBabySetpt.TabIndex = 73;
             this.PressBabySetpt.Value = new decimal(new int[] {
             3,
@@ -562,7 +569,7 @@ namespace FlowWorks
             // textBox2
             // 
             this.textBox2.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.textBox2.Location = new System.Drawing.Point(992, 650);
+            this.textBox2.Location = new System.Drawing.Point(984, 650);
             this.textBox2.Margin = new System.Windows.Forms.Padding(2);
             this.textBox2.Name = "textBox2";
             this.textBox2.Size = new System.Drawing.Size(125, 31);
@@ -576,7 +583,7 @@ namespace FlowWorks
             0,
             0,
             0});
-            this.Fio2Setpt.Location = new System.Drawing.Point(1125, 648);
+            this.Fio2Setpt.Location = new System.Drawing.Point(1111, 648);
             this.Fio2Setpt.Margin = new System.Windows.Forms.Padding(2);
             this.Fio2Setpt.Minimum = new decimal(new int[] {
             20,
@@ -584,7 +591,7 @@ namespace FlowWorks
             0,
             0});
             this.Fio2Setpt.Name = "Fio2Setpt";
-            this.Fio2Setpt.Size = new System.Drawing.Size(80, 38);
+            this.Fio2Setpt.Size = new System.Drawing.Size(94, 38);
             this.Fio2Setpt.TabIndex = 75;
             this.Fio2Setpt.Value = new decimal(new int[] {
             20,
@@ -994,13 +1001,6 @@ namespace FlowWorks
             this.StartSimulation.UseVisualStyleBackColor = false;
             this.StartSimulation.Click += new System.EventHandler(this.StartSimulation_Click);
             // 
-            // enableLoggingToolStripMenuItem
-            // 
-            this.enableLoggingToolStripMenuItem.Name = "enableLoggingToolStripMenuItem";
-            this.enableLoggingToolStripMenuItem.Size = new System.Drawing.Size(448, 54);
-            this.enableLoggingToolStripMenuItem.Text = "Enable Logging...";
-            this.enableLoggingToolStripMenuItem.Click += new System.EventHandler(this.enableLoggingToolStripMenuItem_Click);
-            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(240F, 240F);
@@ -1116,7 +1116,7 @@ namespace FlowWorks
         private System.Windows.Forms.Label PressExp;
         private System.Windows.Forms.Label PressCkt;
         private System.Windows.Forms.Label FlowExp;
-        private System.Windows.Forms.Label TempProx;
+        public System.Windows.Forms.Label TempProx;
         private System.Windows.Forms.Label TempDist;
         private System.Windows.Forms.Label TempPlate;
         private System.Windows.Forms.Label PressInsp;

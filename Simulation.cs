@@ -258,6 +258,7 @@ namespace FlowWorks
 
         private void simulationPictureBox_Paint(object sender, PaintEventArgs e)
         {
+            // This draws the setpoints for baby pressure and FiO2 into the lower panel area (smaller font)
             if ((this.CurrentScreen >= 17) && (this.CurrentScreen <= 20))
             {
                 using (Font myFont = new Font("Arial", 24))
@@ -268,35 +269,55 @@ namespace FlowWorks
                     e.Graphics.DrawString(this.form1.Fio2Setpt.Value.ToString(), myFont, Brushes.WhiteSmoke, new Point(400, 370));
                 }
             }
+            // This draws the current values of baby pressure and FiO2 into the upper panel area (larger font)
             if ((this.CurrentScreen == 18) || (this.CurrentScreen == 19) || (this.CurrentScreen == 20))
             {
                 float fontSize = 38;
                 using (Font myFont = new Font("Arial", fontSize))
                 {
-                    Size sizeOfText = TextRenderer.MeasureText(this.form1.BabyPressure.Text, new Font("Arial", fontSize));
+                    string babyPressureString = this.form1.BabyPressureValue.ToString("N1");
+                    Size sizeOfText = TextRenderer.MeasureText(babyPressureString, new Font("Arial", fontSize));
                     int bpStartX = 85;
-                    int fio2StartX = 330;
+                    int fio2StartX = 350;
                     int startY = 285;
                     Rectangle babyPressureRectangle = new Rectangle(new Point(bpStartX, startY), sizeOfText);
                     if (this.CurrentScreen != 18)
                     {
-                        // First fill in the rectangle
+                        // First fill in the rectangle - this covers over the "dashes" in the .png file
                         e.Graphics.FillRectangle(Brushes.White, babyPressureRectangle);
                     }
                     // Draw the Baby Pressure setpoint here
-                    e.Graphics.DrawString(this.form1.BabyPressure.Text, myFont, Brushes.Black, new Point(bpStartX, startY));
-                    sizeOfText = TextRenderer.MeasureText(this.form1.FiO2.Text, new Font("Arial", fontSize));
+                    e.Graphics.DrawString(babyPressureString, myFont, Brushes.Black, new Point(bpStartX, startY));
+                    string fio2String = this.form1.FiO2Value.ToString("N0");
+                    sizeOfText = TextRenderer.MeasureText(fio2String, new Font("Arial", fontSize));
                     Rectangle fio2Rectangle = new Rectangle(new Point(fio2StartX, startY), sizeOfText);
                     // Don't need the background box for the screen with no dashes
                     if (this.CurrentScreen != 18)
                     {
+                        // First fill in the rectangle - this covers over the "dashes" in the .png file
                         e.Graphics.FillRectangle(Brushes.Gray, fio2Rectangle);
                     }
                     // Draw the FiO2 setpoint here
-                    e.Graphics.DrawString(this.form1.FiO2.Text, myFont, Brushes.WhiteSmoke, new Point(fio2StartX, startY));
+                    e.Graphics.DrawString(fio2String, myFont, Brushes.WhiteSmoke, new Point(fio2StartX, startY));
                 }
             }
+            // This draws the current values of baby pressure and FiO2 into the upper panel area (larger font)
+            if ((this.CurrentScreen == 17) || (this.CurrentScreen == 18) || (this.CurrentScreen == 19) || (this.CurrentScreen == 20))
+            {
+                float fontSize = 22;
+                using (Font myFont = new Font("Arial Rounded MT", fontSize))
+                {
+                    Size sizeOfText = TextRenderer.MeasureText(this.form1.TempProx.Text, new Font("Arial Rounded MT", fontSize));
+                    int tempStartX = 530;
+                    int tempStartY = 60;
+                    Rectangle temperatureRectangle = new Rectangle(new Point(tempStartX, tempStartY), sizeOfText);
+                    e.Graphics.FillRectangle(Brushes.LightGray, temperatureRectangle);
+                    string temperatureString = this.form1.TempProxValue.ToString("N0");
+                    // Draw the Temperature Proximate here
+                    e.Graphics.DrawString(temperatureString + "°", myFont, Brushes.Black, new Point(tempStartX, tempStartY));
+                }
 
+            }
         }
     }
 }

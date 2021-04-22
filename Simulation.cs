@@ -57,7 +57,7 @@ namespace FlowWorks
                     Thread.Sleep(500);
                     if (this.form1.CurrentScreen != this.CurrentScreen)
                     {
-                        Console.WriteLine("Change to screen: "+this.form1.CurrentScreen.ToString());
+                        Console.WriteLine("Change to screen: " + this.form1.CurrentScreen.ToString());
                         changeScreen(this.form1.CurrentScreen);
                         this.CurrentScreen = this.form1.CurrentScreen;
                     }
@@ -72,7 +72,8 @@ namespace FlowWorks
                                     this.simulationPictureBox.Refresh();
                                 }
                             ));
-                        } else
+                        }
+                        else
                         {
                             this.simulationPictureBox.Refresh();
                         }
@@ -258,6 +259,7 @@ namespace FlowWorks
 
         private void simulationPictureBox_Paint(object sender, PaintEventArgs e)
         {
+            Color myColor = new Color();
             // This draws the setpoints for baby pressure and FiO2 into the lower panel area (smaller font)
             if ((this.CurrentScreen >= 17) && (this.CurrentScreen <= 20))
             {
@@ -294,29 +296,70 @@ namespace FlowWorks
                     // Don't need the background box for the screen with no dashes
                     if (this.CurrentScreen != 18)
                     {
+                        myColor =
+                            Color.FromArgb(
+                                255, // Specifies the transparency of the color.
+                                87, // Specifies the amount of red.
+                                87, // specifies the amount of green.
+                                87); // Specifies the amount of blue.
+                        SolidBrush mySolidBrush = new SolidBrush(myColor);
                         // First fill in the rectangle - this covers over the "dashes" in the .png file
-                        e.Graphics.FillRectangle(Brushes.Gray, fio2Rectangle);
+                        e.Graphics.FillRectangle(mySolidBrush, fio2Rectangle);
                     }
                     // Draw the FiO2 setpoint here
                     e.Graphics.DrawString(fio2String, myFont, Brushes.WhiteSmoke, new Point(fio2StartX, startY));
                 }
             }
-            // This draws the current values of baby pressure and FiO2 into the upper panel area (larger font)
+
+            // This draws the current values of temperature
             if ((this.CurrentScreen == 17) || (this.CurrentScreen == 18) || (this.CurrentScreen == 19) || (this.CurrentScreen == 20))
             {
                 float fontSize = 22;
+                myColor =
+                    Color.FromArgb(
+                        255, // Specifies the transparency of the color.
+                        220, // Specifies the amount of red.
+                        220, // specifies the amount of green.
+                        220); // Specifies the amount of blue.
+                SolidBrush mySolidBrush = new SolidBrush(myColor);
                 using (Font myFont = new Font("Arial Rounded MT", fontSize))
                 {
                     Size sizeOfText = TextRenderer.MeasureText(this.form1.TempProx.Text, new Font("Arial Rounded MT", fontSize));
                     int tempStartX = 530;
                     int tempStartY = 60;
                     Rectangle temperatureRectangle = new Rectangle(new Point(tempStartX, tempStartY), sizeOfText);
-                    e.Graphics.FillRectangle(Brushes.LightGray, temperatureRectangle);
+                    e.Graphics.FillRectangle(mySolidBrush, temperatureRectangle);
                     string temperatureString = this.form1.TempProxValue.ToString("N0");
                     // Draw the Temperature Proximate here
                     e.Graphics.DrawString(temperatureString + "°", myFont, Brushes.Black, new Point(tempStartX, tempStartY));
                 }
 
+            }
+
+            // This draws the current value of firmware revision
+            if ((this.CurrentScreen == 1))
+            {
+                float fontSize = 14;
+                myColor =
+                    Color.FromArgb(
+                        255, // Specifies the transparency of the color.
+                        245, // Specifies the amount of red.
+                        245, // specifies the amount of green.
+                        245); // Specifies the amount of blue.
+                SolidBrush mySolidBrush = new SolidBrush(myColor);
+                using (Font myFont = new Font("Arial", fontSize))
+                {
+                    string versionString = "Software " + this.form1.firmwareVersionLabel.Text + "        ";
+                    Size sizeOfText = TextRenderer.MeasureText(versionString, new Font("Arial", fontSize));
+                    int versionStartX = 15;
+                    int startY = 227;
+                    Rectangle versionRectangle = new Rectangle(new Point(versionStartX, startY), sizeOfText);
+                    // First fill in the rectangle - this covers over the "dashes" in the .png file
+                    e.Graphics.FillRectangle(mySolidBrush, versionRectangle);
+
+                    // Draw the Baby Pressure setpoint here
+                    e.Graphics.DrawString(versionString, myFont, Brushes.Gray, new Point(versionStartX, startY));
+                }
             }
         }
     }

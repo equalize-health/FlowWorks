@@ -1099,7 +1099,7 @@ namespace FlowWorks
         private System.Windows.Forms.ToolStripMenuItem comportMenu;
         private System.Windows.Forms.TextBox connectedTextBox;
         private System.Windows.Forms.TextBox commandBox;
-        private System.Windows.Forms.Label firmwareVersionLabel;
+        public System.Windows.Forms.Label firmwareVersionLabel;
         private System.Windows.Forms.Label dateLabel;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.Label timeLabel;

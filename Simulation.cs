@@ -209,6 +209,26 @@ namespace FlowWorks
                     screenName = Assembly.GetEntryAssembly().GetManifestResourceNames()[28];
                     this.simulationPictureBox.Image = new Bitmap(Assembly.GetEntryAssembly().GetManifestResourceStream(screenName));
                     break;
+                case 21:
+                    // alarm high pressure
+                    screenName = Assembly.GetEntryAssembly().GetManifestResourceNames()[22];
+                    this.simulationPictureBox.Image = new Bitmap(Assembly.GetEntryAssembly().GetManifestResourceStream(screenName));
+                    break;
+                case 22:
+                    // alarm low pressure
+                    screenName = Assembly.GetEntryAssembly().GetManifestResourceNames()[24];
+                    this.simulationPictureBox.Image = new Bitmap(Assembly.GetEntryAssembly().GetManifestResourceStream(screenName));
+                    break;
+                case 23:
+                    // alarm low FiO2
+                    screenName = Assembly.GetEntryAssembly().GetManifestResourceNames()[23];
+                    this.simulationPictureBox.Image = new Bitmap(Assembly.GetEntryAssembly().GetManifestResourceStream(screenName));
+                    break;
+                case 24:
+                    // alarm low battery
+                    screenName = Assembly.GetEntryAssembly().GetManifestResourceNames()[21];
+                    this.simulationPictureBox.Image = new Bitmap(Assembly.GetEntryAssembly().GetManifestResourceStream(screenName));
+                    break;
                 default:
                     string[] all = System.Reflection.Assembly.GetEntryAssembly().GetManifestResourceNames();
                     screenName = Assembly.GetEntryAssembly().GetManifestResourceNames()[24]; // ALarm screen

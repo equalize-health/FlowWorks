@@ -44,6 +44,7 @@ namespace FlowWorks
         public double TempProxValue { get; private set; }
         public double BabyPressureValue { get; private set; }
         public double FiO2Value { get; private set; }
+        public string o2Status { get; private set; }
 
         public Form1()
         {
@@ -249,6 +250,16 @@ namespace FlowWorks
                 this.HeatWireUnderPIDControl = false;
                 this.StartHeatWire.Text = "Start";
             }
+            if (deviceData.o2Sensor < 0.0)
+            {
+                // Invalid O2 sensor reading, probably O2 sensor is missing
+                this.o2SensorAvg.Text = "N/C";
+                this.o2SensorAvg.BackColor = Color.LightGray;
+                this.o2SensorStatusDescription.Text = "Not Available";
+            } else
+            {
+                this.o2SensorAvg.Text = deviceData.o2Sensor.ToString("N2");
+            }
             this.SetBlower.Value = (decimal)deviceData.blowerSetting;
             this.SetPropValve.Value = (decimal)deviceData.propValveSetting;
             this.cFactor.Text = deviceData.cFactor.ToString("N3");
@@ -281,6 +292,55 @@ namespace FlowWorks
                                   deviceStatus.timeMin.ToString("00") + ":" +
                                   deviceStatus.timeSec.ToString("00");
             this.CurrentScreen = deviceStatus.currentScreen;
+            if (deviceStatus.ambientPressure > 700)
+            {
+                this.pressureAmbient.Text = deviceStatus.ambientPressure.ToString("N0");
+            } else
+            {
+                this.pressureAmbient.Text = "N/C";
+                this.pressureAmbient.BackColor = Color.LightGray;
+            }
+            this.o2Status = deviceStatus.o2Status.ToString();
+            if (deviceStatus.o2Status == 0)
+            {
+                this.o2SensorAvg.BackColor = Color.Red;
+                this.o2SensorStatusDescription.Text = "Sensor Off";
+            }
+            else if (deviceStatus.o2Status == 1)
+            {
+                if (deviceStatus.o2CalibrationStatus == 1)
+                {
+                    this.o2SensorAvg.BackColor = Color.LightYellow;
+                    this.o2SensorStatusDescription.Text = "Calibrating O2...";
+                }
+                else if (deviceStatus.o2CalibrationStatus == 2)
+                {
+                    this.o2SensorAvg.BackColor = Color.LightBlue;
+                    this.o2SensorStatusDescription.Text = "Warming up, Calibration Complete";
+                }
+                else {
+                    this.o2SensorAvg.BackColor = Color.Yellow;
+                    this.o2SensorStatusDescription.Text = "Warming Up";
+                }
+            }
+            else if (deviceStatus.o2Status == 2)
+            {
+                if (deviceStatus.o2CalibrationStatus == 1)
+                {
+                    this.o2SensorAvg.BackColor = Color.LightYellow;
+                    this.o2SensorStatusDescription.Text = "Calibrating O2...";
+                }
+                else if (deviceStatus.o2CalibrationStatus == 2)
+                {
+                    this.o2SensorAvg.BackColor = Color.LightBlue;
+                    this.o2SensorStatusDescription.Text = "Running, Calibration Complete";
+                }
+                else {
+
+                    this.o2SensorAvg.BackColor = Color.LightGreen;
+                    this.o2SensorStatusDescription.Text = "Running";
+                }
+            }
         }
         // private helper functions
         private void OverwriteLastCommandWith(string s)
@@ -647,6 +707,37 @@ namespace FlowWorks
             {
                 return;
             }
+        }
+
+        private void o2SensorAvg_Click(object sender, EventArgs e)
+        {
+            if (this.pressureAmbient.Text == "N/C")
+            {
+                // Don't bring up O2 sensor popup if sensor appears not connected
+                return;
+            }
+            o2Sensor o2SensorPopup = new o2Sensor();
+            DialogResult result = o2SensorPopup.ShowDialog(this);
+            if (result == DialogResult.Yes)
+            {
+                fwViewer.AddTerminalCommand("o2Power(1)");
+                Console.WriteLine("Turn on O2 Power");
+            }
+            if (result == DialogResult.No) {
+                fwViewer.AddTerminalCommand("o2calibrate(0)");
+                fwViewer.AddTerminalCommand("o2Power(0)");
+                Console.WriteLine("Turn off O2 Power");
+            }
+            if (result == DialogResult.OK) {
+                fwViewer.AddTerminalCommand("o2calibrate(1)");
+                Console.WriteLine("Turn on O2 Calibration");
+            }
+            if (result == DialogResult.Cancel)
+            {
+                // Do Nothing
+                Console.WriteLine("Cancel O2 operation");
+            }
+            o2SensorPopup.Dispose();
         }
     }
 }

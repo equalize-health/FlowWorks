@@ -67,7 +67,6 @@ namespace FlowWorks
             this.label4 = new System.Windows.Forms.Label();
             this.responseBox = new System.Windows.Forms.TextBox();
             this.label5 = new System.Windows.Forms.Label();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.BlowerSpeed = new System.Windows.Forms.Label();
             this.BabyPressure = new System.Windows.Forms.Label();
             this.FlowLeak = new System.Windows.Forms.Label();
@@ -120,14 +119,20 @@ namespace FlowWorks
             this.FiO2 = new System.Windows.Forms.Label();
             this.textBox10 = new System.Windows.Forms.TextBox();
             this.StartSimulation = new System.Windows.Forms.Button();
+            this.o2SensorAvg = new System.Windows.Forms.Label();
+            this.textBox18 = new System.Windows.Forms.TextBox();
+            this.textBox19 = new System.Windows.Forms.TextBox();
+            this.pressureAmbient = new System.Windows.Forms.Label();
+            this.o2SensorStatusDescription = new System.Windows.Forms.TextBox();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.menuStrip1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.PressBabySetpt)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.Fio2Setpt)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.SetBlower)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.SetPropValve)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.HeatPlateSetting)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.HeatWireSetting)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
             // menuStrip1
@@ -377,17 +382,6 @@ namespace FlowWorks
             this.label5.Size = new System.Drawing.Size(207, 32);
             this.label5.TabIndex = 57;
             this.label5.Text = "Response Box:";
-            // 
-            // pictureBox1
-            // 
-            this.pictureBox1.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("pictureBox1.BackgroundImage")));
-            this.pictureBox1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.pictureBox1.Location = new System.Drawing.Point(52, 135);
-            this.pictureBox1.Margin = new System.Windows.Forms.Padding(2);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(1548, 645);
-            this.pictureBox1.TabIndex = 58;
-            this.pictureBox1.TabStop = false;
             // 
             // BlowerSpeed
             // 
@@ -1001,12 +995,82 @@ namespace FlowWorks
             this.StartSimulation.UseVisualStyleBackColor = false;
             this.StartSimulation.Click += new System.EventHandler(this.StartSimulation_Click);
             // 
+            // o2SensorAvg
+            // 
+            this.o2SensorAvg.AutoSize = true;
+            this.o2SensorAvg.ForeColor = System.Drawing.SystemColors.Highlight;
+            this.o2SensorAvg.Location = new System.Drawing.Point(410, 173);
+            this.o2SensorAvg.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.o2SensorAvg.Name = "o2SensorAvg";
+            this.o2SensorAvg.Size = new System.Drawing.Size(55, 32);
+            this.o2SensorAvg.TabIndex = 122;
+            this.o2SensorAvg.Text = "0.0";
+            this.o2SensorAvg.Click += new System.EventHandler(this.o2SensorAvg_Click);
+            // 
+            // textBox18
+            // 
+            this.textBox18.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.textBox18.Location = new System.Drawing.Point(250, 170);
+            this.textBox18.Margin = new System.Windows.Forms.Padding(2);
+            this.textBox18.Name = "textBox18";
+            this.textBox18.Size = new System.Drawing.Size(142, 31);
+            this.textBox18.TabIndex = 123;
+            this.textBox18.Text = "O2 Sensor:";
+            // 
+            // textBox19
+            // 
+            this.textBox19.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.textBox19.Location = new System.Drawing.Point(277, 205);
+            this.textBox19.Margin = new System.Windows.Forms.Padding(2);
+            this.textBox19.Name = "textBox19";
+            this.textBox19.Size = new System.Drawing.Size(123, 31);
+            this.textBox19.TabIndex = 124;
+            this.textBox19.Text = "Pressure:";
+            // 
+            // pressureAmbient
+            // 
+            this.pressureAmbient.AutoSize = true;
+            this.pressureAmbient.ForeColor = System.Drawing.SystemColors.Highlight;
+            this.pressureAmbient.Location = new System.Drawing.Point(410, 208);
+            this.pressureAmbient.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.pressureAmbient.Name = "pressureAmbient";
+            this.pressureAmbient.Size = new System.Drawing.Size(55, 32);
+            this.pressureAmbient.TabIndex = 125;
+            this.pressureAmbient.Text = "0.0";
+            // 
+            // o2SensorStatusDescription
+            // 
+            this.o2SensorStatusDescription.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.o2SensorStatusDescription.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.1F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.o2SensorStatusDescription.Location = new System.Drawing.Point(499, 174);
+            this.o2SensorStatusDescription.Margin = new System.Windows.Forms.Padding(2);
+            this.o2SensorStatusDescription.Name = "o2SensorStatusDescription";
+            this.o2SensorStatusDescription.Size = new System.Drawing.Size(443, 31);
+            this.o2SensorStatusDescription.TabIndex = 126;
+            this.o2SensorStatusDescription.Text = "Inactive";
+            // 
+            // pictureBox1
+            // 
+            this.pictureBox1.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("pictureBox1.BackgroundImage")));
+            this.pictureBox1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.pictureBox1.Location = new System.Drawing.Point(52, 135);
+            this.pictureBox1.Margin = new System.Windows.Forms.Padding(2);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(1548, 645);
+            this.pictureBox1.TabIndex = 58;
+            this.pictureBox1.TabStop = false;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(240F, 240F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
             this.AutoSize = true;
             this.ClientSize = new System.Drawing.Size(1982, 1368);
+            this.Controls.Add(this.o2SensorStatusDescription);
+            this.Controls.Add(this.pressureAmbient);
+            this.Controls.Add(this.textBox19);
+            this.Controls.Add(this.textBox18);
+            this.Controls.Add(this.o2SensorAvg);
             this.Controls.Add(this.StartSimulation);
             this.Controls.Add(this.textBox10);
             this.Controls.Add(this.FiO2);
@@ -1080,13 +1144,13 @@ namespace FlowWorks
             this.Text = "FlowWorks App ";
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.PressBabySetpt)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.Fio2Setpt)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.SetBlower)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.SetPropValve)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.HeatPlateSetting)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.HeatWireSetting)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -1168,5 +1232,10 @@ namespace FlowWorks
         private System.Windows.Forms.TextBox textBox10;
         private System.Windows.Forms.Button StartSimulation;
         private System.Windows.Forms.ToolStripMenuItem enableLoggingToolStripMenuItem;
+        private System.Windows.Forms.Label o2SensorAvg;
+        private System.Windows.Forms.TextBox textBox18;
+        private System.Windows.Forms.TextBox textBox19;
+        private System.Windows.Forms.Label pressureAmbient;
+        private System.Windows.Forms.TextBox o2SensorStatusDescription;
     }
 }

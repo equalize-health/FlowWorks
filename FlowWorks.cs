@@ -319,6 +319,9 @@ namespace FlowWorks
         public int dateYear;
         public int currentScreen;
         private string boardSerialNumber;
+        public double ambientPressure;
+        public int o2Status;
+        public int o2CalibrationStatus;
 
         public string Status
         {
@@ -362,6 +365,15 @@ namespace FlowWorks
                         case 10:
                             this.currentScreen = Convert.ToInt32(dataList[i]);
                             break;
+                        case 11:
+                            this.ambientPressure = Convert.ToDouble(dataList[i]);
+                            break;
+                        case 12:
+                            this.o2Status = Convert.ToInt32(dataList[i]);
+                            break;
+                        case 13:
+                            this.o2CalibrationStatus = Convert.ToInt32(dataList[i]);
+                            break;
                     }
                 }
 
@@ -395,6 +407,7 @@ namespace FlowWorks
         public double heatWireSetpt;
         public int heatPlatePIDEnable;
         public int heatWirePIDEnable;
+        public double o2Sensor;
         public double propValveSetting { get; set; }
         public int blowerSetting { get; set; }
         public string Data
@@ -486,6 +499,9 @@ namespace FlowWorks
                             break;
                         case 25:
                             this.heatWirePIDEnable = Convert.ToInt32(dataList[i]);
+                            break;
+                        case 26:
+                            this.o2Sensor = Convert.ToDouble(dataList[i]);
                             break;
                     }
                 }

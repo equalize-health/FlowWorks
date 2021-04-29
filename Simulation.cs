@@ -61,7 +61,7 @@ namespace FlowWorks
                         changeScreen(this.form1.CurrentScreen);
                         this.CurrentScreen = this.form1.CurrentScreen;
                     }
-                    if ((this.CurrentScreen >= 17) && (this.CurrentScreen <= 20))
+                    if ((this.CurrentScreen >= 1) && (this.CurrentScreen <= 24))
                     {
                         // Refresh the box to re-draw the FiO2 and baby pressure
                         if (this.simulationPictureBox.InvokeRequired)
@@ -107,131 +107,133 @@ namespace FlowWorks
         private void changeScreen(int currentScreen)
         {
             string screenName;
+            string[] screenImages = Assembly.GetEntryAssembly().GetManifestResourceNames();
+            int screenImageBase = 14 + 1;
             switch (currentScreen)
             {
                 case 1:
                     //Splash_START:
-                    screenName = Assembly.GetEntryAssembly().GetManifestResourceNames()[14];
+                    screenName = screenImages[screenImageBase];
                     this.simulationPictureBox.Image = new Bitmap(Assembly.GetEntryAssembly().GetManifestResourceStream(screenName));
                     break;
                 case 2:
                     //Splash_PROGRESS
-                    screenName = Assembly.GetEntryAssembly().GetManifestResourceNames()[16];
+                    screenName = screenImages[screenImageBase+2];
                     this.simulationPictureBox.Image = new Bitmap(Assembly.GetEntryAssembly().GetManifestResourceStream(screenName));
                     break;
                 case 3:
                     //Splash_DONE
-                    screenName = Assembly.GetEntryAssembly().GetManifestResourceNames()[15];
+                    screenName = screenImages[screenImageBase+1];
                     this.simulationPictureBox.Image = new Bitmap(Assembly.GetEntryAssembly().GetManifestResourceStream(screenName));
                     break;
                 case 4:
                     //Fill_Humidifier
-                    screenName = Assembly.GetEntryAssembly().GetManifestResourceNames()[17];
+                    screenName = screenImages[screenImageBase+3];
                     this.simulationPictureBox.Image = new Bitmap(Assembly.GetEntryAssembly().GetManifestResourceStream(screenName));
                     break;
                 case 5:
                     //Reinstall_Humidifier
-                    screenName = Assembly.GetEntryAssembly().GetManifestResourceNames()[18];
+                    screenName = screenImages[screenImageBase+4];
                     this.simulationPictureBox.Image = new Bitmap(Assembly.GetEntryAssembly().GetManifestResourceStream(screenName));
                     break;
                 case 6:
                     //Connect_Exp
-                    screenName = Assembly.GetEntryAssembly().GetManifestResourceNames()[19];
+                    screenName = screenImages[screenImageBase+5];
                     this.simulationPictureBox.Image = new Bitmap(Assembly.GetEntryAssembly().GetManifestResourceStream(screenName));
                     break;
                 case 7:
                     //connect_Heater_to_Insp
-                    screenName = Assembly.GetEntryAssembly().GetManifestResourceNames()[20];
+                    screenName = screenImages[screenImageBase+6];
                     this.simulationPictureBox.Image = new Bitmap(Assembly.GetEntryAssembly().GetManifestResourceStream(screenName));
                     break;
                 case 8:
                     //connect_mid_temp_to_Insp
-                    screenName = Assembly.GetEntryAssembly().GetManifestResourceNames()[5];
+                    screenName = screenImages[screenImageBase-9];
                     this.simulationPictureBox.Image = new Bitmap(Assembly.GetEntryAssembly().GetManifestResourceStream(screenName));
                     break;
                 case 9:
                     //connect_end_temp_to_Insp
-                    screenName = Assembly.GetEntryAssembly().GetManifestResourceNames()[6];
+                    screenName = screenImages[screenImageBase-8];
                     this.simulationPictureBox.Image = new Bitmap(Assembly.GetEntryAssembly().GetManifestResourceStream(screenName));
                     break;
                 case 10:
                     //connect_heater_cable
-                    screenName = Assembly.GetEntryAssembly().GetManifestResourceNames()[7];
+                    screenName = screenImages[screenImageBase-7];
                     this.simulationPictureBox.Image = new Bitmap(Assembly.GetEntryAssembly().GetManifestResourceStream(screenName));
                     break;
                 case 11:
                     //connect_temperature_cable
-                    screenName = Assembly.GetEntryAssembly().GetManifestResourceNames()[8];
+                    screenName = screenImages[screenImageBase-6];
                     this.simulationPictureBox.Image = new Bitmap(Assembly.GetEntryAssembly().GetManifestResourceStream(screenName));
                     break;
                 case 12:
                     //connect_insp_tube
-                    screenName = Assembly.GetEntryAssembly().GetManifestResourceNames()[9];
+                    screenName = screenImages[screenImageBase-5];
                     this.simulationPictureBox.Image = new Bitmap(Assembly.GetEntryAssembly().GetManifestResourceStream(screenName));
                     break;
                 case 13:
                     //connect_nasal_interface
-                    screenName = Assembly.GetEntryAssembly().GetManifestResourceNames()[10];
+                    screenName = screenImages[screenImageBase-4];
                     this.simulationPictureBox.Image = new Bitmap(Assembly.GetEntryAssembly().GetManifestResourceStream(screenName));
                     break;
                 case 14:
                     //connect_oxygen
-                    screenName = Assembly.GetEntryAssembly().GetManifestResourceNames()[11];
+                    screenName = screenImages[screenImageBase-3];
                     this.simulationPictureBox.Image = new Bitmap(Assembly.GetEntryAssembly().GetManifestResourceStream(screenName));
                     break;
                 case 15:
                     //self_test_start
-                    screenName = Assembly.GetEntryAssembly().GetManifestResourceNames()[12];
+                    screenName = screenImages[screenImageBase-2];
                     this.simulationPictureBox.Image = new Bitmap(Assembly.GetEntryAssembly().GetManifestResourceStream(screenName));
                     break;
                 case 16:
                     //self_test_progress
-                    screenName = Assembly.GetEntryAssembly().GetManifestResourceNames()[13];
+                    screenName = screenImages[screenImageBase-1];
                     this.simulationPictureBox.Image = new Bitmap(Assembly.GetEntryAssembly().GetManifestResourceStream(screenName));
                     break;
                 case 17:
                     //running_01 encod_Screen1
-                    screenName = Assembly.GetEntryAssembly().GetManifestResourceNames()[25];
+                    screenName = screenImages[screenImageBase+11];
                     this.simulationPictureBox.Image = new Bitmap(Assembly.GetEntryAssembly().GetManifestResourceStream(screenName));
                     break;
                 case 18:
                     //running_02 encod_Screen2
-                    screenName = Assembly.GetEntryAssembly().GetManifestResourceNames()[26];
+                    screenName = screenImages[screenImageBase+12];
                     this.simulationPictureBox.Image = new Bitmap(Assembly.GetEntryAssembly().GetManifestResourceStream(screenName));
                     break;
                 case 19:
                     //running_03 encod_ScreenDASH
-                    screenName = Assembly.GetEntryAssembly().GetManifestResourceNames()[27];
+                    screenName = screenImages[screenImageBase+13];
                     this.simulationPictureBox.Image = new Bitmap(Assembly.GetEntryAssembly().GetManifestResourceStream(screenName));
                     break;
                 case 20:
                     //running_04 encod_ScreenAdjusting
-                    screenName = Assembly.GetEntryAssembly().GetManifestResourceNames()[28];
+                    screenName = screenImages[screenImageBase+14];
                     this.simulationPictureBox.Image = new Bitmap(Assembly.GetEntryAssembly().GetManifestResourceStream(screenName));
                     break;
                 case 21:
                     // alarm high pressure
-                    screenName = Assembly.GetEntryAssembly().GetManifestResourceNames()[22];
+                    screenName = screenImages[screenImageBase+8];
                     this.simulationPictureBox.Image = new Bitmap(Assembly.GetEntryAssembly().GetManifestResourceStream(screenName));
                     break;
                 case 22:
                     // alarm low pressure
-                    screenName = Assembly.GetEntryAssembly().GetManifestResourceNames()[24];
+                    screenName = screenImages[screenImageBase+10];
                     this.simulationPictureBox.Image = new Bitmap(Assembly.GetEntryAssembly().GetManifestResourceStream(screenName));
                     break;
                 case 23:
                     // alarm low FiO2
-                    screenName = Assembly.GetEntryAssembly().GetManifestResourceNames()[23];
+                    screenName = screenImages[screenImageBase+9];
                     this.simulationPictureBox.Image = new Bitmap(Assembly.GetEntryAssembly().GetManifestResourceStream(screenName));
                     break;
                 case 24:
                     // alarm low battery
-                    screenName = Assembly.GetEntryAssembly().GetManifestResourceNames()[21];
+                    screenName = screenImages[screenImageBase+7];
                     this.simulationPictureBox.Image = new Bitmap(Assembly.GetEntryAssembly().GetManifestResourceStream(screenName));
                     break;
                 default:
                     string[] all = System.Reflection.Assembly.GetEntryAssembly().GetManifestResourceNames();
-                    screenName = Assembly.GetEntryAssembly().GetManifestResourceNames()[24]; // ALarm screen
+                    screenName = screenImages[screenImageBase+10]; // Alarm screen
                     this.simulationPictureBox.Image = new Bitmap(Assembly.GetEntryAssembly().GetManifestResourceStream(screenName));
                     break;
 
@@ -281,27 +283,27 @@ namespace FlowWorks
         {
             Color myColor = new Color();
             // This draws the setpoints for baby pressure and FiO2 into the lower panel area (smaller font)
-            if ((this.CurrentScreen >= 17) && (this.CurrentScreen <= 20))
+            if ((this.CurrentScreen >= 17) && (this.CurrentScreen <= 24))
             {
-                using (Font myFont = new Font("Arial", 24))
+                using (Font myFont = new Font("Arial", 19))
                 {
                     // Draw the Baby Pressure setpoint here
-                    e.Graphics.DrawString(this.form1.PressBabySetpt.Value.ToString(), myFont, Brushes.Black, new Point(150, 370));
+                    e.Graphics.DrawString(this.form1.PressBabySetpt.Value.ToString(), myFont, Brushes.Black, new Point(170, 374));
                     // Draw the FiO2 setpoint here
-                    e.Graphics.DrawString(this.form1.Fio2Setpt.Value.ToString(), myFont, Brushes.WhiteSmoke, new Point(400, 370));
+                    e.Graphics.DrawString(this.form1.Fio2Setpt.Value.ToString(), myFont, Brushes.WhiteSmoke, new Point(410, 374));
                 }
             }
             // This draws the current values of baby pressure and FiO2 into the upper panel area (larger font)
-            if ((this.CurrentScreen == 18) || (this.CurrentScreen == 19) || (this.CurrentScreen == 20))
+            if ((this.CurrentScreen >= 18) && (this.CurrentScreen <= 24))
             {
-                float fontSize = 38;
+                float fontSize = 72;
                 using (Font myFont = new Font("Arial", fontSize))
                 {
-                    string babyPressureString = this.form1.BabyPressureValue.ToString("N1");
+                    string babyPressureString = this.form1.BabyPressureValue.ToString("N0");
                     Size sizeOfText = TextRenderer.MeasureText(babyPressureString, new Font("Arial", fontSize));
-                    int bpStartX = 85;
-                    int fio2StartX = 350;
-                    int startY = 285;
+                    int bpStartX = 105;
+                    int fio2StartX = 330;
+                    int startY = 255;
                     Rectangle babyPressureRectangle = new Rectangle(new Point(bpStartX, startY), sizeOfText);
                     if (this.CurrentScreen != 18)
                     {
@@ -309,7 +311,10 @@ namespace FlowWorks
                         e.Graphics.FillRectangle(Brushes.White, babyPressureRectangle);
                     }
                     // Draw the Baby Pressure setpoint here
-                    e.Graphics.DrawString(babyPressureString, myFont, Brushes.Black, new Point(bpStartX, startY));
+                    if (this.CurrentScreen == 21 || this.CurrentScreen == 22)
+                        e.Graphics.DrawString(babyPressureString, myFont, Brushes.OrangeRed, new Point(bpStartX, startY));
+                    else
+                        e.Graphics.DrawString(babyPressureString, myFont, Brushes.Black, new Point(bpStartX, startY));
                     string fio2String = this.form1.FiO2Value.ToString("N0");
                     sizeOfText = TextRenderer.MeasureText(fio2String, new Font("Arial", fontSize));
                     Rectangle fio2Rectangle = new Rectangle(new Point(fio2StartX, startY), sizeOfText);
@@ -326,13 +331,16 @@ namespace FlowWorks
                         // First fill in the rectangle - this covers over the "dashes" in the .png file
                         e.Graphics.FillRectangle(mySolidBrush, fio2Rectangle);
                     }
-                    // Draw the FiO2 setpoint here
-                    e.Graphics.DrawString(fio2String, myFont, Brushes.WhiteSmoke, new Point(fio2StartX, startY));
+                    // Draw the FiO2 value here
+                    if (this.CurrentScreen == 23 || this.CurrentScreen == 23)
+                        e.Graphics.DrawString(fio2String, myFont, Brushes.OrangeRed, new Point(fio2StartX, startY));
+                    else
+                        e.Graphics.DrawString(fio2String, myFont, Brushes.WhiteSmoke, new Point(fio2StartX, startY));
                 }
             }
 
             // This draws the current values of temperature
-            if ((this.CurrentScreen == 17) || (this.CurrentScreen == 18) || (this.CurrentScreen == 19) || (this.CurrentScreen == 20))
+            if ((this.CurrentScreen >= 17) && (this.CurrentScreen <= 24))
             {
                 float fontSize = 22;
                 myColor =
@@ -381,6 +389,11 @@ namespace FlowWorks
                     e.Graphics.DrawString(versionString, myFont, Brushes.Gray, new Point(versionStartX, startY));
                 }
             }
+            // Fill in the battery progress bar
+            this.batteryCharge.Value = Convert.ToInt32(form1.BatteryCharge);
+            if (this.batteryCharge.Value > 50) this.batteryCharge.ForeColor = Color.Green;
+            else if (this.batteryCharge.Value > 30) this.batteryCharge.ForeColor = Color.Yellow;
+            else if (this.batteryCharge.Value <= 30) this.batteryCharge.ForeColor = Color.Red;
         }
     }
 }

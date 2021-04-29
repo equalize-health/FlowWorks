@@ -45,6 +45,8 @@ namespace FlowWorks
         public double BabyPressureValue { get; private set; }
         public double FiO2Value { get; private set; }
         public string o2Status { get; private set; }
+        public double BatteryCharge { get; private set; }
+        public double BatteryCurrent { get; private set; }
 
         public Form1()
         {
@@ -341,6 +343,8 @@ namespace FlowWorks
                     this.o2SensorStatusDescription.Text = "Running";
                 }
             }
+            this.BatteryCharge = deviceStatus.batteryCharge;
+            this.BatteryCurrent = deviceStatus.batteryCurrent;
         }
         // private helper functions
         private void OverwriteLastCommandWith(string s)

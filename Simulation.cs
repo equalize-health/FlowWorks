@@ -10,6 +10,7 @@ using System.Windows.Forms;
 using System.Threading;
 using System.IO;
 using System.Reflection;
+using System.Runtime.InteropServices;
 
 namespace FlowWorks
 {
@@ -391,9 +392,54 @@ namespace FlowWorks
             }
             // Fill in the battery progress bar
             this.batteryCharge.Value = Convert.ToInt32(form1.BatteryCharge);
-            if (this.batteryCharge.Value > 50) this.batteryCharge.ForeColor = Color.Green;
-            else if (this.batteryCharge.Value > 30) this.batteryCharge.ForeColor = Color.Yellow;
-            else if (this.batteryCharge.Value <= 30) this.batteryCharge.ForeColor = Color.Red;
+            if (this.batteryCharge.Value > 50) this.batteryCharge.SetState(1); // this.batteryCharge.ForeColor = Color.Green;
+            else if (this.batteryCharge.Value > 30) this.batteryCharge.SetState(3); //this.batteryCharge.ForeColor = Color.Yellow;
+            else if (this.batteryCharge.Value <= 30) this.batteryCharge.SetState(2); //this.batteryCharge.ForeColor = Color.Red;
+
+            // decide whether to show the "plugged in" icon
+            if (this.CurrentScreen != 24)
+            {
+                myColor =
+                    Color.FromArgb(
+                        255, // Specifies the transparency of the color.
+                        220, // Specifies the amount of red.
+                        220, // specifies the amount of green.
+                        220); // Specifies the amount of blue.
+            } else
+            {
+                // If low-battery screen, make color red
+                myColor =
+                    Color.FromArgb(
+                        255, // Specifies the transparency of the color.
+                        240, // Specifies the amount of red.
+                        0, // specifies the amount of green.
+                        0); // Specifies the amount of blue.
+            }
+            SolidBrush plugSolidBrush = new SolidBrush(myColor);
+            // If charging and not "Low Battery alarm" screen
+            if ((form1.BatteryCurrent > 0) && (this.CurrentScreen != 24))
+            {
+                plugSolidBrush.Color = Color.Empty;
+            } else if ((form1.BatteryCurrent < 0) && (this.CurrentScreen == 24))
+            {
+                // Not charging and alarm screen
+                plugSolidBrush.Color = Color.Empty;
+            }
+            int plugStartX = 565;
+            int plugStartY = 10;
+            Size plugRectangle = new Size(28, 25);
+            Rectangle plugTotalRectangle = new Rectangle(new Point(plugStartX, plugStartY), plugRectangle);
+            e.Graphics.FillRectangle(plugSolidBrush, plugTotalRectangle);
         }
     }
+    public static class ModifyProgressBarColor
+    {
+        [DllImport("user32.dll", CharSet = CharSet.Auto, SetLastError = false)]
+        static extern IntPtr SendMessage(IntPtr hWnd, uint Msg, IntPtr w, IntPtr l);
+        public static void SetState(this ProgressBar pBar, int state)
+        {
+            SendMessage(pBar.Handle, 1040, (IntPtr)state, IntPtr.Zero);
+        }
+    }
+
 }

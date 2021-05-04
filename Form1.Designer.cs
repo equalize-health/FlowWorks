@@ -125,6 +125,8 @@ namespace FlowWorks
             this.pressureAmbient = new System.Windows.Forms.Label();
             this.o2SensorStatusDescription = new System.Windows.Forms.TextBox();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.label15 = new System.Windows.Forms.Label();
+            this.batteryVolts = new System.Windows.Forms.Label();
             this.menuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.PressBabySetpt)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.Fio2Setpt)).BeginInit();
@@ -146,7 +148,7 @@ namespace FlowWorks
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
             this.menuStrip1.Padding = new System.Windows.Forms.Padding(5, 2, 0, 2);
-            this.menuStrip1.Size = new System.Drawing.Size(1982, 49);
+            this.menuStrip1.Size = new System.Drawing.Size(1982, 60);
             this.menuStrip1.TabIndex = 0;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -156,7 +158,7 @@ namespace FlowWorks
             this.comportMenu,
             this.enableLoggingToolStripMenuItem});
             this.setupMenu.Name = "setupMenu";
-            this.setupMenu.Size = new System.Drawing.Size(119, 45);
+            this.setupMenu.Size = new System.Drawing.Size(119, 56);
             this.setupMenu.Text = "Setup";
             this.setupMenu.Click += new System.EventHandler(this.RefreshComList);
             // 
@@ -179,7 +181,7 @@ namespace FlowWorks
             this.startFirwmareDownloadToolStripMenuItem,
             this.aboutFirmwareToolStripMenuItem});
             this.toolStripMenuItem1.Name = "toolStripMenuItem1";
-            this.toolStripMenuItem1.Size = new System.Drawing.Size(178, 45);
+            this.toolStripMenuItem1.Size = new System.Drawing.Size(178, 56);
             this.toolStripMenuItem1.Text = "Download";
             // 
             // startFirwmareDownloadToolStripMenuItem
@@ -201,7 +203,7 @@ namespace FlowWorks
             this.aboutToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.VersionString});
             this.aboutToolStripMenuItem.Name = "aboutToolStripMenuItem";
-            this.aboutToolStripMenuItem.Size = new System.Drawing.Size(124, 45);
+            this.aboutToolStripMenuItem.Size = new System.Drawing.Size(124, 56);
             this.aboutToolStripMenuItem.Text = "About";
             // 
             // VersionString
@@ -1060,12 +1062,34 @@ namespace FlowWorks
             this.pictureBox1.TabIndex = 58;
             this.pictureBox1.TabStop = false;
             // 
+            // label15
+            // 
+            this.label15.AutoSize = true;
+            this.label15.Location = new System.Drawing.Point(1430, 72);
+            this.label15.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label15.Name = "label15";
+            this.label15.Size = new System.Drawing.Size(218, 32);
+            this.label15.TabIndex = 127;
+            this.label15.Text = "Battery Voltage:";
+            // 
+            // batteryVolts
+            // 
+            this.batteryVolts.AutoSize = true;
+            this.batteryVolts.Location = new System.Drawing.Point(1652, 72);
+            this.batteryVolts.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.batteryVolts.Name = "batteryVolts";
+            this.batteryVolts.Size = new System.Drawing.Size(71, 32);
+            this.batteryVolts.TabIndex = 128;
+            this.batteryVolts.Text = "24.0";
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(240F, 240F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
             this.AutoSize = true;
             this.ClientSize = new System.Drawing.Size(1982, 1368);
+            this.Controls.Add(this.batteryVolts);
+            this.Controls.Add(this.label15);
             this.Controls.Add(this.o2SensorStatusDescription);
             this.Controls.Add(this.pressureAmbient);
             this.Controls.Add(this.textBox19);
@@ -1237,5 +1261,7 @@ namespace FlowWorks
         private System.Windows.Forms.TextBox textBox19;
         private System.Windows.Forms.Label pressureAmbient;
         private System.Windows.Forms.TextBox o2SensorStatusDescription;
+        private System.Windows.Forms.Label label15;
+        public System.Windows.Forms.Label batteryVolts;
     }
 }

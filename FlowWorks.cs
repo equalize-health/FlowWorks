@@ -324,6 +324,7 @@ namespace FlowWorks
         public int o2CalibrationStatus;
         public double batteryCharge;
         public double batteryCurrent;
+        public double batteryVoltage;
 
         public string Status
         {
@@ -381,6 +382,9 @@ namespace FlowWorks
                             break;
                         case 15:
                             this.batteryCurrent = Convert.ToDouble(dataList[i]);
+                            break;
+                        case 16:
+                            this.batteryVoltage = Convert.ToDouble(dataList[i]);
                             break;
                     }
                 }

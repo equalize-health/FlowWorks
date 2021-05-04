@@ -345,6 +345,7 @@ namespace FlowWorks
             }
             this.BatteryCharge = deviceStatus.batteryCharge;
             this.BatteryCurrent = deviceStatus.batteryCurrent;
+            this.batteryVolts.Text = deviceStatus.batteryVoltage.ToString("N1");
         }
         // private helper functions
         private void OverwriteLastCommandWith(string s)
@@ -482,7 +483,13 @@ namespace FlowWorks
 
         private void Fio2Setpt_ValueChanged(object sender, EventArgs e)
         {
-            fwViewer.AddTerminalCommand("fio2Setpt(" + this.Fio2Setpt.Value + ")");
+            decimal setValue = this.Fio2Setpt.Value;
+            if (setValue > 21)
+            {
+                // Make odd numbers even
+                if (setValue%5 == 1) setValue -= 1;
+            }
+            fwViewer.AddTerminalCommand("fio2Setpt(" + setValue + ")");
         }
 
         private void StartBabyPressure_Click(object sender, EventArgs e)

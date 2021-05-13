@@ -320,9 +320,13 @@ namespace FlowWorks
                     this.o2SensorAvg.BackColor = Color.LightBlue;
                     this.o2SensorStatusDescription.Text = "Warming up, Calibration Complete";
                 }
-                else {
+                else if (Convert.ToDouble(this.o2SensorAvg.Text) < 5.0) {
                     this.o2SensorAvg.BackColor = Color.Yellow;
                     this.o2SensorStatusDescription.Text = "Warming Up";
+                } else
+                {
+                    this.o2SensorAvg.BackColor = Color.LightGreen;
+                    this.o2SensorStatusDescription.Text = "Running";
                 }
             }
             else if (deviceStatus.o2Status == 2)

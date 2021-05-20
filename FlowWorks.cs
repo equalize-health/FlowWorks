@@ -39,7 +39,7 @@ namespace FlowWorks
             this.form = f;
 
             // load settings
-            this.config = new Config("DreamworksViewer.cfg");
+            this.config = new Config("FlowWorks.cfg");
             this.LoadSettings();
 
             // components

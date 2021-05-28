@@ -760,5 +760,36 @@ namespace FlowWorks
             }
             o2SensorPopup.Dispose();
         }
+
+        private void startFirmwareDownloadToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            DownloadFW downloadPopup = new DownloadFW();
+            if (downloadPopup.ShowDialog(this) == DialogResult.OK)
+            {
+                // Use ProcessStartInfo class
+                ProcessStartInfo startInfo = new ProcessStartInfo();
+                startInfo.CreateNoWindow = false;
+                startInfo.UseShellExecute = false;
+                startInfo.FileName = System.IO.Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location) + "/ProgramAtmel_J19A_chip.bat";
+                Console.WriteLine("Execute program: " + startInfo.FileName);
+                UpdateResponse("Running program: " + startInfo.FileName);
+                startInfo.WindowStyle = ProcessWindowStyle.Normal;
+                try
+                {
+                    // Start the process with the info we specified.
+                    // Call WaitForExit and then the using statement will close.
+                    using (Process exeProcess = Process.Start(startInfo))
+                    {
+                        exeProcess.WaitForExit();
+                    }
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine(ex.Message);
+                    UpdateResponse("Error during download: " + ex.Message);
+                }
+            }
+            downloadPopup.Dispose();
+        }
     }
 }

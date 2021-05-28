@@ -45,6 +45,7 @@ namespace FlowWorks
             this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.startFirwmareDownloadToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.aboutFirmwareToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.startFirmwareDownloadToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.aboutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.VersionString = new System.Windows.Forms.ToolStripMenuItem();
             this.cOM1ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -176,6 +177,7 @@ namespace FlowWorks
             // 
             this.toolStripMenuItem1.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.startFirwmareDownloadToolStripMenuItem,
+            this.startFirmwareDownloadToolStripMenuItem,
             this.aboutFirmwareToolStripMenuItem});
             this.toolStripMenuItem1.Name = "toolStripMenuItem1";
             this.toolStripMenuItem1.Size = new System.Drawing.Size(73, 22);
@@ -184,16 +186,23 @@ namespace FlowWorks
             // startFirwmareDownloadToolStripMenuItem
             // 
             this.startFirwmareDownloadToolStripMenuItem.Name = "startFirwmareDownloadToolStripMenuItem";
-            this.startFirwmareDownloadToolStripMenuItem.Size = new System.Drawing.Size(207, 22);
+            this.startFirwmareDownloadToolStripMenuItem.Size = new System.Drawing.Size(229, 22);
             this.startFirwmareDownloadToolStripMenuItem.Text = "Start Firwmare Download";
             this.startFirwmareDownloadToolStripMenuItem.Click += new System.EventHandler(this.startFirwmareDownloadToolStripMenuItem_Click);
             // 
             // aboutFirmwareToolStripMenuItem
             // 
             this.aboutFirmwareToolStripMenuItem.Name = "aboutFirmwareToolStripMenuItem";
-            this.aboutFirmwareToolStripMenuItem.Size = new System.Drawing.Size(207, 22);
+            this.aboutFirmwareToolStripMenuItem.Size = new System.Drawing.Size(229, 22);
             this.aboutFirmwareToolStripMenuItem.Text = "About Firmware";
             this.aboutFirmwareToolStripMenuItem.Click += new System.EventHandler(this.aboutFirmwareToolStripMenuItem_Click);
+            // 
+            // startFirmwareDownloadToolStripMenuItem
+            // 
+            this.startFirmwareDownloadToolStripMenuItem.Name = "startFirmwareDownloadToolStripMenuItem";
+            this.startFirmwareDownloadToolStripMenuItem.Size = new System.Drawing.Size(229, 22);
+            this.startFirmwareDownloadToolStripMenuItem.Text = "Start Firmware J19 Download ";
+            this.startFirmwareDownloadToolStripMenuItem.Click += new System.EventHandler(this.startFirmwareDownloadToolStripMenuItem_Click);
             // 
             // aboutToolStripMenuItem
             // 
@@ -1239,5 +1248,6 @@ namespace FlowWorks
         private System.Windows.Forms.TextBox o2SensorStatusDescription;
         private System.Windows.Forms.Label label15;
         public System.Windows.Forms.Label batteryVolts;
+        private System.Windows.Forms.ToolStripMenuItem startFirmwareDownloadToolStripMenuItem;
     }
 }

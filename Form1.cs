@@ -294,6 +294,8 @@ namespace FlowWorks
                                   deviceStatus.timeMin.ToString("00") + ":" +
                                   deviceStatus.timeSec.ToString("00");
             this.CurrentScreen = deviceStatus.currentScreen;
+            // We're using the analog O2 sensor, which does not report pressure
+            /*
             if (deviceStatus.ambientPressure > 700)
             {
                 this.pressureAmbient.Text = deviceStatus.ambientPressure.ToString("N0");
@@ -302,6 +304,7 @@ namespace FlowWorks
                 this.pressureAmbient.Text = "N/C";
                 this.pressureAmbient.BackColor = Color.LightGray;
             }
+            */
             this.o2Status = deviceStatus.o2Status.ToString();
             if (deviceStatus.o2Status == 0)
             {
@@ -726,11 +729,14 @@ namespace FlowWorks
 
         private void o2SensorAvg_Click(object sender, EventArgs e)
         {
+            // We're using the analog O2 sensor, which does not report pressure
+            /*
             if (this.pressureAmbient.Text == "N/C")
             {
                 // Don't bring up O2 sensor popup if sensor appears not connected
                 return;
             }
+            */
             o2Sensor o2SensorPopup = new o2Sensor();
             DialogResult result = o2SensorPopup.ShowDialog(this);
             if (result == DialogResult.Yes)

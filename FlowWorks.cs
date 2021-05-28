@@ -27,6 +27,7 @@ namespace FlowWorks
         public bool streamingPaused;
         private bool dataPending;
         private int dataRequestIntervalmsecs;
+        public int blowerSpeedStatic;
 
         // constructor
         public FlowWorks(Form1 f)
@@ -225,6 +226,8 @@ namespace FlowWorks
             // If streaming is paused, don't save the data from the board - this interferes with trying to change settings
             if (!this.streamingPaused)
             {
+                if (deviceData.blowerSpeed < -10) deviceData.blowerSpeed = blowerSpeedStatic;
+                else blowerSpeedStatic = deviceData.blowerSpeed;
                 this.deviceData = deviceData;  // save the information locally
                 this.PostDeviceDataToUI(deviceData);
             }
@@ -476,6 +479,7 @@ namespace FlowWorks
                             if (this.pressSetpt < 3) this.pressSetpt = 3;
                             break;
                         case 14:
+                            // Blower speed is set to "-1000" when not available
                             this.blowerSpeed = Convert.ToInt32(dataList[i]);
                             this.blowerSpeed = (this.blowerSpeed - 70) / 10;
                             break;

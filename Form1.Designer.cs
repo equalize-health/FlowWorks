@@ -126,6 +126,7 @@ namespace FlowWorks
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.label15 = new System.Windows.Forms.Label();
             this.batteryVolts = new System.Windows.Forms.Label();
+            this.helpDocToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.PressBabySetpt)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.Fio2Setpt)).BeginInit();
@@ -207,7 +208,8 @@ namespace FlowWorks
             // aboutToolStripMenuItem
             // 
             this.aboutToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.VersionString});
+            this.VersionString,
+            this.helpDocToolStripMenuItem});
             this.aboutToolStripMenuItem.Name = "aboutToolStripMenuItem";
             this.aboutToolStripMenuItem.Size = new System.Drawing.Size(52, 22);
             this.aboutToolStripMenuItem.Text = "About";
@@ -1072,6 +1074,13 @@ namespace FlowWorks
             this.batteryVolts.TabIndex = 128;
             this.batteryVolts.Text = "24.0";
             // 
+            // helpDocToolStripMenuItem
+            // 
+            this.helpDocToolStripMenuItem.Name = "helpDocToolStripMenuItem";
+            this.helpDocToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.helpDocToolStripMenuItem.Text = "Help Doc";
+            this.helpDocToolStripMenuItem.Click += new System.EventHandler(this.helpDocToolStripMenuItem_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
@@ -1249,5 +1258,6 @@ namespace FlowWorks
         private System.Windows.Forms.Label label15;
         public System.Windows.Forms.Label batteryVolts;
         private System.Windows.Forms.ToolStripMenuItem startFirmwareDownloadToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem helpDocToolStripMenuItem;
     }
 }

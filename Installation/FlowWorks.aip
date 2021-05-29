@@ -51,6 +51,7 @@
     <ROW File="ProgramAtmel.bat" Component_="FlowWorks.exe.config" FileName="PROGRA~1.BAT|ProgramAtmel.bat" Attributes="0" SourcePath="..\bin\Debug\ProgramAtmel.bat" SelfReg="false"/>
     <ROW File="ReleaseNotes.pdf" Component_="FlowWorks.exe.config" FileName="RELEAS~1.PDF|ReleaseNotes.pdf" Attributes="0" SourcePath="..\bin\Debug\ReleaseNotes.pdf" SelfReg="false"/>
     <ROW File="ProgramAtmel_J19A_chip.bat" Component_="FlowWorks.exe.config" FileName="PROGRA~2.BAT|ProgramAtmel_J19A_chip.bat" Attributes="0" SourcePath="..\bin\Debug\ProgramAtmel_J19A_chip.bat" SelfReg="false"/>
+    <ROW File="FlowWorks_Help.pdf" Component_="FlowWorks.exe.config" FileName="FLOWWO~1.PDF|FlowWorks_Help.pdf" Attributes="0" SourcePath="..\bin\Debug\FlowWorks_Help.pdf" SelfReg="false"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.BootstrOptComponent">
     <ROW BootstrOptKey="GlobalOptions" DownloadFolder="[AppDataFolder][|Manufacturer]\[|ProductName]\prerequisites" Options="2"/>

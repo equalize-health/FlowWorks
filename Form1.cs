@@ -628,19 +628,11 @@ namespace FlowWorks
 
         private void aboutFirmwareToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            // Use ProcessStartInfo class
-            ProcessStartInfo startInfo = new ProcessStartInfo();
-            startInfo.CreateNoWindow = false;
-            startInfo.UseShellExecute = false;
-            startInfo.FileName = "C:\\Program Files (x86)\\Microsoft\\Edge\\Application\\msedge.exe ";
-            startInfo.Arguments = "\"" + System.IO.Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location) + "\\ReleaseNotes.pdf" + "\"";
-            //startInfo.Arguments = "ReleaseNotes.pdf";
-            Console.WriteLine("Opening file: " + startInfo.Arguments);
-            //UpdateResponse("Running program: " + startInfo.FileName);
-            startInfo.WindowStyle = ProcessWindowStyle.Normal;
             try
             {
-                Process exeProcess = Process.Start(startInfo);
+                string fileString = "\"" + System.IO.Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location) + "\\ReleaseNotes.pdf" + "\"";
+                Console.WriteLine("Opening file: " + fileString);
+                System.Diagnostics.Process.Start(@fileString);
             }
             catch (Exception ex)
             {
@@ -790,6 +782,12 @@ namespace FlowWorks
                 }
             }
             downloadPopup.Dispose();
+        }
+        private void helpDocToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            string fileString = "\"" + System.IO.Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location) + "\\FlowWorks_help.pdf" + "\"";
+            Console.WriteLine("Opening file: " + fileString);
+            System.Diagnostics.Process.Start(@fileString);
         }
     }
 }

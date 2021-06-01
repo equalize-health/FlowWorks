@@ -551,7 +551,7 @@ namespace FlowWorks
 
         private void Calibrate_Click(object sender, EventArgs e)
         {
-            Form2 calibratePopup = new Form2();
+            Calibrate calibratePopup = new Calibrate();
             if (calibratePopup.ShowDialog(this) == DialogResult.OK) 
             {
                 fwViewer.AddTerminalCommand("calibrate");
@@ -742,14 +742,15 @@ namespace FlowWorks
             {
                 fwViewer.AddTerminalCommand("o2Power(1)");
                 Console.WriteLine("Turn on O2 Power");
+                Console.WriteLine("NOT IMPLEMENTED YET");
             }
             if (result == DialogResult.No) {
-                fwViewer.AddTerminalCommand("o2calibrate(0)");
                 fwViewer.AddTerminalCommand("o2Power(0)");
                 Console.WriteLine("Turn off O2 Power");
+                Console.WriteLine("NOT IMPLEMENTED YET");
             }
             if (result == DialogResult.OK) {
-                fwViewer.AddTerminalCommand("o2calibrate(1)");
+                fwViewer.AddTerminalCommand("o2calibrate");
                 Console.WriteLine("Turn on O2 Calibration");
             }
             if (result == DialogResult.Cancel)

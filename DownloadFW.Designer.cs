@@ -29,6 +29,7 @@ namespace FlowWorks
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(DownloadFW));
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.StartDownload = new System.Windows.Forms.Button();
             this.button1 = new System.Windows.Forms.Button();
@@ -36,10 +37,11 @@ namespace FlowWorks
             // 
             // textBox1
             // 
-            this.textBox1.Location = new System.Drawing.Point(141, 41);
+            this.textBox1.Location = new System.Drawing.Point(53, 17);
+            this.textBox1.Margin = new System.Windows.Forms.Padding(1, 1, 1, 1);
             this.textBox1.Multiline = true;
             this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(488, 179);
+            this.textBox1.Size = new System.Drawing.Size(186, 77);
             this.textBox1.TabIndex = 3;
             this.textBox1.Text = "Before Proceeding:  connect an Atmel ICE emulator to the connector on the FlowLit" +
     "e product.\r\nDuring Firmware Download, application will be unresponsive\r\n";
@@ -49,9 +51,10 @@ namespace FlowWorks
             // 
             this.StartDownload.BackColor = System.Drawing.SystemColors.GradientActiveCaption;
             this.StartDownload.DialogResult = System.Windows.Forms.DialogResult.OK;
-            this.StartDownload.Location = new System.Drawing.Point(346, 226);
+            this.StartDownload.Location = new System.Drawing.Point(130, 95);
+            this.StartDownload.Margin = new System.Windows.Forms.Padding(1, 1, 1, 1);
             this.StartDownload.Name = "StartDownload";
-            this.StartDownload.Size = new System.Drawing.Size(94, 77);
+            this.StartDownload.Size = new System.Drawing.Size(35, 32);
             this.StartDownload.TabIndex = 1;
             this.StartDownload.Text = "OK";
             this.StartDownload.UseVisualStyleBackColor = false;
@@ -61,21 +64,24 @@ namespace FlowWorks
             // 
             this.button1.BackColor = System.Drawing.SystemColors.GradientActiveCaption;
             this.button1.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.button1.Location = new System.Drawing.Point(329, 325);
+            this.button1.Location = new System.Drawing.Point(123, 136);
+            this.button1.Margin = new System.Windows.Forms.Padding(1, 1, 1, 1);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(128, 77);
+            this.button1.Size = new System.Drawing.Size(48, 32);
             this.button1.TabIndex = 0;
             this.button1.Text = "Cancel";
             this.button1.UseVisualStyleBackColor = false;
             // 
             // DownloadFW
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(16F, 31F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
+            this.ClientSize = new System.Drawing.Size(300, 189);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.StartDownload);
             this.Controls.Add(this.textBox1);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.Margin = new System.Windows.Forms.Padding(1, 1, 1, 1);
             this.Name = "DownloadFW";
             this.Text = "Start Firmware Download";
             this.ResumeLayout(false);

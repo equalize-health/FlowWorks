@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<DOCUMENT Type="Advanced Installer" CreateVersion="18.1.1" version="18.2" Modules="simple" RootPath="." Language="en" Id="{3670BA9D-05BD-4066-A102-BAF332D5A873}">
+<DOCUMENT Type="Advanced Installer" CreateVersion="18.1.1" version="18.3" Modules="simple" RootPath="." Language="en" Id="{3670BA9D-05BD-4066-A102-BAF332D5A873}">
   <COMPONENT cid="caphyon.advinst.msicomp.MsiPropsComponent">
     <ROW Property="AI_BITMAP_DISPLAY_MODE" Value="0"/>
     <ROW Property="AI_CURRENT_YEAR" Value="2021" ValueLocId="-"/>
@@ -8,10 +8,10 @@
     <ROW Property="ARPPRODUCTICON" Value="EqualizeHealthLogo.exe" Type="8"/>
     <ROW Property="CTRLS" Value="2"/>
     <ROW Property="Manufacturer" Value="Equalize Health"/>
-    <ROW Property="ProductCode" Value="1033:{81D45FEF-B540-44E9-9F88-5C982889DBA6} " Type="16"/>
+    <ROW Property="ProductCode" Value="1033:{C50A2629-980A-44CB-B90E-4BAFC65C2853} " Type="16"/>
     <ROW Property="ProductLanguage" Value="1033"/>
     <ROW Property="ProductName" Value="Flow Works"/>
-    <ROW Property="ProductVersion" Value="1.1.21" Type="32"/>
+    <ROW Property="ProductVersion" Value="1.1.22" Type="32"/>
     <ROW Property="RUNAPPLICATION" Value="1" Type="4"/>
     <ROW Property="SecureCustomProperties" Value="OLDPRODUCTS;AI_NEWERPRODUCTFOUND"/>
     <ROW Property="UpgradeCode" Value="{F831DCC9-4EEC-4787-95E1-17E23E4973C8}"/>

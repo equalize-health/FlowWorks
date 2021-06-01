@@ -606,8 +606,8 @@ namespace FlowWorks
             // 
             // StartBabyPressure
             // 
-            this.StartBabyPressure.BackColor = System.Drawing.Color.Red;
-            this.StartBabyPressure.Location = new System.Drawing.Point(258, 284);
+            this.StartBabyPressure.BackColor = System.Drawing.Color.LightGray;
+            this.StartBabyPressure.Location = new System.Drawing.Point(250, 286);
             this.StartBabyPressure.Margin = new System.Windows.Forms.Padding(1);
             this.StartBabyPressure.Name = "StartBabyPressure";
             this.StartBabyPressure.Size = new System.Drawing.Size(44, 20);
@@ -618,8 +618,8 @@ namespace FlowWorks
             // 
             // StartFiO2
             // 
-            this.StartFiO2.BackColor = System.Drawing.Color.Red;
-            this.StartFiO2.Location = new System.Drawing.Point(450, 284);
+            this.StartFiO2.BackColor = System.Drawing.Color.LightGray;
+            this.StartFiO2.Location = new System.Drawing.Point(442, 286);
             this.StartFiO2.Margin = new System.Windows.Forms.Padding(1);
             this.StartFiO2.Name = "StartFiO2";
             this.StartFiO2.Size = new System.Drawing.Size(44, 21);
@@ -727,8 +727,8 @@ namespace FlowWorks
             // 
             // StartHeatPlate
             // 
-            this.StartHeatPlate.BackColor = System.Drawing.Color.Red;
-            this.StartHeatPlate.Location = new System.Drawing.Point(714, 159);
+            this.StartHeatPlate.BackColor = System.Drawing.Color.LightGray;
+            this.StartHeatPlate.Location = new System.Drawing.Point(714, 161);
             this.StartHeatPlate.Margin = new System.Windows.Forms.Padding(1);
             this.StartHeatPlate.Name = "StartHeatPlate";
             this.StartHeatPlate.Size = new System.Drawing.Size(44, 21);
@@ -749,8 +749,8 @@ namespace FlowWorks
             // 
             // StartHeatWire
             // 
-            this.StartHeatWire.BackColor = System.Drawing.Color.Red;
-            this.StartHeatWire.Location = new System.Drawing.Point(714, 204);
+            this.StartHeatWire.BackColor = System.Drawing.Color.LightGray;
+            this.StartHeatWire.Location = new System.Drawing.Point(714, 206);
             this.StartHeatWire.Margin = new System.Windows.Forms.Padding(1);
             this.StartHeatWire.Name = "StartHeatWire";
             this.StartHeatWire.Size = new System.Drawing.Size(44, 21);

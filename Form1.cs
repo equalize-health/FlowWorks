@@ -168,6 +168,13 @@ namespace FlowWorks
         public void UpdateConnectedSignal(bool isConnected)
         {
             this.connectedTextBox.BackColor = isConnected ? Color.Lime : SystemColors.Control;
+            if (!isConnected)
+            {
+                this.StartBabyPressure.BackColor = Color.LightGray;
+                this.StartFiO2.BackColor = Color.LightGray;
+                this.StartHeatPlate.BackColor = Color.LightGray;
+                this.StartHeatWire.BackColor = Color.LightGray;
+            }
             this.isConnected = isConnected;
         }
         public void SendTerminalCommand(string cmd)

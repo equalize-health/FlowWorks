@@ -159,4 +159,16 @@
     </COMReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <PropertyGroup>
+    <PreBuildEvent>copy $(ProjectDir)FlowWorks_Help.pdf $(TargetDir)
+copy $(ProjectDir)..\cpap_flowlite\ReleaseNotes.pdf $(TargetDir)
+copy $(ProjectDir)..\cpap_flowlite\FlowLite\Device_download\FlowLite.hex $(TargetDir)
+copy $(ProjectDir)..\cpap_flowlite\FlowLite\Device_download\*.bat $(TargetDir)
+copy $(ProjectDir)..\cpap_flowlite\FlowLite\Device_download\atprogram.exe $(TargetDir)
+</PreBuildEvent>
+  </PropertyGroup>
+  <PropertyGroup>
+    <PostBuildEvent>
+    </PostBuildEvent>
+  </PropertyGroup>
 </Project>

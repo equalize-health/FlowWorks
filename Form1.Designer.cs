@@ -44,10 +44,11 @@ namespace FlowWorks
             this.enableLoggingToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.startFirwmareDownloadToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.aboutFirmwareToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.startFirmwareDownloadToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.aboutFirmwareToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.aboutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.VersionString = new System.Windows.Forms.ToolStripMenuItem();
+            this.helpDocToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.cOM1ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.cOM2ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.cOM3ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -126,7 +127,6 @@ namespace FlowWorks
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.label15 = new System.Windows.Forms.Label();
             this.batteryVolts = new System.Windows.Forms.Label();
-            this.helpDocToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.PressBabySetpt)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.Fio2Setpt)).BeginInit();
@@ -191,19 +191,19 @@ namespace FlowWorks
             this.startFirwmareDownloadToolStripMenuItem.Text = "Start Firwmare Download";
             this.startFirwmareDownloadToolStripMenuItem.Click += new System.EventHandler(this.startFirwmareDownloadToolStripMenuItem_Click);
             // 
-            // aboutFirmwareToolStripMenuItem
-            // 
-            this.aboutFirmwareToolStripMenuItem.Name = "aboutFirmwareToolStripMenuItem";
-            this.aboutFirmwareToolStripMenuItem.Size = new System.Drawing.Size(229, 22);
-            this.aboutFirmwareToolStripMenuItem.Text = "About Firmware";
-            this.aboutFirmwareToolStripMenuItem.Click += new System.EventHandler(this.aboutFirmwareToolStripMenuItem_Click);
-            // 
             // startFirmwareDownloadToolStripMenuItem
             // 
             this.startFirmwareDownloadToolStripMenuItem.Name = "startFirmwareDownloadToolStripMenuItem";
             this.startFirmwareDownloadToolStripMenuItem.Size = new System.Drawing.Size(229, 22);
             this.startFirmwareDownloadToolStripMenuItem.Text = "Start Firmware J19 Download ";
             this.startFirmwareDownloadToolStripMenuItem.Click += new System.EventHandler(this.startFirmwareDownloadToolStripMenuItem_Click);
+            // 
+            // aboutFirmwareToolStripMenuItem
+            // 
+            this.aboutFirmwareToolStripMenuItem.Name = "aboutFirmwareToolStripMenuItem";
+            this.aboutFirmwareToolStripMenuItem.Size = new System.Drawing.Size(229, 22);
+            this.aboutFirmwareToolStripMenuItem.Text = "About Firmware";
+            this.aboutFirmwareToolStripMenuItem.Click += new System.EventHandler(this.aboutFirmwareToolStripMenuItem_Click);
             // 
             // aboutToolStripMenuItem
             // 
@@ -219,6 +219,13 @@ namespace FlowWorks
             this.VersionString.Name = "VersionString";
             this.VersionString.Size = new System.Drawing.Size(139, 22);
             this.VersionString.Text = "Version 1.0.0";
+            // 
+            // helpDocToolStripMenuItem
+            // 
+            this.helpDocToolStripMenuItem.Name = "helpDocToolStripMenuItem";
+            this.helpDocToolStripMenuItem.Size = new System.Drawing.Size(139, 22);
+            this.helpDocToolStripMenuItem.Text = "Help Doc";
+            this.helpDocToolStripMenuItem.Click += new System.EventHandler(this.helpDocToolStripMenuItem_Click);
             // 
             // cOM1ToolStripMenuItem
             // 
@@ -669,6 +676,7 @@ namespace FlowWorks
             // 
             // SetPropValve
             // 
+            this.SetPropValve.DecimalPlaces = 1;
             this.SetPropValve.Increment = new decimal(new int[] {
             5,
             0,
@@ -677,7 +685,7 @@ namespace FlowWorks
             this.SetPropValve.Location = new System.Drawing.Point(67, 119);
             this.SetPropValve.Margin = new System.Windows.Forms.Padding(1);
             this.SetPropValve.Name = "SetPropValve";
-            this.SetPropValve.Size = new System.Drawing.Size(41, 20);
+            this.SetPropValve.Size = new System.Drawing.Size(47, 20);
             this.SetPropValve.TabIndex = 81;
             this.SetPropValve.ValueChanged += new System.EventHandler(this.SetPropValve_ValueChanged);
             // 
@@ -1073,13 +1081,6 @@ namespace FlowWorks
             this.batteryVolts.Size = new System.Drawing.Size(28, 13);
             this.batteryVolts.TabIndex = 128;
             this.batteryVolts.Text = "24.0";
-            // 
-            // helpDocToolStripMenuItem
-            // 
-            this.helpDocToolStripMenuItem.Name = "helpDocToolStripMenuItem";
-            this.helpDocToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-            this.helpDocToolStripMenuItem.Text = "Help Doc";
-            this.helpDocToolStripMenuItem.Click += new System.EventHandler(this.helpDocToolStripMenuItem_Click);
             // 
             // Form1
             // 

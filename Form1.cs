@@ -270,7 +270,7 @@ namespace FlowWorks
                 this.o2SensorAvg.Text = deviceData.o2Sensor.ToString("N2");
             }
             this.SetBlower.Value = (decimal)deviceData.blowerSetting;
-            this.SetPropValve.Value = (decimal)deviceData.propValveSetting;
+            this.SetPropValve.Value = new decimal((double)deviceData.propValveSetting);  //Turn the floating setting into a value for the box
             this.cFactor.Text = deviceData.cFactor.ToString("N3");
             this.CalibrationState = deviceData.calibrationState;
             this.HeatPlateSetting.Text = deviceData.heatPlateSetpt.ToString("N1");

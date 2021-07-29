@@ -15,7 +15,7 @@ namespace FlowWorks
         private Config config;
         public volatile ConnectionManager connectionManager;
         public DeviceData deviceData;   // updated on each new status read from the device
-        private DeviceStatus deviceStatus;   // updated on each new status read from the device
+        public DeviceStatus deviceStatus;   // updated on each new status read from the device
         //private bool deviceConnected;
         // constants
         private readonly int kDefaultComportNum;
@@ -328,6 +328,8 @@ namespace FlowWorks
         public double batteryCharge;
         public double batteryCurrent;
         public double batteryVoltage;
+        public int screenLockStatus;
+        public int alarmMuteStatus;
 
         public string Status
         {
@@ -388,6 +390,12 @@ namespace FlowWorks
                             break;
                         case 16:
                             this.batteryVoltage = Convert.ToDouble(dataList[i]);
+                            break;
+                        case 17:
+                            this.screenLockStatus = Convert.ToInt32(dataList[i]);
+                            break;
+                        case 18:
+                            this.alarmMuteStatus = Convert.ToInt32(dataList[i]);
                             break;
                     }
                 }

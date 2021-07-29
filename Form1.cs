@@ -47,6 +47,8 @@ namespace FlowWorks
         public string o2Status { get; private set; }
         public double BatteryCharge { get; private set; }
         public double BatteryCurrent { get; private set; }
+        public int lockScreenStatus { get; private set; }
+        public int alarmMuteStatus { get; private set; }
 
         public Form1()
         {
@@ -360,6 +362,8 @@ namespace FlowWorks
             this.BatteryCharge = deviceStatus.batteryCharge;
             this.BatteryCurrent = deviceStatus.batteryCurrent;
             this.batteryVolts.Text = deviceStatus.batteryVoltage.ToString("N1");
+            this.lockScreenStatus = deviceStatus.screenLockStatus;
+            this.alarmMuteStatus = deviceStatus.alarmMuteStatus;
         }
         // private helper functions
         private void OverwriteLastCommandWith(string s)

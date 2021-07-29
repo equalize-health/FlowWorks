@@ -395,6 +395,46 @@ namespace FlowWorks
                     e.Graphics.DrawString(versionString, myFont, Brushes.Gray, new Point(versionStartX, startY));
                 }
             }
+            int buttonXLocation = 518;
+            // This will draw the lock and mute buttons
+            if ((this.CurrentScreen >= 14) && (this.CurrentScreen <= 24))
+            {
+                float buttonScaleFactorX = .79f; // Scale buttons to fit on simulation screen
+                float buttonScaleFactorY = .88f; // Scale buttons to fit on simulation screen
+                string[] screenImages = Assembly.GetEntryAssembly().GetManifestResourceNames();
+                Bitmap tempImage = new Bitmap(Assembly.GetEntryAssembly().GetManifestResourceStream(screenImages[8]));
+                Bitmap LockImage = new Bitmap(tempImage, new Size((int)(tempImage.Width * buttonScaleFactorX), (int)(tempImage.Height * buttonScaleFactorY)));
+                tempImage = new Bitmap(Assembly.GetEntryAssembly().GetManifestResourceStream(screenImages[51]));
+                Bitmap UnLockImage = new Bitmap(tempImage, new Size((int)(tempImage.Width * buttonScaleFactorX), (int)(tempImage.Height * buttonScaleFactorY)));
+                tempImage = new Bitmap(Assembly.GetEntryAssembly().GetManifestResourceStream(screenImages[9]));
+                Bitmap MuteImage = new Bitmap(tempImage, new Size((int)(tempImage.Width * buttonScaleFactorX), (int)(tempImage.Height * buttonScaleFactorY)));
+                tempImage = new Bitmap(Assembly.GetEntryAssembly().GetManifestResourceStream(screenImages[10]));
+                Bitmap UnmuteImage = new Bitmap(tempImage, new Size((int)(tempImage.Width * buttonScaleFactorX), (int)(tempImage.Height * buttonScaleFactorY)));
+                if (form1.lockScreenStatus == 1)
+                {
+                    e.Graphics.DrawImage(UnLockImage, buttonXLocation, 132);
+                } else
+                {
+                    e.Graphics.DrawImage(LockImage, buttonXLocation, 132);
+                }
+                if (form1.alarmMuteStatus == 0)
+                {
+                    e.Graphics.DrawImage(MuteImage, buttonXLocation, 317);
+                } else
+                {
+                    e.Graphics.DrawImage(UnmuteImage, buttonXLocation, 317);
+                }
+            }
+            // This will draw the pause
+            if ((this.CurrentScreen == 21))
+            {
+                float buttonScaleFactorX = .79f; // Scale buttons to fit on simulation screen
+                float buttonScaleFactorY = .88f; // Scale buttons to fit on simulation screen
+                string[] screenImages = Assembly.GetEntryAssembly().GetManifestResourceNames();
+                Bitmap tempImage = new Bitmap(Assembly.GetEntryAssembly().GetManifestResourceStream(screenImages[12]));
+                Bitmap PauseImage = new Bitmap(tempImage, new Size((int)(tempImage.Width * buttonScaleFactorX), (int)(tempImage.Height * buttonScaleFactorY)));
+                e.Graphics.DrawImage(PauseImage, buttonXLocation, 224);
+            }
             // Fill in the battery progress bar
             double battVolts = Convert.ToDouble(form1.batteryVolts.Text);
             this.batteryCharge.Value = Convert.ToInt32(battVolts);
@@ -432,7 +472,7 @@ namespace FlowWorks
                 plugSolidBrush.Color = Color.Empty;
             }
             int plugStartX = 565;
-            int plugStartY = 10;
+            int plugStartY = 8;
             Size plugRectangle = new Size(28, 25);
             Rectangle plugTotalRectangle = new Rectangle(new Point(plugStartX, plugStartY), plugRectangle);
             e.Graphics.FillRectangle(plugSolidBrush, plugTotalRectangle);

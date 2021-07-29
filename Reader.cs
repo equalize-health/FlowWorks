@@ -47,7 +47,7 @@ namespace FlowWorks {
                 if (DebugPrintsEnabled) Console.WriteLine(" Failed to clear buffer, only read " + bytesRead);
                 return false;
             }
-            if (DebugPrintsEnabled) Console.WriteLine(DateTime.UtcNow.ToString("HH:mm:ss.fff") + " Clear Buffer, Discarded " + bytesToRead + " bytes");
+            if (DebugPrintsEnabled) Console.WriteLine(DateTime.UtcNow.ToString("HH:mm:ss.fff") + " Clear Buffer, Discarded " + bytesToRead + " bytes " + byteBuffer[0]);
             return true;
         }
         catch

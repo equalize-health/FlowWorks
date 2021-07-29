@@ -119,31 +119,52 @@
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="images\10.0_Connect_Middle_Temp_Sensor_REV02.png" />
-    <EmbeddedResource Include="images\11_Connect_End_Temp_Sensor_REV02.png" />
-    <EmbeddedResource Include="images\12.0_Connect_Heater_Cable_toMachine_REV02.png" />
-    <EmbeddedResource Include="images\13.0_Connect_Temp_Cable_toMachine_REV02.png" />
-    <EmbeddedResource Include="images\14.0_Connect_Inspiratory_toMachine_REV03.png" />
-    <EmbeddedResource Include="images\15.0_Connect_Nasal_Interface_REV02.png" />
-    <EmbeddedResource Include="images\16.0_Connect_Oxygen_REV02.png" />
-    <EmbeddedResource Include="images\18.0_Circuit_Test_START_REV01.png" />
-    <EmbeddedResource Include="images\19.0_Circuit_Test_INPROGRESS_REV02.png" />
-    <EmbeddedResource Include="images\1_Splash_START_REV02.png" />
-    <EmbeddedResource Include="images\2.5_Splash_DONE_REV02.png" />
-    <EmbeddedResource Include="images\2_Splash_PROGRESS_REV02.png" />
-    <EmbeddedResource Include="images\6.0_Fill_Humidifier_Chamber_REV03.png" />
-    <EmbeddedResource Include="images\7.0_Reinstall_Humidifier__REV02.PNG" />
-    <EmbeddedResource Include="images\8_Connect_Expiratory__REV02.png" />
-    <EmbeddedResource Include="images\9.0_Connect_Heater_Cable_toCircuit_REV02.png" />
-    <EmbeddedResource Include="images\ALARM_Batt_Banner_Critically_Low_REV02.png" />
-    <EmbeddedResource Include="images\ALARM_High_Pressure_REV02.png" />
-    <EmbeddedResource Include="images\ALARM_Low_FiO2_REV02.png" />
-    <EmbeddedResource Include="images\ALARM_Low_Pressure_REV02.png" />
-    <EmbeddedResource Include="images\Encod_Screen1_Set_REV02.png" />
-    <EmbeddedResource Include="images\Encod_Screen2+3_Ramp+Running_REV03.png" />
-    <EmbeddedResource Include="images\Encod_Screen2DASH_Ramp_REV02.png" />
-    <EmbeddedResource Include="images\Encod_Screen4_Adjusting_REV02.png" />
-    <EmbeddedResource Include="images\1_Splash_START_REV02_800x480_COMPRESSED_RGBA_ASTC_8x8_KHR_Converted.png" />
+    <EmbeddedResource Include="images\back.png" />
+    <EmbeddedResource Include="images\change.png" />
+    <EmbeddedResource Include="images\lock.png" />
+    <EmbeddedResource Include="images\mute.png" />
+    <EmbeddedResource Include="images\muted.png" />
+    <EmbeddedResource Include="images\next.png" />
+    <EmbeddedResource Include="images\pause.png" />
+    <EmbeddedResource Include="images\run.png" />
+    <EmbeddedResource Include="images\screen01.png" />
+    <EmbeddedResource Include="images\screen02.png" />
+    <EmbeddedResource Include="images\screen03.png" />
+    <EmbeddedResource Include="images\screen04.png" />
+    <EmbeddedResource Include="images\screen05.png" />
+    <EmbeddedResource Include="images\screen06.png" />
+    <EmbeddedResource Include="images\screen07.png" />
+    <EmbeddedResource Include="images\screen08.png" />
+    <EmbeddedResource Include="images\screen09.png" />
+    <EmbeddedResource Include="images\screen10.png" />
+    <EmbeddedResource Include="images\screen11.png" />
+    <EmbeddedResource Include="images\screen12.png" />
+    <EmbeddedResource Include="images\screen13.png" />
+    <EmbeddedResource Include="images\screen14.png" />
+    <EmbeddedResource Include="images\screen14_b.png" />
+    <EmbeddedResource Include="images\screen15.png" />
+    <EmbeddedResource Include="images\screen15_b.png" />
+    <EmbeddedResource Include="images\screen16.png" />
+    <EmbeddedResource Include="images\screen16_b.png" />
+    <EmbeddedResource Include="images\screen17.png" />
+    <EmbeddedResource Include="images\screen17_b.png" />
+    <EmbeddedResource Include="images\screen18.png" />
+    <EmbeddedResource Include="images\screen18_b.png" />
+    <EmbeddedResource Include="images\screen19.png" />
+    <EmbeddedResource Include="images\screen19_b.png" />
+    <EmbeddedResource Include="images\screen20.png" />
+    <EmbeddedResource Include="images\screen21.png" />
+    <EmbeddedResource Include="images\screen22.png" />
+    <EmbeddedResource Include="images\screen23.png" />
+    <EmbeddedResource Include="images\screen24.png" />
+    <EmbeddedResource Include="images\screen25.png" />
+    <EmbeddedResource Include="images\screen26.png" />
+    <EmbeddedResource Include="images\screen27.png" />
+    <EmbeddedResource Include="images\screen28.png" />
+    <EmbeddedResource Include="images\screen29.png" />
+    <EmbeddedResource Include="images\screen30.png" />
+    <EmbeddedResource Include="images\skip.png" />
+    <EmbeddedResource Include="images\unlock.png" />
     <EmbeddedResource Include="1_Splash_START_REV02_800x480_COMPRESSED_RGBA_ASTC_8x8_KHR_Converted.png" />
     <Content Include="EqualizeHealth Logo.ico" />
   </ItemGroup>
@@ -158,6 +179,7 @@
       <EmbedInteropTypes>True</EmbedInteropTypes>
     </COMReference>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
     <PreBuildEvent>copy $(ProjectDir)FlowWorks_Help.pdf $(TargetDir)

@@ -352,9 +352,9 @@ namespace FlowWorks
                 myColor =
                     Color.FromArgb(
                         255, // Specifies the transparency of the color.
-                        220, // Specifies the amount of red.
-                        220, // specifies the amount of green.
-                        220); // Specifies the amount of blue.
+                        245, // Specifies the amount of red.
+                        245, // specifies the amount of green.
+                        245); // Specifies the amount of blue.
                 SolidBrush mySolidBrush = new SolidBrush(myColor);
                 using (Font myFont = new Font("Arial Rounded MT", fontSize))
                 {
@@ -463,7 +463,7 @@ namespace FlowWorks
             }
             SolidBrush plugSolidBrush = new SolidBrush(myColor);
             // If charging and not "Low Battery alarm" screen
-            if ((form1.BatteryCurrent > 0) && (this.CurrentScreen != 24))
+            if ((form1.BatteryCurrent > -8.0) && (this.CurrentScreen != 24))
             {
                 plugSolidBrush.Color = Color.Empty;
             } else if ((form1.BatteryCurrent < 0) && (this.CurrentScreen == 24))

@@ -321,7 +321,7 @@ namespace FlowWorks
                         e.Graphics.DrawString(babyPressureString, myFont, Brushes.OrangeRed, new Point(bpStartX, startY));
                     else
                         e.Graphics.DrawString(babyPressureString, myFont, Brushes.Black, new Point(bpStartX, startY));
-                    string fio2String = this.form1.FiO2Value.ToString("N0");
+                    string fio2String = this.form1.FiO2ScreenValue.ToString();
                     sizeOfText = TextRenderer.MeasureText(fio2String, new Font("Arial", fontSize));
                     Rectangle fio2Rectangle = new Rectangle(new Point(fio2StartX, startY), sizeOfText);
                     // Don't need the background box for the screen with no dashes

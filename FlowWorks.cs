@@ -431,6 +431,7 @@ namespace FlowWorks
         public int heatPlatePIDEnable;
         public int heatWirePIDEnable;
         public double o2Sensor;
+        public int fio2ScreenReading;
         public double propValveSetting { get; set; }
         public int blowerSetting { get; set; }
         public string Data
@@ -526,6 +527,9 @@ namespace FlowWorks
                             break;
                         case 26:
                             this.o2Sensor = Convert.ToDouble(dataList[i]);
+                            break;
+                        case 27:
+                            this.fio2ScreenReading = Convert.ToInt32(dataList[i]);
                             break;
                     }
                 }

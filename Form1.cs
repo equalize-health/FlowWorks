@@ -44,6 +44,7 @@ namespace FlowWorks
         public double TempProxValue { get; private set; }
         public double BabyPressureValue { get; private set; }
         public double FiO2Value { get; private set; }
+        public int FiO2ScreenValue { get; private set; }
         public string o2Status { get; private set; }
         public double BatteryCharge { get; private set; }
         public double BatteryCurrent { get; private set; }
@@ -211,6 +212,7 @@ namespace FlowWorks
             this.TempAmb.Text = deviceData.tempPCB.ToString("N1");
             this.FiO2.Text = deviceData.fio2.ToString("N1");
             this.FiO2Value = deviceData.fio2;
+            this.FiO2ScreenValue = deviceData.fio2ScreenReading;
             this.Fio2Setpt.Value = (decimal)deviceData.fio2Setpt;
             this.PressBabySetpt.Value = (decimal)deviceData.pressSetpt;
             if (Convert.ToBoolean(deviceData.fio2PIDEnable))

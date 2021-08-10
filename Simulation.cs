@@ -23,6 +23,9 @@ namespace FlowWorks
         private bool button5 = false;
         private Form1 form1;
         private Thread stateChangeThread;
+        private Color MediumGreyBackground;
+        private Color LightGreyBackground;
+        private Color DarkGreyBackground;
 
         public int CurrentScreen { get; private set; }
 
@@ -51,6 +54,22 @@ namespace FlowWorks
         // It runs in a thread, constantly sending the command
         void stateMachine()
         {
+            MediumGreyBackground = Color.FromArgb(
+                                255, // Specifies the transparency of the color.
+                                208, // Specifies the amount of red.
+                                208, // specifies the amount of green.
+                                208); // Specifies the amount of blue.
+            DarkGreyBackground = Color.FromArgb(
+                                255, // Specifies the transparency of the color.
+                                87, // Specifies the amount of red.
+                                87, // specifies the amount of green.
+                                87); // Specifies the amount of blue.
+            LightGreyBackground = Color.FromArgb(
+                                255, // Specifies the transparency of the color.
+                                245, // Specifies the amount of red.
+                                245, // specifies the amount of green.
+                                245); // Specifies the amount of blue.
+
             while (true)
             {
                 if (this.form1.isConnected)
@@ -327,12 +346,7 @@ namespace FlowWorks
                     // Don't need the background box for the screen with no dashes
                     if (this.CurrentScreen != 18)
                     {
-                        myColor =
-                            Color.FromArgb(
-                                255, // Specifies the transparency of the color.
-                                87, // Specifies the amount of red.
-                                87, // specifies the amount of green.
-                                87); // Specifies the amount of blue.
+                        myColor = DarkGreyBackground;
                         SolidBrush mySolidBrush = new SolidBrush(myColor);
                         // First fill in the rectangle - this covers over the "dashes" in the .png file
                         e.Graphics.FillRectangle(mySolidBrush, fio2Rectangle);
@@ -349,12 +363,7 @@ namespace FlowWorks
             if ((this.CurrentScreen >= 15) && (this.CurrentScreen <= 24))
             {
                 float fontSize = 22;
-                myColor =
-                    Color.FromArgb(
-                        255, // Specifies the transparency of the color.
-                        245, // Specifies the amount of red.
-                        245, // specifies the amount of green.
-                        245); // Specifies the amount of blue.
+                myColor = LightGreyBackground;
                 SolidBrush mySolidBrush = new SolidBrush(myColor);
                 using (Font myFont = new Font("Arial Rounded MT", fontSize))
                 {
@@ -374,12 +383,7 @@ namespace FlowWorks
             if ((this.CurrentScreen == 1))
             {
                 float fontSize = 14;
-                myColor =
-                    Color.FromArgb(
-                        255, // Specifies the transparency of the color.
-                        245, // Specifies the amount of red.
-                        245, // specifies the amount of green.
-                        245); // Specifies the amount of blue.
+                myColor = LightGreyBackground;
                 SolidBrush mySolidBrush = new SolidBrush(myColor);
                 using (Font myFont = new Font("Arial", fontSize))
                 {
@@ -425,8 +429,8 @@ namespace FlowWorks
                     e.Graphics.DrawImage(UnmuteImage, buttonXLocation, 317);
                 }
             }
-            // This will draw the pause
-            if ((this.CurrentScreen == 21))
+            // This will draw the pause button on the low-battery screen
+            if ((this.CurrentScreen == 19) || (this.CurrentScreen == 21))
             {
                 float buttonScaleFactorX = .79f; // Scale buttons to fit on simulation screen
                 float buttonScaleFactorY = .88f; // Scale buttons to fit on simulation screen
@@ -445,12 +449,7 @@ namespace FlowWorks
             // decide whether to show the "plugged in" icon
             if (this.CurrentScreen != 24)
             {
-                myColor =
-                    Color.FromArgb(
-                        255, // Specifies the transparency of the color.
-                        220, // Specifies the amount of red.
-                        220, // specifies the amount of green.
-                        220); // Specifies the amount of blue.
+                myColor = MediumGreyBackground;
             } else
             {
                 // If low-battery screen, make color red
@@ -471,9 +470,9 @@ namespace FlowWorks
                 // Not charging and alarm screen
                 plugSolidBrush.Color = Color.Empty;
             }
-            int plugStartX = 565;
+            int plugStartX = 562;
             int plugStartY = 8;
-            Size plugRectangle = new Size(28, 25);
+            Size plugRectangle = new Size(32, 25);
             Rectangle plugTotalRectangle = new Rectangle(new Point(plugStartX, plugStartY), plugRectangle);
             e.Graphics.FillRectangle(plugSolidBrush, plugTotalRectangle);
         }

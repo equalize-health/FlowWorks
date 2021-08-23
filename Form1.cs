@@ -663,6 +663,13 @@ namespace FlowWorks
 
         private void enableLoggingToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            if (logFileOpened == true)
+            {
+                // File is already open, so close it
+                this.enableLoggingToolStripMenuItem.Text = "Enable Logging...";
+                logFileOpened = false;
+                return;
+            }
             // If a file is not opened, then set the initial directory to the
             // FolderBrowserDialog.SelectedPath value.
             if (!logFileOpened)
@@ -709,10 +716,11 @@ namespace FlowWorks
                     {
                         //File.Create(openFileName);
                         // Create header in new file
-                        File.AppendAllText(openFileName, "TIMESTAMP,P_INSP, P_EXP,F_INS,FL_OX,T_DIS,T_PRX, T_HT,T_PCB,  FIO2,  BABY, F_EXP,F_LEAK,HW_STPT,HW_ACT,HW_CTL,HW_ERR,HW_INT" + Environment.NewLine);
+                       // File.AppendAllText(openFileName, "TIMESTAMP,P_INSP, P_EXP,F_INS,FL_OX,T_DIS,T_PRX, T_HT,T_PCB,  FIO2,  BABY, F_EXP,F_LEAK,HW_STPT,HW_ACT,HW_CTL,HW_ERR,HW_INT" + Environment.NewLine);
                     }
 
                     logFileOpened = true;
+                    this.enableLoggingToolStripMenuItem.Text = "Disable Logging...";
                 }
                 catch (Exception exp)
                 {

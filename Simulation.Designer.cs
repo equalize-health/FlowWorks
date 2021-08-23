@@ -51,11 +51,11 @@ namespace FlowWorks
             // 
             // batteryCharge
             // 
-            this.batteryCharge.Location = new System.Drawing.Point(1402, 30);
-            this.batteryCharge.Maximum = 25;
-            this.batteryCharge.Minimum = 18;
+            this.batteryCharge.Location = new System.Drawing.Point(1404, 30);
+            this.batteryCharge.Maximum = 24;
+            this.batteryCharge.Minimum = 17;
             this.batteryCharge.Name = "batteryCharge";
-            this.batteryCharge.Size = new System.Drawing.Size(80, 27);
+            this.batteryCharge.Size = new System.Drawing.Size(78, 28);
             this.batteryCharge.TabIndex = 1;
             this.batteryCharge.Value = 18;
             // 

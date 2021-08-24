@@ -355,10 +355,10 @@ namespace FlowWorks
                     this.o2SensorAvg.BackColor = Color.LightBlue;
                     this.o2SensorStatusDescription.Text = "Running, Calibration Complete";
                 }
-                else {
-
-                    this.o2SensorAvg.BackColor = Color.LightGreen;
-                    this.o2SensorStatusDescription.Text = "Running";
+                else
+                {
+                    this.o2SensorAvg.BackColor = Color.Red;
+                    this.o2SensorStatusDescription.Text = "Bad Sensor or Bad Interface Board - replace";
                 }
             }
             this.BatteryCharge = deviceStatus.batteryCharge;

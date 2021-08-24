@@ -441,7 +441,9 @@ namespace FlowWorks
             }
             // Fill in the battery progress bar
             double battVolts = Convert.ToDouble(form1.batteryVolts.Text);
-            this.batteryCharge.Value = Convert.ToInt32(battVolts);
+            Int32 checkBattVolts = Convert.ToInt32(battVolts);
+            if (checkBattVolts > this.batteryCharge.Maximum) checkBattVolts = this.batteryCharge.Maximum;
+            this.batteryCharge.Value = checkBattVolts;
             if (this.batteryCharge.Value > 22) this.batteryCharge.SetState(1); // this.batteryCharge.ForeColor = Color.Green;
             else if (this.batteryCharge.Value > 21) this.batteryCharge.SetState(3); //this.batteryCharge.ForeColor = Color.Yellow;
             else if (this.batteryCharge.Value <= 21) this.batteryCharge.SetState(2); //this.batteryCharge.ForeColor = Color.Red;

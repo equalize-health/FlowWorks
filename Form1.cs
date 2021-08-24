@@ -361,6 +361,11 @@ namespace FlowWorks
                     this.o2SensorStatusDescription.Text = "Bad Sensor or Bad Interface Board - replace";
                 }
             }
+            else if (deviceStatus.o2Status == 3)
+            {
+                this.o2SensorAvg.BackColor = Color.Red;
+                this.o2SensorStatusDescription.Text = "Incorrect or damaged Sensor - replace";
+            }
             this.BatteryCharge = deviceStatus.batteryCharge;
             this.BatteryCurrent = deviceStatus.batteryCurrent;
             this.batteryVolts.Text = deviceStatus.batteryVoltage.ToString("N1");

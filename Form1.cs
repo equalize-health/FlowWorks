@@ -271,7 +271,7 @@ namespace FlowWorks
                 this.o2SensorStatusDescription.Text = "Not Available";
             } else
             {
-                this.o2SensorAvg.Text = deviceData.o2Sensor.ToString("N2");
+                this.o2SensorAvg.Text = deviceData.o2Sensor.ToString("N1");
             }
             this.SetBlower.Value = (decimal)deviceData.blowerSetting;
             this.SetPropValve.Value = new decimal((double)deviceData.propValveSetting);  //Turn the floating setting into a value for the box

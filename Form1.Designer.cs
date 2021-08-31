@@ -1209,9 +1209,9 @@ namespace FlowWorks
         private System.Windows.Forms.TextBox connectedTextBox;
         private System.Windows.Forms.TextBox commandBox;
         public System.Windows.Forms.Label firmwareVersionLabel;
-        private System.Windows.Forms.Label dateLabel;
+        public System.Windows.Forms.Label dateLabel;
         private System.Windows.Forms.Label label7;
-        private System.Windows.Forms.Label timeLabel;
+        public System.Windows.Forms.Label timeLabel;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label3;

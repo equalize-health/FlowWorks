@@ -251,6 +251,42 @@ namespace FlowWorks
                     screenName = screenImages[screenImageBase + currentScreen + 14];
                     this.simulationPictureBox.Image = new Bitmap(Assembly.GetEntryAssembly().GetManifestResourceStream(screenName));
                     break;
+                case 24:
+                    // Maintenance screen
+                    //screenName = screenImages[screenImageBase + currentScreen + 3];
+                    //this.simulationPictureBox.Image = new Bitmap(Assembly.GetEntryAssembly().GetManifestResourceStream(screenName));
+                    using (Graphics g = Graphics.FromImage(this.simulationPictureBox.Image))
+                    {
+                        int lineSpacing = 0;
+                        SolidBrush fillBrush = new SolidBrush(LightGreyBackground);
+                        RectangleF rect = new RectangleF(0, 0, 690, 480);
+                        g.FillRectangle(fillBrush, rect);
+                        g.DrawString("             MAINTENANCE SCREEN",
+                            new Font("Tahoma", 32), Brushes.Black,
+                            rect);
+                        lineSpacing += 40;
+                        rect = new Rectangle(5, lineSpacing, 690, 20);
+                        g.DrawString("Software Version: " + this.form1.firmwareVersionLabel.Text,
+                            new Font("Tahoma", 20), Brushes.Black,
+                            rect);
+                        lineSpacing += 22;
+                        rect = new Rectangle(5, lineSpacing, 690, 20);
+                        g.DrawString("Board ID: "+ this.form1.boardSerialNumber.ToString(),
+                            new Font("Tahoma", 20), Brushes.Black,
+                            rect);
+                        lineSpacing += 22;
+                        rect = new Rectangle(5, lineSpacing, 690, 20);
+                        g.DrawString("RTC Time: " + this.form1.dateLabel.Text + " " + this.form1.timeLabel.Text,
+                            new Font("Tahoma", 20), Brushes.Black,
+                            rect);
+                        lineSpacing += 22;
+                        rect = new Rectangle(5, lineSpacing, 690, 20);
+                        g.DrawString("Battery: " + this.form1.batteryVolts.Text,
+                            new Font("Tahoma", 20), Brushes.Black,
+                            rect);
+                    }
+
+                    break;
                 default:
                     string[] all = System.Reflection.Assembly.GetEntryAssembly().GetManifestResourceNames();
                     screenName = screenImages[screenImageBase+10]; // Alarm screen
@@ -308,7 +344,7 @@ namespace FlowWorks
         {
             Color myColor = new Color();
             // This draws the setpoints for baby pressure and FiO2 into the lower panel area (smaller font)
-            if ((this.CurrentScreen >= 14) && (this.CurrentScreen <= 24))
+            if ((this.CurrentScreen >= 14) && (this.CurrentScreen < 24))
             {
                 using (Font myFont = new Font("Arial", 19))
                 {
@@ -319,7 +355,7 @@ namespace FlowWorks
                 }
             }
             // This draws the current values of baby pressure and FiO2 into the upper panel area (larger font)
-            if ((this.CurrentScreen >= 14) && (this.CurrentScreen <= 24))
+            if ((this.CurrentScreen >= 14) && (this.CurrentScreen < 24))
             {
                 float fontSize = 72;
                 using (Font myFont = new Font("Arial", fontSize))
@@ -360,7 +396,7 @@ namespace FlowWorks
             }
 
             // This draws the current values of temperature
-            if ((this.CurrentScreen >= 15) && (this.CurrentScreen <= 24))
+            if ((this.CurrentScreen >= 15) && (this.CurrentScreen < 24))
             {
                 float fontSize = 22;
                 myColor = LightGreyBackground;
@@ -401,7 +437,7 @@ namespace FlowWorks
             }
             int buttonXLocation = 518;
             // This will draw the lock and mute buttons
-            if ((this.CurrentScreen >= 14) && (this.CurrentScreen <= 24))
+            if ((this.CurrentScreen >= 14) && (this.CurrentScreen < 24))
             {
                 float buttonScaleFactorX = .79f; // Scale buttons to fit on simulation screen
                 float buttonScaleFactorY = .88f; // Scale buttons to fit on simulation screen
@@ -449,7 +485,7 @@ namespace FlowWorks
             else if (this.batteryCharge.Value <= 21) this.batteryCharge.SetState(2); //this.batteryCharge.ForeColor = Color.Red;
 
             // decide whether to show the "plugged in" icon
-            if (this.CurrentScreen != 24)
+            if (this.CurrentScreen != 19)
             {
                 myColor = MediumGreyBackground;
             } else

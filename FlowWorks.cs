@@ -321,7 +321,7 @@ namespace FlowWorks
         public int dateDay;
         public int dateYear;
         public int currentScreen;
-        private string boardSerialNumber;
+        public string boardSerialNumber;
         public double ambientPressure;
         public int o2Status;
         public int o2CalibrationStatus;

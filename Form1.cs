@@ -41,6 +41,9 @@ namespace FlowWorks
 
         public bool isConnected { get; private set; }
         public int CurrentScreen { get; private set; }
+
+        public string boardSerialNumber;
+
         public double TempProxValue { get; private set; }
         public double BabyPressureValue { get; private set; }
         public double FiO2Value { get; private set; }
@@ -305,6 +308,8 @@ namespace FlowWorks
                                   deviceStatus.timeMin.ToString("00") + ":" +
                                   deviceStatus.timeSec.ToString("00");
             this.CurrentScreen = deviceStatus.currentScreen;
+            this.boardSerialNumber = deviceStatus.boardSerialNumber;
+
             // We're using the analog O2 sensor, which does not report pressure
             /*
             if (deviceStatus.ambientPressure > 700)

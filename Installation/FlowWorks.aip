@@ -8,10 +8,10 @@
     <ROW Property="ARPPRODUCTICON" Value="EqualizeHealthLogo.exe" Type="8"/>
     <ROW Property="CTRLS" Value="2"/>
     <ROW Property="Manufacturer" Value="Equalize Health"/>
-    <ROW Property="ProductCode" Value="1033:{9B658706-9314-45E9-8921-37531DC38FD6} " Type="16"/>
+    <ROW Property="ProductCode" Value="1033:{8AB6F95E-57CB-46E2-8343-D6C483D094C0} " Type="16"/>
     <ROW Property="ProductLanguage" Value="1033"/>
     <ROW Property="ProductName" Value="Flow Works"/>
-    <ROW Property="ProductVersion" Value="1.1.36" Type="32"/>
+    <ROW Property="ProductVersion" Value="1.2.1" Type="32"/>
     <ROW Property="RUNAPPLICATION" Value="1" Type="4"/>
     <ROW Property="SecureCustomProperties" Value="OLDPRODUCTS;AI_NEWERPRODUCTFOUND"/>
     <ROW Property="UpgradeCode" Value="{F831DCC9-4EEC-4787-95E1-17E23E4973C8}"/>

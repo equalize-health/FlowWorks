@@ -524,8 +524,13 @@ namespace FlowWorks
 
         private void StartBabyPressure_Click(object sender, EventArgs e)
         {
-            fwViewer.AddTerminalCommand("pressSetpt("+this.PressBabySetpt.Value+")");
+            fwViewer.AddTerminalCommand("pressSetpt(" + this.PressBabySetpt.Value + ")");
             fwViewer.AddTerminalCommand("togglePIDPress");
+            if (this.BabyPressureUnderPIDControl)
+            {
+                // If we're under PID control when this is clicked, besides stopping PID control, shut off blower
+                fwViewer.AddTerminalCommand("blower(0)");
+            }
         }
 
         private void StartFiO2_Click(object sender, EventArgs e)

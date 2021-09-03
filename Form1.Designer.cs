@@ -424,6 +424,7 @@ namespace FlowWorks
             this.BabyPressure.Size = new System.Drawing.Size(28, 13);
             this.BabyPressure.TabIndex = 60;
             this.BabyPressure.Text = "0.00";
+            this.BabyPressure.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
             // FlowLeak
             // 
@@ -435,6 +436,7 @@ namespace FlowWorks
             this.FlowLeak.Size = new System.Drawing.Size(22, 13);
             this.FlowLeak.TabIndex = 61;
             this.FlowLeak.Text = "0.0";
+            this.FlowLeak.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
             // PressExp
             // 
@@ -446,6 +448,7 @@ namespace FlowWorks
             this.PressExp.Size = new System.Drawing.Size(22, 13);
             this.PressExp.TabIndex = 62;
             this.PressExp.Text = "0.0";
+            this.PressExp.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
             // PressCkt
             // 
@@ -457,6 +460,7 @@ namespace FlowWorks
             this.PressCkt.Size = new System.Drawing.Size(22, 13);
             this.PressCkt.TabIndex = 63;
             this.PressCkt.Text = "0.0";
+            this.PressCkt.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
             // FlowExp
             // 
@@ -468,6 +472,7 @@ namespace FlowWorks
             this.FlowExp.Size = new System.Drawing.Size(22, 13);
             this.FlowExp.TabIndex = 64;
             this.FlowExp.Text = "0.0";
+            this.FlowExp.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
             // TempProx
             // 
@@ -479,6 +484,7 @@ namespace FlowWorks
             this.TempProx.Size = new System.Drawing.Size(22, 13);
             this.TempProx.TabIndex = 65;
             this.TempProx.Text = "0.0";
+            this.TempProx.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
             // TempDist
             // 
@@ -490,6 +496,7 @@ namespace FlowWorks
             this.TempDist.Size = new System.Drawing.Size(22, 13);
             this.TempDist.TabIndex = 66;
             this.TempDist.Text = "0.0";
+            this.TempDist.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
             // TempPlate
             // 
@@ -501,6 +508,7 @@ namespace FlowWorks
             this.TempPlate.Size = new System.Drawing.Size(22, 13);
             this.TempPlate.TabIndex = 67;
             this.TempPlate.Text = "0.0";
+            this.TempPlate.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
             // PressInsp
             // 
@@ -512,17 +520,19 @@ namespace FlowWorks
             this.PressInsp.Size = new System.Drawing.Size(22, 13);
             this.PressInsp.TabIndex = 68;
             this.PressInsp.Text = "0.0";
+            this.PressInsp.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
             // FlowInsp
             // 
             this.FlowInsp.AutoSize = true;
             this.FlowInsp.ForeColor = System.Drawing.SystemColors.Highlight;
-            this.FlowInsp.Location = new System.Drawing.Point(155, 123);
+            this.FlowInsp.Location = new System.Drawing.Point(153, 123);
             this.FlowInsp.Margin = new System.Windows.Forms.Padding(1, 0, 1, 0);
             this.FlowInsp.Name = "FlowInsp";
             this.FlowInsp.Size = new System.Drawing.Size(22, 13);
             this.FlowInsp.TabIndex = 69;
             this.FlowInsp.Text = "0.0";
+            this.FlowInsp.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
             // FlowOx
             // 
@@ -534,6 +544,7 @@ namespace FlowWorks
             this.FlowOx.Size = new System.Drawing.Size(22, 13);
             this.FlowOx.TabIndex = 70;
             this.FlowOx.Text = "0.0";
+            this.FlowOx.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
             // TempAmb
             // 
@@ -545,6 +556,7 @@ namespace FlowWorks
             this.TempAmb.Size = new System.Drawing.Size(22, 13);
             this.TempAmb.TabIndex = 71;
             this.TempAmb.Text = "0.0";
+            this.TempAmb.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
             // textBox1
             // 
@@ -645,7 +657,7 @@ namespace FlowWorks
             0,
             0,
             0});
-            this.SetBlower.Location = new System.Drawing.Point(140, 216);
+            this.SetBlower.Location = new System.Drawing.Point(135, 209);
             this.SetBlower.Margin = new System.Windows.Forms.Padding(1);
             this.SetBlower.Maximum = new decimal(new int[] {
             511,
@@ -976,11 +988,12 @@ namespace FlowWorks
             this.FiO2.Size = new System.Drawing.Size(22, 13);
             this.FiO2.TabIndex = 119;
             this.FiO2.Text = "0.0";
+            this.FiO2.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
             // textBox10
             // 
             this.textBox10.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.textBox10.Location = new System.Drawing.Point(548, 80);
+            this.textBox10.Location = new System.Drawing.Point(550, 80);
             this.textBox10.Margin = new System.Windows.Forms.Padding(1);
             this.textBox10.Name = "textBox10";
             this.textBox10.Size = new System.Drawing.Size(16, 13);
@@ -1011,6 +1024,7 @@ namespace FlowWorks
             this.o2SensorAvg.Size = new System.Drawing.Size(22, 13);
             this.o2SensorAvg.TabIndex = 122;
             this.o2SensorAvg.Text = "0.0";
+            this.o2SensorAvg.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.o2SensorAvg.Click += new System.EventHandler(this.o2SensorAvg_Click);
             // 
             // o2SensorStatusDescription
@@ -1068,7 +1082,7 @@ namespace FlowWorks
             // textBox20
             // 
             this.textBox20.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.textBox20.Location = new System.Drawing.Point(269, 213);
+            this.textBox20.Location = new System.Drawing.Point(274, 214);
             this.textBox20.Margin = new System.Windows.Forms.Padding(1);
             this.textBox20.Name = "textBox20";
             this.textBox20.Size = new System.Drawing.Size(17, 13);
@@ -1088,7 +1102,7 @@ namespace FlowWorks
             // textBox23
             // 
             this.textBox23.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.textBox23.Location = new System.Drawing.Point(182, 123);
+            this.textBox23.Location = new System.Drawing.Point(184, 123);
             this.textBox23.Margin = new System.Windows.Forms.Padding(1);
             this.textBox23.Name = "textBox23";
             this.textBox23.Size = new System.Drawing.Size(20, 13);

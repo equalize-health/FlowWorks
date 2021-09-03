@@ -40,9 +40,9 @@ namespace FlowWorks
             this.simulationPictureBox.Dock = System.Windows.Forms.DockStyle.Fill;
             this.simulationPictureBox.Image = global::FlowWorks.Properties.Resources._1_Splash_START_REV02_800x480_COMPRESSED_RGBA_ASTC_8x8_KHR_Converted;
             this.simulationPictureBox.Location = new System.Drawing.Point(0, 0);
-            this.simulationPictureBox.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.simulationPictureBox.Margin = new System.Windows.Forms.Padding(1, 1, 1, 1);
             this.simulationPictureBox.Name = "simulationPictureBox";
-            this.simulationPictureBox.Size = new System.Drawing.Size(1600, 985);
+            this.simulationPictureBox.Size = new System.Drawing.Size(600, 413);
             this.simulationPictureBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.simulationPictureBox.TabIndex = 0;
             this.simulationPictureBox.TabStop = false;
@@ -51,23 +51,25 @@ namespace FlowWorks
             // 
             // batteryCharge
             // 
-            this.batteryCharge.Location = new System.Drawing.Point(1404, 30);
+            this.batteryCharge.Location = new System.Drawing.Point(526, 13);
+            this.batteryCharge.Margin = new System.Windows.Forms.Padding(1, 1, 1, 1);
             this.batteryCharge.Maximum = 24;
             this.batteryCharge.Minimum = 17;
             this.batteryCharge.Name = "batteryCharge";
-            this.batteryCharge.Size = new System.Drawing.Size(78, 28);
+            this.batteryCharge.Size = new System.Drawing.Size(29, 12);
             this.batteryCharge.TabIndex = 1;
             this.batteryCharge.Value = 18;
             // 
             // Simulation
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(16F, 31F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1600, 985);
+            this.ClientSize = new System.Drawing.Size(600, 413);
             this.Controls.Add(this.batteryCharge);
             this.Controls.Add(this.simulationPictureBox);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.Fixed3D;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.Margin = new System.Windows.Forms.Padding(1, 1, 1, 1);
             this.Name = "Simulation";
             this.Text = "Simulation";
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.Simulation_FormClosed);

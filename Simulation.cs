@@ -82,7 +82,7 @@ namespace FlowWorks
                         changeScreen(this.form1.CurrentScreen);
                         this.CurrentScreen = this.form1.CurrentScreen;
                     }
-                    if ((this.CurrentScreen >= 1) && (this.CurrentScreen <= 24))
+                    if ((this.CurrentScreen >= 1) && (this.CurrentScreen <= 40))
                     {
                         // Refresh the box to re-draw the FiO2 and baby pressure
                         if (this.simulationPictureBox.InvokeRequired)
@@ -133,7 +133,7 @@ namespace FlowWorks
         {
             string screenName;
             string[] screenImages = Assembly.GetEntryAssembly().GetManifestResourceNames();
-            int screenImageBase = 14;
+            int screenImageBase = 23;
             switch (currentScreen)
             {
                 case 1:
@@ -196,6 +196,16 @@ namespace FlowWorks
                     screenName = screenImages[screenImageBase + currentScreen - 1];
                     this.simulationPictureBox.Image = new Bitmap(Assembly.GetEntryAssembly().GetManifestResourceStream(screenName));
                     break;
+                case 34:
+                    // CPAP below patient
+                    screenName = screenImages[13];
+                    this.simulationPictureBox.Image = new Bitmap(Assembly.GetEntryAssembly().GetManifestResourceStream(screenName));
+                    break;
+                case 35:
+                    // change filter
+                    screenName = screenImages[9];
+                    this.simulationPictureBox.Image = new Bitmap(Assembly.GetEntryAssembly().GetManifestResourceStream(screenName));
+                    break;
                 case 12:
                     //self_test_start
                     screenName = screenImages[screenImageBase + currentScreen - 1];
@@ -218,11 +228,11 @@ namespace FlowWorks
                     break;
                 case 16:
                     //running  stable
-                    screenName = screenImages[screenImageBase + currentScreen + 6];
+                    screenName = screenImages[screenImageBase + currentScreen + 5];
                     this.simulationPictureBox.Image = new Bitmap(Assembly.GetEntryAssembly().GetManifestResourceStream(screenName));
                     break;
                 case 17:
-                    //running_04 encod_ScreenAdjusting
+                    // Low pressure alarm
                     screenName = screenImages[screenImageBase + currentScreen + 9];
                     this.simulationPictureBox.Image = new Bitmap(Assembly.GetEntryAssembly().GetManifestResourceStream(screenName));
                     break;
@@ -242,8 +252,8 @@ namespace FlowWorks
                     this.simulationPictureBox.Image = new Bitmap(Assembly.GetEntryAssembly().GetManifestResourceStream(screenName));
                     break;
                 case 20:
-                    // ?
-                    screenName = screenImages[screenImageBase + currentScreen + 12];
+                    // High Pressure alarm
+                    screenName = screenImages[screenImageBase + currentScreen + 17];
                     this.simulationPictureBox.Image = new Bitmap(Assembly.GetEntryAssembly().GetManifestResourceStream(screenName));
                     break;
                 case 21:
@@ -251,7 +261,92 @@ namespace FlowWorks
                     screenName = screenImages[screenImageBase + currentScreen + 14];
                     this.simulationPictureBox.Image = new Bitmap(Assembly.GetEntryAssembly().GetManifestResourceStream(screenName));
                     break;
+                case 36:
+                    // Critically low battery alarm
+                    screenName = screenImages[7];
+                    this.simulationPictureBox.Image = new Bitmap(Assembly.GetEntryAssembly().GetManifestResourceStream(screenName));
+                    break;
+                case 37:
+                    // heater cable disconnected alarm
+                    screenName = screenImages[10];
+                    this.simulationPictureBox.Image = new Bitmap(Assembly.GetEntryAssembly().GetManifestResourceStream(screenName));
+                    break;
+                case 38:
+                    // high temperature alarm
+                    screenName = screenImages[12];
+                    this.simulationPictureBox.Image = new Bitmap(Assembly.GetEntryAssembly().GetManifestResourceStream(screenName));
+                    break;
+                case 39:
+                    // temp sensor disconnected alarm
+                    screenName = screenImages[14];
+                    this.simulationPictureBox.Image = new Bitmap(Assembly.GetEntryAssembly().GetManifestResourceStream(screenName));
+                    break;
+                case 40:
+                    // high FiO2 alarm
+                    screenName = screenImages[11];
+                    this.simulationPictureBox.Image = new Bitmap(Assembly.GetEntryAssembly().GetManifestResourceStream(screenName));
+                    break;
+                case 22:
+                    // lock button
+                    screenName = screenImages[currentScreen - 5];
+                    this.simulationPictureBox.Image = new Bitmap(Assembly.GetEntryAssembly().GetManifestResourceStream(screenName));
+                    break;
+                case 23:
+                    // unlock button
+                    screenName = screenImages[60];
+                    this.simulationPictureBox.Image = new Bitmap(Assembly.GetEntryAssembly().GetManifestResourceStream(screenName));
+                    break;
                 case 24:
+                    // mute button
+                    screenName = screenImages[currentScreen - 6];
+                    this.simulationPictureBox.Image = new Bitmap(Assembly.GetEntryAssembly().GetManifestResourceStream(screenName));
+                    break;
+                case 25:
+                    // unmute button
+                    screenName = screenImages[currentScreen - 6];
+                    this.simulationPictureBox.Image = new Bitmap(Assembly.GetEntryAssembly().GetManifestResourceStream(screenName));
+                    break;
+                case 26:
+                    // back button
+                    screenName = screenImages[15];
+                    this.simulationPictureBox.Image = new Bitmap(Assembly.GetEntryAssembly().GetManifestResourceStream(screenName));
+                    break;
+                case 27:
+                    // change button
+                    screenName = screenImages[16];
+                    this.simulationPictureBox.Image = new Bitmap(Assembly.GetEntryAssembly().GetManifestResourceStream(screenName));
+                    break;
+                case 28:
+                    // next button
+                    screenName = screenImages[20];
+                    this.simulationPictureBox.Image = new Bitmap(Assembly.GetEntryAssembly().GetManifestResourceStream(screenName));
+                    break;
+                case 29:
+                    // pause button
+                    screenName = screenImages[21];
+                    this.simulationPictureBox.Image = new Bitmap(Assembly.GetEntryAssembly().GetManifestResourceStream(screenName));
+                    break;
+                case 30:
+                    // run button
+                    screenName = screenImages[22];
+                    this.simulationPictureBox.Image = new Bitmap(Assembly.GetEntryAssembly().GetManifestResourceStream(screenName));
+                    break;
+                case 31:
+                    // skip setup button
+                    screenName = screenImages[59];
+                    this.simulationPictureBox.Image = new Bitmap(Assembly.GetEntryAssembly().GetManifestResourceStream(screenName));
+                    break;
+                case 32:
+                    // dismiss button
+                    screenName = screenImages[8];
+                    this.simulationPictureBox.Image = new Bitmap(Assembly.GetEntryAssembly().GetManifestResourceStream(screenName));
+                    break;
+                case 33:
+                    // complete button
+                    screenName = screenImages[6];
+                    this.simulationPictureBox.Image = new Bitmap(Assembly.GetEntryAssembly().GetManifestResourceStream(screenName));
+                    break;
+                case 124:
                     // Maintenance screen
                     //screenName = screenImages[screenImageBase + currentScreen + 3];
                     //this.simulationPictureBox.Image = new Bitmap(Assembly.GetEntryAssembly().GetManifestResourceStream(screenName));
@@ -344,7 +439,7 @@ namespace FlowWorks
         {
             Color myColor = new Color();
             // This draws the setpoints for baby pressure and FiO2 into the lower panel area (smaller font)
-            if ((this.CurrentScreen >= 14) && (this.CurrentScreen < 24))
+            if (((this.CurrentScreen >= 14) && (this.CurrentScreen < 24)) || ((this.CurrentScreen >= 36) && (this.CurrentScreen <= 40)))
             {
                 using (Font myFont = new Font("Arial", 19))
                 {
@@ -355,7 +450,7 @@ namespace FlowWorks
                 }
             }
             // This draws the current values of baby pressure and FiO2 into the upper panel area (larger font)
-            if ((this.CurrentScreen >= 14) && (this.CurrentScreen < 24))
+            if (((this.CurrentScreen >= 14) && (this.CurrentScreen < 24)) || ((this.CurrentScreen >= 36) && (this.CurrentScreen <= 40)))
             {
                 float fontSize = 72;
                 using (Font myFont = new Font("Arial", fontSize))
@@ -396,7 +491,7 @@ namespace FlowWorks
             }
 
             // This draws the current values of temperature
-            if ((this.CurrentScreen >= 15) && (this.CurrentScreen < 24))
+            if ((this.CurrentScreen >= 15) && (this.CurrentScreen <= 40))
             {
                 float fontSize = 22;
                 myColor = LightGreyBackground;
@@ -408,7 +503,16 @@ namespace FlowWorks
                     int tempStartY = 60;
                     Rectangle temperatureRectangle = new Rectangle(new Point(tempStartX, tempStartY), sizeOfText);
                     e.Graphics.FillRectangle(mySolidBrush, temperatureRectangle);
-                    string temperatureString = this.form1.TempProxValue.ToString("N0");
+                    string temperatureString;
+                    if (this.form1.TempProxValue > -40.0)
+                    {
+                        // Temp probe connected
+                        temperatureString = this.form1.TempProxValue.ToString("N0");
+                    } else
+                    {
+                        // Temp probe disconnected
+                        temperatureString = "- -";
+                    }
                     // Draw the Temperature Proximate here
                     e.Graphics.DrawString(temperatureString + "°", myFont, Brushes.Black, new Point(tempStartX, tempStartY));
                 }
@@ -437,18 +541,18 @@ namespace FlowWorks
             }
             int buttonXLocation = 518;
             // This will draw the lock and mute buttons
-            if ((this.CurrentScreen >= 14) && (this.CurrentScreen < 24))
+            if (((this.CurrentScreen >= 14) && (this.CurrentScreen < 21)) || ((this.CurrentScreen >= 36) && (this.CurrentScreen <= 40)))
             {
                 float buttonScaleFactorX = .79f; // Scale buttons to fit on simulation screen
                 float buttonScaleFactorY = .88f; // Scale buttons to fit on simulation screen
                 string[] screenImages = Assembly.GetEntryAssembly().GetManifestResourceNames();
-                Bitmap tempImage = new Bitmap(Assembly.GetEntryAssembly().GetManifestResourceStream(screenImages[8]));
+                Bitmap tempImage = new Bitmap(Assembly.GetEntryAssembly().GetManifestResourceStream(screenImages[17]));
                 Bitmap LockImage = new Bitmap(tempImage, new Size((int)(tempImage.Width * buttonScaleFactorX), (int)(tempImage.Height * buttonScaleFactorY)));
-                tempImage = new Bitmap(Assembly.GetEntryAssembly().GetManifestResourceStream(screenImages[51]));
+                tempImage = new Bitmap(Assembly.GetEntryAssembly().GetManifestResourceStream(screenImages[60]));
                 Bitmap UnLockImage = new Bitmap(tempImage, new Size((int)(tempImage.Width * buttonScaleFactorX), (int)(tempImage.Height * buttonScaleFactorY)));
-                tempImage = new Bitmap(Assembly.GetEntryAssembly().GetManifestResourceStream(screenImages[9]));
+                tempImage = new Bitmap(Assembly.GetEntryAssembly().GetManifestResourceStream(screenImages[18]));
                 Bitmap MuteImage = new Bitmap(tempImage, new Size((int)(tempImage.Width * buttonScaleFactorX), (int)(tempImage.Height * buttonScaleFactorY)));
-                tempImage = new Bitmap(Assembly.GetEntryAssembly().GetManifestResourceStream(screenImages[10]));
+                tempImage = new Bitmap(Assembly.GetEntryAssembly().GetManifestResourceStream(screenImages[19]));
                 Bitmap UnmuteImage = new Bitmap(tempImage, new Size((int)(tempImage.Width * buttonScaleFactorX), (int)(tempImage.Height * buttonScaleFactorY)));
                 if (form1.lockScreenStatus == 1)
                 {
@@ -465,39 +569,39 @@ namespace FlowWorks
                     e.Graphics.DrawImage(UnmuteImage, buttonXLocation, 317);
                 }
             }
-            // This will draw the pause button on the low-battery screen
-            if ((this.CurrentScreen == 19) || (this.CurrentScreen == 21))
+            if (((this.CurrentScreen == 19) || (this.CurrentScreen == 21) || (this.CurrentScreen == 38) || (this.CurrentScreen == 39) || (this.CurrentScreen == 40)) && (this.form1.BabyPressureUnderPIDControl))
             {
+                // This will draw the PAUSE button on the low-battery screen
                 float buttonScaleFactorX = .79f; // Scale buttons to fit on simulation screen
                 float buttonScaleFactorY = .88f; // Scale buttons to fit on simulation screen
                 string[] screenImages = Assembly.GetEntryAssembly().GetManifestResourceNames();
-                Bitmap tempImage = new Bitmap(Assembly.GetEntryAssembly().GetManifestResourceStream(screenImages[12]));
+                Bitmap tempImage = new Bitmap(Assembly.GetEntryAssembly().GetManifestResourceStream(screenImages[21]));
                 Bitmap PauseImage = new Bitmap(tempImage, new Size((int)(tempImage.Width * buttonScaleFactorX), (int)(tempImage.Height * buttonScaleFactorY)));
                 e.Graphics.DrawImage(PauseImage, buttonXLocation, 224);
+            } 
+            else if (((this.CurrentScreen == 19) || (this.CurrentScreen == 21) || (this.CurrentScreen == 39)) 
+                        && (!this.form1.BabyPressureUnderPIDControl))
+            {
+                // This will draw the RUN button on the low-battery screen
+                float buttonScaleFactorX = .79f; // Scale buttons to fit on simulation screen
+                float buttonScaleFactorY = .88f; // Scale buttons to fit on simulation screen
+                string[] screenImages = Assembly.GetEntryAssembly().GetManifestResourceNames();
+                Bitmap tempImage = new Bitmap(Assembly.GetEntryAssembly().GetManifestResourceStream(screenImages[22]));
+                Bitmap RunImage = new Bitmap(tempImage, new Size((int)(tempImage.Width * buttonScaleFactorX), (int)(tempImage.Height * buttonScaleFactorY)));
+                e.Graphics.DrawImage(RunImage, buttonXLocation, 224);
             }
             // Fill in the battery progress bar
             double battVolts = Convert.ToDouble(form1.batteryVolts.Text);
             Int32 checkBattVolts = Convert.ToInt32(battVolts);
             if (checkBattVolts > this.batteryCharge.Maximum) checkBattVolts = this.batteryCharge.Maximum;
+            if (checkBattVolts < this.batteryCharge.Minimum) checkBattVolts = this.batteryCharge.Minimum + 1;
             this.batteryCharge.Value = checkBattVolts;
             if (this.batteryCharge.Value > 22) this.batteryCharge.SetState(1); // this.batteryCharge.ForeColor = Color.Green;
             else if (this.batteryCharge.Value > 21) this.batteryCharge.SetState(3); //this.batteryCharge.ForeColor = Color.Yellow;
             else if (this.batteryCharge.Value <= 21) this.batteryCharge.SetState(2); //this.batteryCharge.ForeColor = Color.Red;
 
             // decide whether to show the "plugged in" icon
-            if (this.CurrentScreen != 19)
-            {
-                myColor = MediumGreyBackground;
-            } else
-            {
-                // If low-battery screen, make color red
-                myColor =
-                    Color.FromArgb(
-                        255, // Specifies the transparency of the color.
-                        240, // Specifies the amount of red.
-                        0, // specifies the amount of green.
-                        0); // Specifies the amount of blue.
-            }
+            myColor = MediumGreyBackground;
             SolidBrush plugSolidBrush = new SolidBrush(myColor);
             // If charging and not "Low Battery alarm" screen
             if ((form1.BatteryCurrent > -8.0) && (this.CurrentScreen != 24))

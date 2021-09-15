@@ -253,7 +253,7 @@ namespace FlowWorks
                     break;
                 case 20:
                     // High Pressure alarm
-                    screenName = screenImages[screenImageBase + currentScreen + 17];
+                    screenName = screenImages[screenImageBase + currentScreen + 14];
                     this.simulationPictureBox.Image = new Bitmap(Assembly.GetEntryAssembly().GetManifestResourceStream(screenName));
                     break;
                 case 21:
@@ -495,6 +495,10 @@ namespace FlowWorks
             {
                 float fontSize = 22;
                 myColor = LightGreyBackground;
+                if (((this.CurrentScreen >= 36) && (this.CurrentScreen <= 40)) || (this.CurrentScreen == 20))
+                {
+                    myColor = MediumGreyBackground;
+                }
                 SolidBrush mySolidBrush = new SolidBrush(myColor);
                 using (Font myFont = new Font("Arial Rounded MT", fontSize))
                 {
@@ -541,7 +545,7 @@ namespace FlowWorks
             }
             int buttonXLocation = 518;
             // This will draw the lock and mute buttons
-            if (((this.CurrentScreen >= 14) && (this.CurrentScreen < 21)) || ((this.CurrentScreen >= 36) && (this.CurrentScreen <= 40)))
+            if (((this.CurrentScreen >= 14) && (this.CurrentScreen <= 21)) || ((this.CurrentScreen >= 36) && (this.CurrentScreen <= 40)))
             {
                 float buttonScaleFactorX = .79f; // Scale buttons to fit on simulation screen
                 float buttonScaleFactorY = .88f; // Scale buttons to fit on simulation screen

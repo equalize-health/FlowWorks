@@ -286,6 +286,11 @@ namespace FlowWorks
                     screenName = screenImages[15];
                     this.simulationPictureBox.Image = new Bitmap(Assembly.GetEntryAssembly().GetManifestResourceStream(screenName));
                     break;
+                case 41:
+                    // low temperature alarm
+                    screenName = screenImages[8];
+                    this.simulationPictureBox.Image = new Bitmap(Assembly.GetEntryAssembly().GetManifestResourceStream(screenName));
+                    break;
                 case 43:
                     // High plate temperature
                     screenName = screenImages[6];

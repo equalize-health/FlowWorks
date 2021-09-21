@@ -82,7 +82,7 @@ namespace FlowWorks
                         changeScreen(this.form1.CurrentScreen);
                         this.CurrentScreen = this.form1.CurrentScreen;
                     }
-                    if ((this.CurrentScreen >= 1) && (this.CurrentScreen <= 40))
+                    if ((this.CurrentScreen >= 1) && (this.CurrentScreen <= 44))
                     {
                         // Refresh the box to re-draw the FiO2 and baby pressure
                         if (this.simulationPictureBox.InvokeRequired)
@@ -138,7 +138,7 @@ namespace FlowWorks
             {
                 case 1:
                     //Splash_START:
-                    screenName = screenImages[screenImageBase];
+                    screenName = screenImages[screenImageBase + 4];
                     this.simulationPictureBox.Image = new Bitmap(Assembly.GetEntryAssembly().GetManifestResourceStream(screenName));
                     break;
                // case 2:
@@ -148,97 +148,97 @@ namespace FlowWorks
                  //   break;
                 case 2:
                     //Splash_DONE
-                    screenName = screenImages[screenImageBase+ currentScreen - 1];
+                    screenName = screenImages[screenImageBase+ currentScreen + 3];
                     this.simulationPictureBox.Image = new Bitmap(Assembly.GetEntryAssembly().GetManifestResourceStream(screenName));
                     break;
                 case 3:
                     //Fill_Humidifier
-                    screenName = screenImages[screenImageBase + currentScreen - 1];
+                    screenName = screenImages[screenImageBase + currentScreen+ 3];
                     this.simulationPictureBox.Image = new Bitmap(Assembly.GetEntryAssembly().GetManifestResourceStream(screenName));
                     break;
                 case 4:
                     //Reinstall_Humidifier
-                    screenName = screenImages[screenImageBase + currentScreen - 1];
+                    screenName = screenImages[screenImageBase + currentScreen+ 3];
                     this.simulationPictureBox.Image = new Bitmap(Assembly.GetEntryAssembly().GetManifestResourceStream(screenName));
                     break;
                 case 5:
                     //Connect_Exp
-                    screenName = screenImages[screenImageBase + currentScreen - 1];
+                    screenName = screenImages[screenImageBase + currentScreen+ 3];
                     this.simulationPictureBox.Image = new Bitmap(Assembly.GetEntryAssembly().GetManifestResourceStream(screenName));
                     break;
                 case 6:
                     //connect_Heater_to_Insp
-                    screenName = screenImages[screenImageBase + currentScreen - 1];
+                    screenName = screenImages[screenImageBase + currentScreen+ 3];
                     this.simulationPictureBox.Image = new Bitmap(Assembly.GetEntryAssembly().GetManifestResourceStream(screenName));
                     break;
                 case 7:
                     //connect_mid_temp_to_Insp
-                    screenName = screenImages[screenImageBase + currentScreen - 1];
+                    screenName = screenImages[screenImageBase + currentScreen+ 3];
                     this.simulationPictureBox.Image = new Bitmap(Assembly.GetEntryAssembly().GetManifestResourceStream(screenName));
                     break;
                 case 8:
                     //connect_end_temp_to_Insp
-                    screenName = screenImages[screenImageBase + currentScreen - 1];
+                    screenName = screenImages[screenImageBase + currentScreen+ 3];
                     this.simulationPictureBox.Image = new Bitmap(Assembly.GetEntryAssembly().GetManifestResourceStream(screenName));
                     break;
                 case 9:
                     //connect_heater_cable
-                    screenName = screenImages[screenImageBase + currentScreen - 1];
+                    screenName = screenImages[screenImageBase + currentScreen+ 3];
                     this.simulationPictureBox.Image = new Bitmap(Assembly.GetEntryAssembly().GetManifestResourceStream(screenName));
                     break;
                 case 10:
                     //connect_temperature_cable
-                    screenName = screenImages[screenImageBase + currentScreen - 1];
+                    screenName = screenImages[screenImageBase + currentScreen+ 3];
                     this.simulationPictureBox.Image = new Bitmap(Assembly.GetEntryAssembly().GetManifestResourceStream(screenName));
                     break;
                 case 11:
                     //connect_insp_tube
-                    screenName = screenImages[screenImageBase + currentScreen - 1];
+                    screenName = screenImages[screenImageBase + currentScreen+ 3];
                     this.simulationPictureBox.Image = new Bitmap(Assembly.GetEntryAssembly().GetManifestResourceStream(screenName));
                     break;
                 case 34:
                     // CPAP below patient
-                    screenName = screenImages[13];
+                    screenName = screenImages[17];
                     this.simulationPictureBox.Image = new Bitmap(Assembly.GetEntryAssembly().GetManifestResourceStream(screenName));
                     break;
                 case 35:
                     // change filter
-                    screenName = screenImages[9];
+                    screenName = screenImages[13];
                     this.simulationPictureBox.Image = new Bitmap(Assembly.GetEntryAssembly().GetManifestResourceStream(screenName));
                     break;
                 case 12:
                     //self_test_start
-                    screenName = screenImages[screenImageBase + currentScreen - 1];
+                    screenName = screenImages[screenImageBase + currentScreen + 3];
                     this.simulationPictureBox.Image = new Bitmap(Assembly.GetEntryAssembly().GetManifestResourceStream(screenName));
                     break;
                 case 13:
                     //self_test_progress
-                    screenName = screenImages[screenImageBase + currentScreen - 1];
+                    screenName = screenImages[screenImageBase + currentScreen + 3];
                     this.simulationPictureBox.Image = new Bitmap(Assembly.GetEntryAssembly().GetManifestResourceStream(screenName));
                     break;
                 case 14:
                     //Pause, waiting to run
-                    screenName = screenImages[screenImageBase + currentScreen - 1];
+                    screenName = screenImages[screenImageBase + currentScreen + 3];
                     this.simulationPictureBox.Image = new Bitmap(Assembly.GetEntryAssembly().GetManifestResourceStream(screenName));
                     break;
                 case 15:
                     //Adjusting to new setpoint
-                    screenName = screenImages[screenImageBase + currentScreen + 3];
+                    screenName = screenImages[screenImageBase + currentScreen + 7];
                     this.simulationPictureBox.Image = new Bitmap(Assembly.GetEntryAssembly().GetManifestResourceStream(screenName));
                     break;
                 case 16:
                     //running  stable
-                    screenName = screenImages[screenImageBase + currentScreen + 5];
+                    screenName = screenImages[screenImageBase + currentScreen + 9];
                     this.simulationPictureBox.Image = new Bitmap(Assembly.GetEntryAssembly().GetManifestResourceStream(screenName));
                     break;
                 case 17:
                     // Low pressure alarm
-                    screenName = screenImages[screenImageBase + currentScreen + 9];
+                    screenName = screenImages[screenImageBase + currentScreen + 13];
                     this.simulationPictureBox.Image = new Bitmap(Assembly.GetEntryAssembly().GetManifestResourceStream(screenName));
                     break;
                 case 18:
                     // Low Fio2
-                    screenName = screenImages[screenImageBase + currentScreen + 12];
+                    screenName = screenImages[screenImageBase + currentScreen + 16];
                     this.simulationPictureBox.Image = new Bitmap(Assembly.GetEntryAssembly().GetManifestResourceStream(screenName));
                     break;
                // case 19:
@@ -248,42 +248,52 @@ namespace FlowWorks
                 //    break;
                 case 19:
                     // alarm low battery
-                    screenName = screenImages[screenImageBase + currentScreen + 14];
+                    screenName = screenImages[screenImageBase + currentScreen + 18];
                     this.simulationPictureBox.Image = new Bitmap(Assembly.GetEntryAssembly().GetManifestResourceStream(screenName));
                     break;
                 case 20:
                     // High Pressure alarm
-                    screenName = screenImages[screenImageBase + currentScreen + 14];
+                    screenName = screenImages[screenImageBase + currentScreen + 18];
                     this.simulationPictureBox.Image = new Bitmap(Assembly.GetEntryAssembly().GetManifestResourceStream(screenName));
                     break;
                 case 21:
                     // occlusion
-                    screenName = screenImages[screenImageBase + currentScreen + 14];
+                    screenName = screenImages[screenImageBase + currentScreen + 18];
                     this.simulationPictureBox.Image = new Bitmap(Assembly.GetEntryAssembly().GetManifestResourceStream(screenName));
                     break;
                 case 36:
                     // Critically low battery alarm
-                    screenName = screenImages[7];
+                    screenName = screenImages[11];
                     this.simulationPictureBox.Image = new Bitmap(Assembly.GetEntryAssembly().GetManifestResourceStream(screenName));
                     break;
                 case 37:
                     // heater cable disconnected alarm
-                    screenName = screenImages[10];
+                    screenName = screenImages[14];
                     this.simulationPictureBox.Image = new Bitmap(Assembly.GetEntryAssembly().GetManifestResourceStream(screenName));
                     break;
                 case 38:
                     // high temperature alarm
-                    screenName = screenImages[12];
+                    screenName = screenImages[16];
                     this.simulationPictureBox.Image = new Bitmap(Assembly.GetEntryAssembly().GetManifestResourceStream(screenName));
                     break;
                 case 39:
                     // temp sensor disconnected alarm
-                    screenName = screenImages[14];
+                    screenName = screenImages[18];
                     this.simulationPictureBox.Image = new Bitmap(Assembly.GetEntryAssembly().GetManifestResourceStream(screenName));
                     break;
                 case 40:
                     // high FiO2 alarm
-                    screenName = screenImages[11];
+                    screenName = screenImages[15];
+                    this.simulationPictureBox.Image = new Bitmap(Assembly.GetEntryAssembly().GetManifestResourceStream(screenName));
+                    break;
+                case 43:
+                    // High plate temperature
+                    screenName = screenImages[6];
+                    this.simulationPictureBox.Image = new Bitmap(Assembly.GetEntryAssembly().GetManifestResourceStream(screenName));
+                    break;
+                case 42:
+                    // Low plate temperature
+                    screenName = screenImages[7];
                     this.simulationPictureBox.Image = new Bitmap(Assembly.GetEntryAssembly().GetManifestResourceStream(screenName));
                     break;
                 case 22:
@@ -346,6 +356,7 @@ namespace FlowWorks
                     screenName = screenImages[6];
                     this.simulationPictureBox.Image = new Bitmap(Assembly.GetEntryAssembly().GetManifestResourceStream(screenName));
                     break;
+
                 case 124:
                     // Maintenance screen
                     //screenName = screenImages[screenImageBase + currentScreen + 3];
@@ -491,7 +502,7 @@ namespace FlowWorks
             }
 
             // This draws the current values of temperature
-            if ((this.CurrentScreen >= 15) && (this.CurrentScreen <= 40))
+            if (((this.CurrentScreen >= 15) && (this.CurrentScreen <= 44)) && (this.CurrentScreen != 34))
             {
                 float fontSize = 22;
                 myColor = LightGreyBackground;
@@ -545,18 +556,18 @@ namespace FlowWorks
             }
             int buttonXLocation = 518;
             // This will draw the lock and mute buttons
-            if (((this.CurrentScreen >= 14) && (this.CurrentScreen <= 21)) || ((this.CurrentScreen >= 36) && (this.CurrentScreen <= 40)))
+            if (((this.CurrentScreen >= 14) && (this.CurrentScreen <= 21)) || ((this.CurrentScreen >= 36) && (this.CurrentScreen <= 44)))
             {
                 float buttonScaleFactorX = .79f; // Scale buttons to fit on simulation screen
                 float buttonScaleFactorY = .88f; // Scale buttons to fit on simulation screen
                 string[] screenImages = Assembly.GetEntryAssembly().GetManifestResourceNames();
-                Bitmap tempImage = new Bitmap(Assembly.GetEntryAssembly().GetManifestResourceStream(screenImages[17]));
+                Bitmap tempImage = new Bitmap(Assembly.GetEntryAssembly().GetManifestResourceStream(screenImages[21]));
                 Bitmap LockImage = new Bitmap(tempImage, new Size((int)(tempImage.Width * buttonScaleFactorX), (int)(tempImage.Height * buttonScaleFactorY)));
-                tempImage = new Bitmap(Assembly.GetEntryAssembly().GetManifestResourceStream(screenImages[60]));
+                tempImage = new Bitmap(Assembly.GetEntryAssembly().GetManifestResourceStream(screenImages[64]));
                 Bitmap UnLockImage = new Bitmap(tempImage, new Size((int)(tempImage.Width * buttonScaleFactorX), (int)(tempImage.Height * buttonScaleFactorY)));
-                tempImage = new Bitmap(Assembly.GetEntryAssembly().GetManifestResourceStream(screenImages[18]));
+                tempImage = new Bitmap(Assembly.GetEntryAssembly().GetManifestResourceStream(screenImages[22]));
                 Bitmap MuteImage = new Bitmap(tempImage, new Size((int)(tempImage.Width * buttonScaleFactorX), (int)(tempImage.Height * buttonScaleFactorY)));
-                tempImage = new Bitmap(Assembly.GetEntryAssembly().GetManifestResourceStream(screenImages[19]));
+                tempImage = new Bitmap(Assembly.GetEntryAssembly().GetManifestResourceStream(screenImages[23]));
                 Bitmap UnmuteImage = new Bitmap(tempImage, new Size((int)(tempImage.Width * buttonScaleFactorX), (int)(tempImage.Height * buttonScaleFactorY)));
                 if (form1.lockScreenStatus == 1)
                 {
@@ -573,24 +584,24 @@ namespace FlowWorks
                     e.Graphics.DrawImage(UnmuteImage, buttonXLocation, 317);
                 }
             }
-            if (((this.CurrentScreen == 19) || (this.CurrentScreen == 21) || (this.CurrentScreen == 38) || (this.CurrentScreen == 39) || (this.CurrentScreen == 40)) && (this.form1.BabyPressureUnderPIDControl))
+            if (((this.CurrentScreen == 19) || (this.CurrentScreen == 21) || ((this.CurrentScreen >= 38) && (this.CurrentScreen <= 44))) && (this.form1.BabyPressureUnderPIDControl))
             {
                 // This will draw the PAUSE button on the low-battery screen
                 float buttonScaleFactorX = .79f; // Scale buttons to fit on simulation screen
                 float buttonScaleFactorY = .88f; // Scale buttons to fit on simulation screen
                 string[] screenImages = Assembly.GetEntryAssembly().GetManifestResourceNames();
-                Bitmap tempImage = new Bitmap(Assembly.GetEntryAssembly().GetManifestResourceStream(screenImages[21]));
+                Bitmap tempImage = new Bitmap(Assembly.GetEntryAssembly().GetManifestResourceStream(screenImages[25]));
                 Bitmap PauseImage = new Bitmap(tempImage, new Size((int)(tempImage.Width * buttonScaleFactorX), (int)(tempImage.Height * buttonScaleFactorY)));
                 e.Graphics.DrawImage(PauseImage, buttonXLocation, 224);
             } 
-            else if (((this.CurrentScreen == 19) || (this.CurrentScreen == 21) || (this.CurrentScreen == 39)) 
+            else if ((this.CurrentScreen == 19) || (this.CurrentScreen == 21) || ((this.CurrentScreen >= 39) && (this.CurrentScreen <= 44))
                         && (!this.form1.BabyPressureUnderPIDControl))
             {
                 // This will draw the RUN button on the low-battery screen
                 float buttonScaleFactorX = .79f; // Scale buttons to fit on simulation screen
                 float buttonScaleFactorY = .88f; // Scale buttons to fit on simulation screen
                 string[] screenImages = Assembly.GetEntryAssembly().GetManifestResourceNames();
-                Bitmap tempImage = new Bitmap(Assembly.GetEntryAssembly().GetManifestResourceStream(screenImages[22]));
+                Bitmap tempImage = new Bitmap(Assembly.GetEntryAssembly().GetManifestResourceStream(screenImages[26]));
                 Bitmap RunImage = new Bitmap(tempImage, new Size((int)(tempImage.Width * buttonScaleFactorX), (int)(tempImage.Height * buttonScaleFactorY)));
                 e.Graphics.DrawImage(RunImage, buttonXLocation, 224);
             }

@@ -135,6 +135,10 @@
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="images\AlarmHighPlateTemp.png" />
+    <EmbeddedResource Include="images\AlarmLowPlateTemp.png" />
+    <EmbeddedResource Include="images\AlarmLowTemp.png" />
+    <EmbeddedResource Include="images\RefillHumidifier.png" />
     <EmbeddedResource Include="images\Complete.png" />
     <EmbeddedResource Include="images\CriticallyLowBattery.png" />
     <EmbeddedResource Include="images\Dismiss.png" />

@@ -455,7 +455,7 @@ namespace FlowWorks
         {
             Color myColor = new Color();
             // This draws the setpoints for baby pressure and FiO2 into the lower panel area (smaller font)
-            if (((this.CurrentScreen >= 14) && (this.CurrentScreen < 24)) || ((this.CurrentScreen >= 36) && (this.CurrentScreen <= 40)))
+            if (((this.CurrentScreen >= 14) && (this.CurrentScreen < 24)) || ((this.CurrentScreen >= 36) && (this.CurrentScreen <= 43)))
             {
                 using (Font myFont = new Font("Arial", 19))
                 {
@@ -466,7 +466,7 @@ namespace FlowWorks
                 }
             }
             // This draws the current values of baby pressure and FiO2 into the upper panel area (larger font)
-            if (((this.CurrentScreen >= 14) && (this.CurrentScreen < 24)) || ((this.CurrentScreen >= 36) && (this.CurrentScreen <= 40)))
+            if (((this.CurrentScreen >= 14) && (this.CurrentScreen < 24)) || ((this.CurrentScreen >= 36) && (this.CurrentScreen <= 43)))
             {
                 float fontSize = 72;
                 using (Font myFont = new Font("Arial", fontSize))

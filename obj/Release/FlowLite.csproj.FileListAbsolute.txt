@@ -1,0 +1,15 @@
+C:\Users\pbars\OneDrive\Documents\github\FlowWorks\bin\Release\FlowWorks.exe.config
+C:\Users\pbars\OneDrive\Documents\github\FlowWorks\bin\Release\FlowWorks.exe
+C:\Users\pbars\OneDrive\Documents\github\FlowWorks\bin\Release\FlowWorks.pdb
+C:\Users\pbars\OneDrive\Documents\github\FlowWorks\obj\Release\FlowLite.csproj.AssemblyReference.cache
+C:\Users\pbars\OneDrive\Documents\github\FlowWorks\obj\Release\FlowLite.csproj.ResolveComReference.cache
+C:\Users\pbars\OneDrive\Documents\github\FlowWorks\obj\Release\FlowWorks.DownloadFW.resources
+C:\Users\pbars\OneDrive\Documents\github\FlowWorks\obj\Release\FlowWorks.Form1.resources
+C:\Users\pbars\OneDrive\Documents\github\FlowWorks\obj\Release\FlowWorks.Calibrate.resources
+C:\Users\pbars\OneDrive\Documents\github\FlowWorks\obj\Release\FlowWorks.o2Sensor.resources
+C:\Users\pbars\OneDrive\Documents\github\FlowWorks\obj\Release\FlowWorks.Properties.Resources.resources
+C:\Users\pbars\OneDrive\Documents\github\FlowWorks\obj\Release\FlowWorks.Simulation.resources
+C:\Users\pbars\OneDrive\Documents\github\FlowWorks\obj\Release\FlowLite.csproj.GenerateResource.cache
+C:\Users\pbars\OneDrive\Documents\github\FlowWorks\obj\Release\FlowLite.csproj.CoreCompileInputs.cache
+C:\Users\pbars\OneDrive\Documents\github\FlowWorks\obj\Release\FlowWorks.exe
+C:\Users\pbars\OneDrive\Documents\github\FlowWorks\obj\Release\FlowWorks.pdb

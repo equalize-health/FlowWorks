@@ -526,8 +526,16 @@ namespace FlowWorks
                     string temperatureString;
                     if (this.form1.TempProxValue > -40.0)
                     {
-                        // Temp probe connected
-                        temperatureString = this.form1.TempProxValue.ToString("N0");
+                        if ((this.form1.TempDistValue > -40.0) && (this.form1.TempDistValue < this.form1.TempProxValue))
+                        {
+                            // Temp probe connected and Temp_Dist is lower value
+                            temperatureString = this.form1.TempDistValue.ToString("N0");
+                        } else
+                        {
+                            // Temp_prox probe connected and Temp_Dist is not lower value
+                            temperatureString = this.form1.TempProxValue.ToString("N0");
+                        }
+
                     } else
                     {
                         // Temp probe disconnected

@@ -224,7 +224,8 @@
   <PropertyGroup>
     <PreBuildEvent>copy $(ProjectDir)FlowWorks_Help.pdf $(TargetDir)
 copy $(ProjectDir)..\cpap_flowlite\ReleaseNotes.pdf $(TargetDir)
-copy $(ProjectDir)..\cpap_flowlite\FlowLite\Device_download\FlowLite.hex $(TargetDir)
+copy $(ProjectDir)..\cpap_flowlite\FlowLite\Device_download\FlowLiteATSAMD51J19A.hex $(TargetDir)
+copy $(ProjectDir)..\cpap_flowlite\FlowLite\Device_download\FlowLiteATSAMD51J20A.hex $(TargetDir)
 copy $(ProjectDir)..\cpap_flowlite\FlowLite\Device_download\*.bat $(TargetDir)
 copy $(ProjectDir)..\cpap_flowlite\FlowLite\Device_download\atprogram.exe $(TargetDir)
 </PreBuildEvent>

@@ -10,8 +10,8 @@ namespace FlowWorks
     class FlowWorks
     {
         private int comportNum;
-        private Writer writer;
-        private Reader reader;
+        public Writer writer;
+        public Reader reader;
         private Config config;
         public volatile ConnectionManager connectionManager;
         public DeviceData deviceData;   // updated on each new status read from the device
@@ -432,6 +432,8 @@ namespace FlowWorks
         public int heatWirePIDEnable;
         public double o2Sensor;
         public int fio2ScreenReading;
+        public double tempInspiratory;
+
         public double propValveSetting { get; set; }
         public int blowerSetting { get; set; }
         public string Data
@@ -530,6 +532,9 @@ namespace FlowWorks
                             break;
                         case 27:
                             this.fio2ScreenReading = Convert.ToInt32(dataList[i]);
+                            break;
+                        case 28:
+                            this.tempInspiratory = Convert.ToDouble(dataList[i]);
                             break;
                     }
                 }

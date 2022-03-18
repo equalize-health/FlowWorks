@@ -45,6 +45,7 @@ namespace FlowWorks
         public string boardSerialNumber;
 
         public double TempProxValue { get; private set; }
+        public double TempDistValue { get; private set; }
         public double BabyPressureValue { get; private set; }
         public double FiO2Value { get; private set; }
         public int FiO2ScreenValue { get; private set; }
@@ -202,6 +203,7 @@ namespace FlowWorks
             this.FlowExp.Text = deviceData.flowExp.ToString("N2");
             this.PressCkt.Text = deviceData.pressCkt.ToString("#.##");
             this.TempProxValue = deviceData.tempProx;
+            this.TempDistValue = deviceData.tempDist;
             if (deviceData.tempProx < -40) this.TempProx.Text = "N/C";
             else this.TempProx.Text = deviceData.tempProx.ToString("N1");
             if (deviceData.tempDist < -40) this.TempDist.Text = "N/C";
@@ -216,6 +218,7 @@ namespace FlowWorks
             this.FiO2.Text = deviceData.fio2.ToString("N1");
             this.FiO2Value = deviceData.fio2;
             this.FiO2ScreenValue = deviceData.fio2ScreenReading;
+            this.TempInsp.Text = deviceData.tempInspiratory.ToString("N0");
             this.Fio2Setpt.Value = (decimal)deviceData.fio2Setpt;
             this.PressBabySetpt.Value = (decimal)deviceData.pressSetpt;
             if (Convert.ToBoolean(deviceData.fio2PIDEnable))

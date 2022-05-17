@@ -511,7 +511,12 @@ namespace FlowWorks
 
         private void PressBabySetpt_ValueChanged(object sender, EventArgs e)
         {
-            fwViewer.AddTerminalCommand("pressSetpt(" + this.PressBabySetpt.Value + ")");
+            SendPressSetpoint(this.PressBabySetpt.Value);
+        }
+        public void SendPressSetpoint(decimal value)
+        {
+            this.PressBabySetpt.Value = value;
+            fwViewer.AddTerminalCommand("pressSetpt(" + value + ")");
         }
 
         private void Fio2Setpt_ValueChanged(object sender, EventArgs e)
@@ -522,9 +527,13 @@ namespace FlowWorks
                 // Make odd numbers even
                 if (setValue%5 == 1) setValue -= 1;
             }
-            fwViewer.AddTerminalCommand("fio2Setpt(" + setValue + ")");
+            SendFio2Setpoint(setValue);
         }
-
+        public void SendFio2Setpoint(decimal value)
+        {
+            this.Fio2Setpt.Value = value;
+            fwViewer.AddTerminalCommand("fio2Setpt(" + value + ")");
+        }
         private void StartBabyPressure_Click(object sender, EventArgs e)
         {
             fwViewer.AddTerminalCommand("pressSetpt(" + this.PressBabySetpt.Value + ")");
@@ -628,7 +637,7 @@ namespace FlowWorks
 
         private void startFirwmareDownloadToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            DownloadFW downloadPopup = new DownloadFW();
+            DownloadFW downloadPopup = new DownloadFW(); 
             if (downloadPopup.ShowDialog(this) == DialogResult.OK)
             {
                 // Use ProcessStartInfo class

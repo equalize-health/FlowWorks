@@ -135,6 +135,46 @@
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="images\images_May2022\Alarm_ChangeFilter.png" />
+    <EmbeddedResource Include="images\images_May2022\Alarm_CritLowBatt.png" />
+    <EmbeddedResource Include="images\images_May2022\Alarm_HeatCableDisc.png" />
+    <EmbeddedResource Include="images\images_May2022\Alarm_HiFiO2.png" />
+    <EmbeddedResource Include="images\images_May2022\Alarm_HiPlateTemp.png" />
+    <EmbeddedResource Include="images\images_May2022\Alarm_HiPress.png" />
+    <EmbeddedResource Include="images\images_May2022\Alarm_HiTemp.png" />
+    <EmbeddedResource Include="images\images_May2022\Alarm_LoBatt.png" />
+    <EmbeddedResource Include="images\images_May2022\Alarm_LoFiO2.png" />
+    <EmbeddedResource Include="images\images_May2022\Alarm_LoPlateTemp.png" />
+    <EmbeddedResource Include="images\images_May2022\Alarm_LoPress.png" />
+    <EmbeddedResource Include="images\images_May2022\Alarm_LoTemp.png" />
+    <EmbeddedResource Include="images\images_May2022\Alarm_Occlusion.png" />
+    <EmbeddedResource Include="images\images_May2022\Alarm_RefillHumid.png" />
+    <EmbeddedResource Include="images\images_May2022\Alarm_template.png" />
+    <EmbeddedResource Include="images\images_May2022\Alarm_TempSensorDisc.png" />
+    <EmbeddedResource Include="images\images_May2022\BabyBelowCPAP.png" />
+    <EmbeddedResource Include="images\images_May2022\Complete.png" />
+    <EmbeddedResource Include="images\images_May2022\Dismiss.png" />
+    <EmbeddedResource Include="images\images_May2022\Icon_back_button.png" />
+    <EmbeddedResource Include="images\images_May2022\Icon_forward_button.png" />
+    <EmbeddedResource Include="images\images_May2022\Icon_mute_button.png" />
+    <EmbeddedResource Include="images\images_May2022\Icon_pause_button.png" />
+    <EmbeddedResource Include="images\images_May2022\Icon_power_button.png" />
+    <EmbeddedResource Include="images\images_May2022\Icon_test_button.png" />
+    <EmbeddedResource Include="images\images_May2022\Screen1-01.png" />
+    <EmbeddedResource Include="images\images_May2022\Screen10-01.png" />
+    <EmbeddedResource Include="images\images_May2022\Screen11-01.png" />
+    <EmbeddedResource Include="images\images_May2022\Screen12-01.png" />
+    <EmbeddedResource Include="images\images_May2022\Screen13-01.png" />
+    <EmbeddedResource Include="images\images_May2022\Screen14-01.png" />
+    <EmbeddedResource Include="images\images_May2022\Screen15-01.png" />
+    <EmbeddedResource Include="images\images_May2022\Screen2-01.png" />
+    <EmbeddedResource Include="images\images_May2022\Screen3-01.png" />
+    <EmbeddedResource Include="images\images_May2022\Screen4-01.png" />
+    <EmbeddedResource Include="images\images_May2022\Screen5-01.png" />
+    <EmbeddedResource Include="images\images_May2022\Screen6-01.png" />
+    <EmbeddedResource Include="images\images_May2022\Screen7-01.png" />
+    <EmbeddedResource Include="images\images_May2022\Screen8-01.png" />
+    <EmbeddedResource Include="images\images_May2022\Screen9-01.png" />
     <EmbeddedResource Include="images\AlarmHighPlateTemp.png" />
     <EmbeddedResource Include="images\AlarmLowPlateTemp.png" />
     <EmbeddedResource Include="images\AlarmLowTemp.png" />
@@ -220,6 +260,7 @@
       <Install>false</Install>
     </BootstrapperPackage>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
     <PreBuildEvent>copy $(ProjectDir)FlowWorks_Help.pdf $(TargetDir)

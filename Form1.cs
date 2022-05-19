@@ -54,6 +54,7 @@ namespace FlowWorks
         public double BatteryCurrent { get; private set; }
         public int lockScreenStatus { get; private set; }
         public int alarmMuteStatus { get; private set; }
+        public int PopupScreen { get; private set; }
 
         public Form1()
         {
@@ -219,6 +220,7 @@ namespace FlowWorks
             this.FiO2Value = deviceData.fio2;
             this.FiO2ScreenValue = deviceData.fio2ScreenReading;
             this.TempInsp.Text = deviceData.tempInspiratory.ToString("N0");
+            this.PopupScreen = deviceData.popupScreen;
             this.Fio2Setpt.Value = (decimal)deviceData.fio2Setpt;
             this.PressBabySetpt.Value = (decimal)deviceData.pressSetpt;
             if (Convert.ToBoolean(deviceData.fio2PIDEnable))
@@ -511,7 +513,11 @@ namespace FlowWorks
 
         private void PressBabySetpt_ValueChanged(object sender, EventArgs e)
         {
-            SendPressSetpoint(this.PressBabySetpt.Value);
+            if (SimulationScreen == null)
+            {
+                // Don't send Press change values if the simulation screen is up
+                SendPressSetpoint(this.PressBabySetpt.Value);
+            }
         }
         public void SendPressSetpoint(decimal value)
         {
@@ -527,7 +533,11 @@ namespace FlowWorks
                 // Make odd numbers even
                 if (setValue%5 == 1) setValue -= 1;
             }
-            SendFio2Setpoint(setValue);
+            if (SimulationScreen == null)
+            {
+                // Don't send FiO2 change values if the simulation screen is up
+                SendFio2Setpoint(setValue);
+            }
         }
         public void SendFio2Setpoint(decimal value)
         {
@@ -686,6 +696,7 @@ namespace FlowWorks
             SimulationScreen = new Simulation(this);
             DialogResult result = SimulationScreen.ShowDialog();
             SimulationScreen.Invalidate();
+            SimulationScreen = null;
         }
 
         private void enableLoggingToolStripMenuItem_Click(object sender, EventArgs e)

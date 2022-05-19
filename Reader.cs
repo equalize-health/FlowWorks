@@ -166,13 +166,13 @@ namespace FlowWorks {
                 //if the character is not printable (<=0x1F or > 0x7E) except tab 0x09 - then the entire deviceResponse is bogus
                 if (c != 0x09 && (c < 0x20 || c > 0x7E))
                 {
-                this.deviceResponse = "";
-                this.readingDeviceResponse = false;
+                    this.deviceResponse = "";
+                    this.readingDeviceResponse = false;
                 }
                 else
                 {
-                this.deviceResponse += c;
-                this.readingDeviceResponse = true;
+                    this.deviceResponse += c;
+                    this.readingDeviceResponse = true;
                 }
                 break;
             }

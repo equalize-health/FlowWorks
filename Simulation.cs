@@ -198,6 +198,8 @@ namespace FlowWorks
         int pause_button = 28;
         int complete_button = 23;
         int dismiss_button = 24;
+        private int delayO2SetpointUpdate;
+        private int delayPressSetpointUpdate;
 
         private bool alarmScreenPresent(int currentScreen)
         {
@@ -219,7 +221,7 @@ namespace FlowWorks
         }
         private bool therapyScreenPresent(int currentScreen)
         {
-            if (currentScreen == therapy_setting_screen) return true;
+            if (currentScreen == therapy_setting_screen) return false;
             if (currentScreen == therapy_ramping_screen) return true;
             if (currentScreen == therapy_running_screen) return true;
             return false;
@@ -574,17 +576,70 @@ namespace FlowWorks
         private void simulationPictureBox_Paint(object sender, PaintEventArgs e)
         {
             Color myColor = new Color();
+
+            // First, handle popup screens
+            if (this.form1.PopupScreen > 0)
+            {
+                int rectStartX = 50;
+                int rectStartY = 50;
+                int borderSize = 5;
+                string messageString;
+                Rectangle popupRectangle = new Rectangle(rectStartX, rectStartY, 520,270);
+                SolidBrush mySolidBrush = new SolidBrush(LightGreyBackground);
+                e.Graphics.FillRectangle(mySolidBrush, popupRectangle);
+                ControlPaint.DrawBorder(e.Graphics, popupRectangle,
+                    Color.Black, borderSize, ButtonBorderStyle.Inset,
+                    Color.Black, borderSize, ButtonBorderStyle.Inset,
+                    Color.Black, borderSize, ButtonBorderStyle.Inset,
+                    Color.Black, borderSize, ButtonBorderStyle.Inset );
+
+                float fontSize = 24;
+                using (Font myFont = new Font("Arial", fontSize))
+                {
+                    switch (this.form1.PopupScreen)
+                    {
+                        case 1:
+                            // Power shutdown popup
+                            messageString = "PRESS POWER BUTTON";
+                            e.Graphics.DrawString(messageString, myFont, Brushes.Black, new Point(rectStartX + 50, rectStartY + 50));
+                            messageString = "AGAIN TO SHUTDOWN";
+                            e.Graphics.DrawString(messageString, myFont, Brushes.Black, new Point(rectStartX + 40, rectStartY + 100));
+                            break;
+                        case 2:
+                            // AC Power disconnected
+                            messageString = "AC POWER DISCONNECTED";
+                            e.Graphics.DrawString(messageString, myFont, Brushes.Black, new Point(rectStartX + 50, rectStartY + 50));
+                            messageString = "CLICK BUTTON TO CONTINUE";
+                            e.Graphics.DrawString(messageString, myFont, Brushes.Black, new Point(rectStartX + 25, rectStartY + 100)); 
+                            break;
+                        case 3:
+                            // Change Filter screen
+                            messageString = "TIME TO CHANGE FILTER";
+                            e.Graphics.DrawString(messageString, myFont, Brushes.Black, new Point(rectStartX + 50, rectStartY + 50));
+                            messageString = "PRESS RIGHT ARROW";
+                            e.Graphics.DrawString(messageString, myFont, Brushes.Black, new Point(rectStartX + 60, rectStartY + 100));
+                            messageString = "TO CONTINUE";
+                            e.Graphics.DrawString(messageString, myFont, Brushes.Black, new Point(rectStartX + 50, rectStartY + 150));
+                            break;
+                    }
+                }
+                return;
+            }
             // This draws the setpoints for baby pressure and FiO2 into the lower area (smaller font)
             if ((this.CurrentScreen >= 6) && (this.CurrentScreen < 47))
             {
-                using (Font myFont = new Font("Arial", 17))
+                // Wait to enter the FiO2 setpoint if we've manually changed it, and the value has to carry through
+                if (delayPressSetpointUpdate-- <= 0)
                 {
-                    // Draw the Baby Pressure setpoint here
-                   // e.Graphics.DrawString(this.form1.PressBabySetpt.Value.ToString(), myFont, Brushes.Black, new Point(170, 384));
+                    // Enter the Baby Pressure setpoint here
                     this.PressSetpt.Value = this.form1.PressBabySetpt.Value;
-                    // Draw the FiO2 setpoint here
-                    e.Graphics.DrawString(this.form1.Fio2Setpt.Value.ToString(), myFont, Brushes.WhiteSmoke, new Point(410, 384));
-                    if (this.form1.Fio2Setpt.Value > 21) this.O2Setpoint.Value = 21;
+                }
+
+                // Wait to enter the FiO2 setpoint if we've manually changed it, and the value has to carry through
+                if (delayO2SetpointUpdate-- <= 0)
+                {
+                    // Enter the FiO2 setpoint here
+                    if (this.form1.Fio2Setpt.Value < 21) this.O2Setpoint.Value = 21;
                     else if (this.form1.Fio2Setpt.Value > 97) this.O2Setpoint.Value = 97;
                     else this.O2Setpoint.Value = this.form1.Fio2Setpt.Value;
                 }
@@ -597,9 +652,12 @@ namespace FlowWorks
                 {
                     string babyPressureString = this.form1.BabyPressureValue.ToString("N0");
                     Size sizeOfText = TextRenderer.MeasureText(babyPressureString, new Font("Arial", fontSize));
-                    int bpStartX = 135;
+                    int bpStartX = 125;
                     int fio2StartX = 390;
                     int startY = 255;
+                    // Move pressure over when it is 10 (2 digits)
+                    if (babyPressureString.Equals("10")) bpStartX -= 54;
+
                     Rectangle babyPressureRectangle = new Rectangle(new Point(bpStartX, startY), sizeOfText);
 
                     // Draw the Baby Pressure  here
@@ -614,7 +672,7 @@ namespace FlowWorks
                     Font unitsFont = new Font("Arial", 18);
                     string units = "cmH₂O";
                     int startUnitsY = startY + 65;
-                    e.Graphics.DrawString(units, unitsFont, Brushes.Black, new Point(bpStartX + babyPressureRectangle.Width - 25, startUnitsY));
+                    e.Graphics.DrawString(units, unitsFont, Brushes.Black, new Point(bpStartX + babyPressureRectangle.Width - 32, startUnitsY));
 
                     string fio2String = this.form1.FiO2ScreenValue.ToString();
                     babyPressureString += "%O₂";
@@ -827,14 +885,23 @@ namespace FlowWorks
 
             this.form1.PressBabySetpt.Value = this.PressSetpt.Value;
             this.form1.SendPressSetpoint(this.PressSetpt.Value);
-            // this.form1.fwViewer.writer.AddTerminalCommand("pressSetpt(" + this.PressSetpt.Value + ")");
+            this.delayPressSetpointUpdate = 10;
         }
 
         private void O2Setpoint_ValueChanged(object sender, EventArgs e)
         {
+            if (this.form1.Fio2Setpt.Value != this.O2Setpoint.Value)
+            {
+                if ((this.form1.Fio2Setpt.Value == 97) && (this.O2Setpoint.Value < 95))
+                {
+                    this.O2Setpoint.Value = 95;
+                }
+                this.form1.SendFio2Setpoint(this.O2Setpoint.Value);
+                this.delayO2SetpointUpdate = 50;
+                Console.WriteLine("O2 setpoint changed to: " + this.O2Setpoint.Value);
+
+            }
             this.form1.Fio2Setpt.Value = this.O2Setpoint.Value;
-            this.form1.SendFio2Setpoint(this.O2Setpoint.Value);
-           // this.form1.fwViewer.writer.AddTerminalCommand("fio2Setpt(" + this.O2Setpoint.Value + ")");
         }
     }
     public static class ModifyProgressBarColor

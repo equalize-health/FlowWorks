@@ -186,22 +186,24 @@ namespace FlowWorks
             // 
             // textBox1
             // 
+            this.textBox1.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.textBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 24F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.textBox1.Location = new System.Drawing.Point(805, 1167);
             this.textBox1.Name = "textBox1";
             this.textBox1.ReadOnly = true;
-            this.textBox1.Size = new System.Drawing.Size(250, 98);
+            this.textBox1.Size = new System.Drawing.Size(250, 91);
             this.textBox1.TabIndex = 2;
             this.textBox1.TabStop = false;
             this.textBox1.Text = "O₂%:";
             // 
             // textBox2
             // 
+            this.textBox2.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.textBox2.Font = new System.Drawing.Font("Microsoft Sans Serif", 24F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.textBox2.Location = new System.Drawing.Point(150, 1158);
             this.textBox2.Name = "textBox2";
             this.textBox2.ReadOnly = true;
-            this.textBox2.Size = new System.Drawing.Size(256, 98);
+            this.textBox2.Size = new System.Drawing.Size(256, 91);
             this.textBox2.TabIndex = 6;
             this.textBox2.TabStop = false;
             this.textBox2.Text = "Press:";

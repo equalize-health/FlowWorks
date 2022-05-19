@@ -86,6 +86,7 @@ namespace FlowWorks
         // It runs in a thread, constantly sending the command
         void dataRequestUpdate()
         {
+            int dataWaitTics = 0;
             while (true)
             {
                 if (this.reader.ConnectionIsOpen) // && this.deviceConnected)
@@ -99,6 +100,13 @@ namespace FlowWorks
                         this.reader.updateTimeStamp();
                         //Console.WriteLine(DateTime.UtcNow.ToString("HH:mm:ss.fff") + " dataRequestUpdate");
                         this.writer.AddTerminalCommand("sendData");
+                        dataWaitTics = 0;
+                    }
+                    if ((this.dataPending == true) && (dataWaitTics++ > 10))
+                    {
+                        // No response within 1000 msecs, looks like we're just not going to get anything
+                        dataWaitTics = 0;
+                        this.dataPending = false;
                     }
                 }
             }
@@ -433,6 +441,7 @@ namespace FlowWorks
         public double o2Sensor;
         public int fio2ScreenReading;
         public double tempInspiratory;
+        public int popupScreen;
 
         public double propValveSetting { get; set; }
         public int blowerSetting { get; set; }
@@ -535,6 +544,9 @@ namespace FlowWorks
                             break;
                         case 28:
                             this.tempInspiratory = Convert.ToDouble(dataList[i]);
+                            break;
+                        case 29:
+                            this.popupScreen = Convert.ToInt32(dataList[i]); 
                             break;
                     }
                 }

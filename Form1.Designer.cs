@@ -153,7 +153,7 @@ namespace FlowWorks
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
             this.menuStrip1.Padding = new System.Windows.Forms.Padding(5, 2, 0, 2);
-            this.menuStrip1.Size = new System.Drawing.Size(2068, 49);
+            this.menuStrip1.Size = new System.Drawing.Size(5170, 150);
             this.menuStrip1.TabIndex = 0;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -163,7 +163,7 @@ namespace FlowWorks
             this.comportMenu,
             this.enableLoggingToolStripMenuItem});
             this.setupMenu.Name = "setupMenu";
-            this.setupMenu.Size = new System.Drawing.Size(119, 45);
+            this.setupMenu.Size = new System.Drawing.Size(119, 146);
             this.setupMenu.Text = "Setup";
             this.setupMenu.Click += new System.EventHandler(this.RefreshComList);
             // 
@@ -187,7 +187,7 @@ namespace FlowWorks
             this.startFirmwareDownloadToolStripMenuItem,
             this.aboutFirmwareToolStripMenuItem});
             this.toolStripMenuItem1.Name = "toolStripMenuItem1";
-            this.toolStripMenuItem1.Size = new System.Drawing.Size(178, 45);
+            this.toolStripMenuItem1.Size = new System.Drawing.Size(178, 146);
             this.toolStripMenuItem1.Text = "Download";
             // 
             // startFirwmareDownloadToolStripMenuItem
@@ -217,7 +217,7 @@ namespace FlowWorks
             this.VersionString,
             this.helpDocToolStripMenuItem});
             this.aboutToolStripMenuItem.Name = "aboutToolStripMenuItem";
-            this.aboutToolStripMenuItem.Size = new System.Drawing.Size(124, 45);
+            this.aboutToolStripMenuItem.Size = new System.Drawing.Size(124, 146);
             this.aboutToolStripMenuItem.Text = "About";
             // 
             // VersionString
@@ -706,9 +706,9 @@ namespace FlowWorks
             this.label6.Location = new System.Drawing.Point(1640, 280);
             this.label6.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(123, 32);
+            this.label6.Size = new System.Drawing.Size(263, 80);
             this.label6.TabIndex = 83;
-            this.label6.Text = "c_factor:";
+            this.label6.Text = "c_leak:";
             // 
             // cFactor
             // 

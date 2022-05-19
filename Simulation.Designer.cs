@@ -265,6 +265,7 @@ namespace FlowWorks
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(16F, 31F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.AutoSize = true;
             this.ClientSize = new System.Drawing.Size(1693, 1282);
             this.Controls.Add(this.PressSetpt);
             this.Controls.Add(this.O2Setpoint);
